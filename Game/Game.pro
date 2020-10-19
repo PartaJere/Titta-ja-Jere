@@ -31,3 +31,4 @@ else:win32:!win32-g++:CONFIG(debug, debug|release): PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/debug/CourseLib.lib
 else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
+
