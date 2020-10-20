@@ -7,7 +7,8 @@ CONFIG += c++14
 
 SOURCES += \
     city.cc \
-    main.cc
+    main.cc \
+    creategame.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
