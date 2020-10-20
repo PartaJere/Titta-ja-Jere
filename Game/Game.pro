@@ -6,8 +6,8 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
-    main.cc \
-    tampere.cpp
+    city.cc \
+    main.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -34,5 +34,5 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    tampere.hh
+    city.hh
 

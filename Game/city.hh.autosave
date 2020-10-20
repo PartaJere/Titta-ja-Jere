@@ -3,8 +3,11 @@
 
 #include "interfaces/icity.hh"
 #include "interfaces/istop.hh"
+#include "graphics/simplemainwindow.hh"
+#include "main.cc"
 
-namespace StudentSide
+
+namespace Interface
 {
 class Tampere : public Interface::ICity
 {
@@ -30,7 +33,7 @@ public:
      */
     void setClock(QTime clock) override;
 
-
+  
     /**
      * @brief addStop adds a stop to the city.
      * @param stop pointer to a stop object.
