@@ -6,10 +6,10 @@
 
 namespace Interface
 {
-class Tampere : public Interface::ICity
+class City : public Interface::ICity
 {
 public:
-    Tampere();
+    City();
 
 
     /**
