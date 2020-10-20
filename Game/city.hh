@@ -1,5 +1,5 @@
-#ifndef TAMPERE_HH
-#define TAMPERE_HH
+#ifndef CITY_HH
+#define CITY_HH
 
 #include "interfaces/icity.hh"
 #include "interfaces/istop.hh"
@@ -113,4 +113,4 @@ public:
 };
 }
 
-#endif // TAMPERE_HH
+#endif // CITY_HH
