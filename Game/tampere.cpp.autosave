@@ -1,9 +1,0 @@
-#include "tampere.hh"
-
-namespace StudentSide
-{
-Tampere::Tampere()
-{
-
-};
-}
