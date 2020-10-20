@@ -57,7 +57,8 @@ void City::actorMoved(std::shared_ptr<IActor> actor)
 
 std::vector<std::shared_ptr<IActor> > City::getNearbyActors(Location loc) const
 {
-
+    std::vector<std::shared_ptr<IActor>> nearBy;
+    return nearBy;
 }
 
 bool City::isGameOver() const
