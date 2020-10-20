@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
     Q_INIT_RESOURCE(offlinedata);
-    CourseSide::SimpleMainWindow m;
-    m.show();
+    CourseSide::SimpleMainWindow mainWindow;
+    mainWindow.show();
     return a.exec();
 }
