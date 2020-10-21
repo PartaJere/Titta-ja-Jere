@@ -3,6 +3,8 @@
 
 #include "interfaces/icity.hh"
 #include "interfaces/istop.hh"
+#include "graphics/simplemainwindow.hh"
+#include "errors/initerror.hh"
 
 namespace Interface
 {
@@ -107,7 +109,9 @@ public:
      */
     bool isGameOver() const override;
 
-
+private:
+    QImage basicbackground_;
+    QImage bigbackground_;
 
 
 };

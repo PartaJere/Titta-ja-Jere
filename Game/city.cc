@@ -1,5 +1,6 @@
 #include "city.hh"
 #include <QTime>
+#include "main.cc"
 
 namespace Interface
 {
@@ -11,6 +12,15 @@ City::City() : Interface::ICity()
 
 void City::setBackground(QImage &basicbackground, QImage &bigbackground)
 {
+    try {
+        basicbackground_ = basicbackground;
+        bigbackground_ = bigbackground;
+    }
+
+     catch (...) {
+        InitError badpic("Setting the picture was unsuccesful or the picture was invalid.");
+        throw badpic;
+    }
 
     return;
 }
@@ -65,4 +75,5 @@ bool City::isGameOver() const
 {
     return false;
 };
+
 }
