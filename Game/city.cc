@@ -50,7 +50,7 @@ void City::removeActor(std::shared_ptr<IActor> actor)
     return;
 }
 
-void City::actorDestroyed(std::shared_ptr<IActor> actor)
+void City::actorRemoved(std::shared_ptr<IActor> actor)
 {
     return;
 }
