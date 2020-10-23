@@ -2,7 +2,7 @@
 #include <QTime>
 #include "main.cc"
 
-namespace Interface
+namespace Game
 {
 
 City::City() : Interface::ICity()
@@ -30,7 +30,7 @@ void City::setClock(QTime clock)
     return;
 }
 
-void City::addStop(std::shared_ptr<IStop> stop)
+void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
     return;
 }
@@ -40,34 +40,34 @@ void City::startGame()
     return;
 }
 
-void City::addActor(std::shared_ptr<IActor> newactor)
+void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     return;
 }
 
-void City::removeActor(std::shared_ptr<IActor> actor)
+void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
     return;
 }
 
-void City::actorRemoved(std::shared_ptr<IActor> actor)
+void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
     return;
 }
 
-bool City::findActor(std::shared_ptr<IActor> actor) const
+bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
     return false;
 }
 
-void City::actorMoved(std::shared_ptr<IActor> actor)
+void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
     return;
 }
 
-std::vector<std::shared_ptr<IActor> > City::getNearbyActors(Location loc) const
+std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
 {
-    std::vector<std::shared_ptr<IActor>> nearBy;
+    std::vector<std::shared_ptr<Interface::IActor>> nearBy;
     return nearBy;
 }
 

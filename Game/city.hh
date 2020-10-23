@@ -6,7 +6,7 @@
 #include "graphics/simplemainwindow.hh"
 #include "errors/initerror.hh"
 
-namespace Interface
+namespace Game
 {
 class City : public Interface::ICity
 {
