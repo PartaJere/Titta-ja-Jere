@@ -6,6 +6,8 @@
 #include "graphics/simplemainwindow.hh"
 #include "errors/initerror.hh"
 
+#include <vector>
+
 namespace Game
 {
 class City : public Interface::ICity
@@ -114,6 +116,8 @@ public:
 private:
     QImage basicbackground_;
     QImage bigbackground_;
+    std::vector<std::shared_ptr<Interface::IStop>> stops_;
+    std::vector<std::shared_ptr<Interface::IActor>> actors_;
 
 
 };

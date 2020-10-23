@@ -32,7 +32,7 @@ void City::setClock(QTime clock)
 
 void City::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    return;
+    stops_.push_back(stop);
 }
 
 void City::startGame()
@@ -42,7 +42,7 @@ void City::startGame()
 
 void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
-    return;
+    actors_.push_back(newactor);
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
