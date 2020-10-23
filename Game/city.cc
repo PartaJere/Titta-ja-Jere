@@ -1,6 +1,6 @@
 #include "city.hh"
 #include <QTime>
-#include "main.cc"
+#include <algorithm>
 
 namespace Game
 {
@@ -57,8 +57,15 @@ void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 
 bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 {
-    return false;
+    auto it = std::find(actors_.begin(),actors_.end(), actor);
+    if(it == actors_.end()){
+        return false;
+    }
+    else{
+        return true;
+    };
 }
+
 
 void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
