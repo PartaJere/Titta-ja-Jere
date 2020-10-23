@@ -109,6 +109,8 @@ public:
      */
     bool isGameOver() const override;
 
+    QImage getBasicBackground();
+
 private:
     QImage basicbackground_;
     QImage bigbackground_;

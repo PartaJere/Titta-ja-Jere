@@ -18,7 +18,7 @@ void City::setBackground(QImage &basicbackground, QImage &bigbackground)
     }
 
      catch (...) {
-        InitError badpic("Setting the picture was unsuccesful or the picture was invalid.");
+        Interface::InitError badpic("Setting the picture was unsuccesful or the picture was invalid.");
         throw badpic;
     }
 
@@ -74,6 +74,11 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
 bool City::isGameOver() const
 {
     return false;
+}
+
+QImage City::getBasicBackground()
+{
+    return basicbackground_;
 };
 
 }
