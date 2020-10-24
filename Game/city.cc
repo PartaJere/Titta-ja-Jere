@@ -27,6 +27,8 @@ void City::setBackground(QImage &basicbackground, QImage &bigbackground)
 
 void City::setClock(QTime clock)
 {
+    Q_ASSERT(clock.isValid() == true);
+
     return;
 }
 
@@ -86,6 +88,11 @@ bool City::isGameOver() const
 QImage City::getBasicBackground()
 {
     return basicbackground_;
+}
+
+std::vector<std::shared_ptr<Interface::IActor> > City::getActors()
+{
+    return actors_;
 };
 
 }

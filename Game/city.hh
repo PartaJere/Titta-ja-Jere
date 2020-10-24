@@ -112,10 +112,12 @@ public:
     bool isGameOver() const override;
 
     QImage getBasicBackground();
+    std::vector<std::shared_ptr<Interface::IActor>> getActors();
 
 private:
     QImage basicbackground_;
     QImage bigbackground_;
+
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
 
