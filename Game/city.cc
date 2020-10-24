@@ -47,10 +47,10 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 {
-    actor->destroy();
+    actor->remove();
 }
 
-void City::actorDestroyed(std::shared_ptr<Interface::IActor> actor)
+void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
     return;
 }

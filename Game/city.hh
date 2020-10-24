@@ -75,7 +75,7 @@ public:
      * @pre City is in gamestate. Given actor is found in the city. Actor has `actor.isDestroyed() == true`.
      * @post Exception guarantee: strong.
      */
-    void actorDestroyed(std::shared_ptr<Interface::IActor> actor) override;
+    void actorRemoved(std::shared_ptr<Interface::IActor> actor) override;
 
     /**
      * @brief findActor checks if the given actor is in the city.
