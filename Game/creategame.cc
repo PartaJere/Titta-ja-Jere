@@ -8,7 +8,7 @@
 const QString DEFAULT_SMALLBACKGROUND_FILE = ":/offlinedata/offlinedata/kartta_pieni_500x500.png";
 const QString DEFAULT_BIGBACKGROUND_FILE = ":/offlinedata/offlinedata/kartta_iso_1095x592.png";
 
-using Interface::City;
+using Game::City;
 
 std::shared_ptr<Interface::ICity> Interface::createGame()
 {
