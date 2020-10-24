@@ -7,6 +7,7 @@ CONFIG += c++14
 
 SOURCES += \
     city.cc \
+    engine.cc \
     main.cc \
     creategame.cc
 
@@ -35,5 +36,6 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    city.hh
+    city.hh \
+    engine.hh
 
