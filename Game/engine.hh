@@ -26,6 +26,9 @@ namespace Game  {
         std::shared_ptr<Game::City> city_;
 
         void initGame();
+    private slots:
+        void startGame();
+
     };
 
 }
