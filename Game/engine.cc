@@ -32,6 +32,7 @@ namespace Game {
 
     void Engine::startGame()
     {
+        logic_.setTime(QTime::currentTime().hour(), QTime::currentTime().minute());
         logic_.finalizeGameStart();
 
     }
