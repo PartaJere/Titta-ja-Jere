@@ -7,6 +7,7 @@
 #include "errors/initerror.hh"
 
 #include <vector>
+#include <QTime>
 
 namespace Game
 {
@@ -70,9 +71,9 @@ public:
     void removeActor(std::shared_ptr<Interface::IActor> actor) override;
 
     /**
-     * @brief actorDestroyed tells the city that actor is destroyed ingame.
-     * @param actor Actor that is set destroyed ingame.
-     * @pre City is in gamestate. Given actor is found in the city. Actor has `actor.isDestroyed() == true`.
+     * @brief actorRemoved tells the city that actor is removed ingame.
+     * @param actor Actor that is set removed ingame.
+     * @pre City is in gamestate. Given actor is found in the city. Actor has `actor.isRemoved() == true`.
      * @post Exception guarantee: strong.
      */
     void actorRemoved(std::shared_ptr<Interface::IActor> actor) override;
@@ -117,7 +118,7 @@ public:
 private:
     QImage basicbackground_;
     QImage bigbackground_;
-
+    QTime clock_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
 

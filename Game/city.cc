@@ -28,6 +28,7 @@ void City::setBackground(QImage &basicbackground, QImage &bigbackground)
 void City::setClock(QTime clock)
 {
     Q_ASSERT(clock.isValid() == true);
+    clock_ = clock;
 
     return;
 }
@@ -39,6 +40,8 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 
 void City::startGame()
 {
+
+
     return;
 }
 
@@ -54,6 +57,8 @@ void City::removeActor(std::shared_ptr<Interface::IActor> actor)
 
 void City::actorRemoved(std::shared_ptr<Interface::IActor> actor)
 {
+    Q_ASSERT(actor->isRemoved() == true);
+
     return;
 }
 
@@ -71,6 +76,11 @@ bool City::findActor(std::shared_ptr<Interface::IActor> actor) const
 
 void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
+    Q_ASSERT(std::find(actors_.begin(), actors_.end(), actor) != actors_.end());
+
+
+
+
     return;
 }
 
