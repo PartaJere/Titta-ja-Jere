@@ -87,6 +87,14 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface::Location loc) const
 {
     std::vector<std::shared_ptr<Interface::IActor>> nearBy;
+
+    for( std::shared_ptr<Interface::IActor> actor: actors_){
+        if(actor->giveLocation().isClose(loc) == true){
+
+            nearBy.push_back(actor);
+        }
+
+    }
     return nearBy;
 }
 

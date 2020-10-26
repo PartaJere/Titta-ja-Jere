@@ -99,7 +99,7 @@ public:
      * @brief getNearbyActors returns actors that are close to given position.
      * @param loc Location for getting the actors close to it.
      * @pre City is in gamestate.
-     * @return Vector containing actors close to the location, that pass `getLocation().isClose(loc) == true`.
+     * @return Vector containing actors close to the location, that pass `giveLocation().isClose(loc) == true`.
      * @post Exception guarantee: strong.
      */
     std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
