@@ -5,6 +5,7 @@
 #include "interfaces/istop.hh"
 #include "graphics/simplemainwindow.hh"
 #include "errors/initerror.hh"
+#include "graphics/simpleactoritem.hh"
 
 #include <vector>
 #include <QTime>

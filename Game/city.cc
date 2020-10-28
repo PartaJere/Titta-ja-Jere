@@ -41,7 +41,6 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 void City::startGame()
 {
 
-
     return;
 }
 
@@ -80,7 +79,6 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 
 
 
-
     return;
 }
 
@@ -111,6 +109,11 @@ QImage City::getBasicBackground()
 std::vector<std::shared_ptr<Interface::IActor> > City::getActors()
 {
     return actors_;
+}
+
+std::vector<std::shared_ptr<Interface::IStop> > City::getStops()
+{
+    return stops_;
 };
 
 }
