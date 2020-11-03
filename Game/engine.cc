@@ -13,6 +13,8 @@ namespace Game {
 
         QObject::connect(&mainwindow_, &CourseSide::SimpleMainWindow::gameStarted,
                          this, &Engine::startGame);
+
+
     }
 
     void Engine::initGame()
@@ -32,8 +34,22 @@ namespace Game {
 
     void Engine::startGame()
     {
-        logic_.setTime(QTime::currentTime().hour(), QTime::currentTime().minute());
+        //logic_.setTime(10, 00);
         logic_.finalizeGameStart();
+
+        for( auto actor : city_->getActors()){
+            unsigned int x = actor->giveLocation().giveX();
+            unsigned int y = actor->giveLocation().giveY();
+
+            mainwindow_.addActor(x, y);
+        };
+
+        for( auto stop : city_->getStops()){
+            unsigned int x = stop->getLocation().giveX();
+            unsigned int y = stop->getLocation().giveY();
+
+            mainwindow_.addActor(x,y);
+        };
 
     }
 }
