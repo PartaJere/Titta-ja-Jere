@@ -115,6 +115,7 @@ public:
 
     QImage getBasicBackground();
     std::vector<std::shared_ptr<Interface::IActor>> getActors();
+    std::vector<std::shared_ptr<Interface::IStop>> getStops();
 
 private:
     QImage basicbackground_;
