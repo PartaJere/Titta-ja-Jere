@@ -40,7 +40,6 @@ void City::addStop(std::shared_ptr<Interface::IStop> stop)
 
 void City::startGame()
 {
-
     return;
 }
 
@@ -77,7 +76,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
     Q_ASSERT(std::find(actors_.begin(), actors_.end(), actor) != actors_.end());
 
-
+    movedActors_.push_back(actor);
 
     return;
 }

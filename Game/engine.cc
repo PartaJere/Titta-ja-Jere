@@ -8,13 +8,19 @@ namespace Game {
 
     Engine::Engine() :
         logic_(new CourseSide::Logic),
-        mainwindow_(new CourseSide::SimpleMainWindow)
+        mainwindow_(new MainWindow)
     {
         initGame();
 
-        QObject::connect(&mainwindow_, &CourseSide::SimpleMainWindow::gameStarted,
+        QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
+
+
+
+
     }
+
+
 
     void Engine::initGame()
     {
@@ -33,7 +39,7 @@ namespace Game {
 
     void Engine::startGame()
     {
-        logic_.setTime(QTime::currentTime().hour(), QTime::currentTime().minute());
+        //logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
         for(auto actor : actors_){
@@ -55,6 +61,33 @@ namespace Game {
 
 
 
+        for( auto actor : city_->getActors()){
+            unsigned int x = actor->giveLocation().giveX();
+            unsigned int y = actor->giveLocation().giveY();
+
+            mainwindow_.addActor(x, y);
+        };
+
+        for( auto stop : city_->getStops()){
+            unsigned int x = stop->getLocation().giveX();
+            unsigned int y = stop->getLocation().giveY();
+
+            mainwindow_.addActor(x,y);
+        };
+        QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
+        timer_.start(100);
+
+    }
+
+    void Engine::advance()
+    {
+
+        for( auto actor : city_->movedActors_){
+            unsigned int x = actor->giveLocation().giveX();
+            unsigned int y = actor->giveLocation().giveY();
+            mainwindow_.updateCoords(x,y);
+        }
+        city_->movedActors_.clear();
+
     }
 }
-

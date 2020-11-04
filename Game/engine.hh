@@ -4,7 +4,7 @@
 #include <QObject>
 
 #include "core/logic.hh"
-#include "graphics/simplemainwindow.hh"
+#include "mainwindow.hh"
 #include "city.hh"
 #include "creategame.hh"
 #include "graphics/simpleactoritem.hh"
@@ -20,19 +20,23 @@ namespace Game  {
         Q_OBJECT
     public:
         Engine();
+    public slots:
+
 
     private:
         CourseSide::Logic logic_;
-        CourseSide::SimpleMainWindow mainwindow_;
+        MainWindow mainwindow_;
         std::shared_ptr<Game::City> city_;
         std::vector<std::shared_ptr<Interface::IActor>> actors_;
         std::vector<std::shared_ptr<Interface::IStop>> stops_;
 
 
+        QTimer timer_;
+
         void initGame();
     private slots:
         void startGame();
-
+        void advance();
     };
 
 }
