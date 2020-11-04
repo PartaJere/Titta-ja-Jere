@@ -76,7 +76,7 @@ void City::actorMoved(std::shared_ptr<Interface::IActor> actor)
 {
     Q_ASSERT(std::find(actors_.begin(), actors_.end(), actor) != actors_.end());
 
-    movedActors_.push_back(actor);
+    //movedActors_.push_back(actor);
 
     return;
 }
@@ -102,7 +102,7 @@ bool City::isGameOver() const
 
 QImage City::getBasicBackground()
 {
-    return basicbackground_;
+    return bigbackground_;
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getActors()

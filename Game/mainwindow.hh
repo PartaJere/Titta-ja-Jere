@@ -33,6 +33,8 @@ public:
     void updateCoords(int nX, int nY);
     void setPicture(QImage &img);
 
+    QGraphicsScene *map;
+
 signals:
     void gameStarted();
 
@@ -41,9 +43,9 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QGraphicsScene *map;
+
     QTimer *timer;
-    QVector<QGraphicsItem*> actors_;
+    QVector<CourseSide::SimpleActorItem*> actors_;
     CourseSide::SimpleActorItem* last_;
 
     int width_ = 500; //pxls
