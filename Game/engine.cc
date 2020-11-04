@@ -7,15 +7,19 @@ namespace Game {
 
     Engine::Engine() :
         logic_(new CourseSide::Logic),
-        mainwindow_(new CourseSide::SimpleMainWindow)
+        mainwindow_(new MainWindow)
     {
         initGame();
 
-        QObject::connect(&mainwindow_, &CourseSide::SimpleMainWindow::gameStarted,
+        QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
 
 
+
+
     }
+
+
 
     void Engine::initGame()
     {
@@ -50,7 +54,20 @@ namespace Game {
 
             mainwindow_.addActor(x,y);
         };
+        QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
+        timer_.start(100);
+
+    }
+
+    void Engine::advance()
+    {
+
+        for( auto actor : city_->movedActors_){
+            unsigned int x = actor->giveLocation().giveX();
+            unsigned int y = actor->giveLocation().giveY();
+            mainwindow_.updateCoords(x,y);
+        }
+        city_->movedActors_.clear();
 
     }
 }
-
