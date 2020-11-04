@@ -29,11 +29,14 @@ namespace Game  {
         std::shared_ptr<Game::City> city_;
         std::vector<std::shared_ptr<Interface::IActor>> actors_;
         std::vector<std::shared_ptr<Interface::IStop>> stops_;
+        int type_;
 
 
         QTimer timer_;
 
         void initGame();
+        void setType(std::shared_ptr<Interface::IActor>);
+
     private slots:
         void startGame();
         void advance();

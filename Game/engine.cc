@@ -1,5 +1,4 @@
 #include "engine.hh"
-
 #include <QDebug>
 namespace Game {
 
@@ -33,43 +32,42 @@ namespace Game {
 
     }
 
+    void Engine::setType(std::shared_ptr<Interface::IActor> actor)
+    {
+        if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(actor)){
+            type_ = 0;
+
+        }
+        else{
+            type_ = 1;
+
+        }
+
+    }
+
     void Engine::startGame()
     {
         //logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
-        for(auto actor : actors_){
+        for(std::shared_ptr<Interface::IActor> actor : actors_){
             int x = actor->giveLocation().giveX();
             int y = actor->giveLocation().giveY();
+            setType(actor);
+            mainwindow_.addActor(x,y, type_);
 
-            mainwindow_.addActor(x,y);
         }
 
         stops_ = city_->getStops();
         for(auto stop : stops_){
-            int x_stop = stop->getLocation().giveX();
-            int y_stop = stop->getLocation().giveY();
-            qDebug() << "x: " << x_stop << "y: " << y_stop;
-            mainwindow_.addActor(x_stop,y_stop);
+            int x= stop->getLocation().giveX();
+            int y = stop->getLocation().giveY();
+            type_ = 2;
+            mainwindow_.addActor(x, y, type_);
         }
 
 
 
-
-
-        for( auto actor : city_->getActors()){
-            unsigned int x = actor->giveLocation().giveX();
-            unsigned int y = actor->giveLocation().giveY();
-
-            mainwindow_.addActor(x, y);
-        };
-
-        for( auto stop : city_->getStops()){
-            unsigned int x = stop->getLocation().giveX();
-            unsigned int y = stop->getLocation().giveY();
-
-            mainwindow_.addActor(x,y);
-        };
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(100);
 
@@ -79,17 +77,21 @@ namespace Game {
     {
         mainwindow_.map->clear();
 
-        for( auto actor : city_->getActors()){
+        for(std::shared_ptr<Interface::IActor> actor : city_->getActors()){
+
+
+
+
             unsigned int x = actor->giveLocation().giveX();
             unsigned int y = actor->giveLocation().giveY();
 
-            mainwindow_.addActor(x, y);
+            mainwindow_.addActor(x, y, type_);
         };
         for( auto stop : city_->getStops()){
             unsigned int x = stop->getLocation().giveX();
             unsigned int y = stop->getLocation().giveY();
 
-            mainwindow_.addActor(x,y);
+            mainwindow_.addActor(x,y,type_);
         };
         city_->movedActors_.clear();
 
