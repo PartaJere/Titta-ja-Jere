@@ -14,10 +14,6 @@ namespace Game {
 
         QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
-
-
-
-
     }
 
 
@@ -81,12 +77,20 @@ namespace Game {
 
     void Engine::advance()
     {
+        mainwindow_.map->clear();
 
-        for( auto actor : city_->movedActors_){
+        for( auto actor : city_->getActors()){
             unsigned int x = actor->giveLocation().giveX();
             unsigned int y = actor->giveLocation().giveY();
-            mainwindow_.updateCoords(x,y);
-        }
+
+            mainwindow_.addActor(x, y);
+        };
+        for( auto stop : city_->getStops()){
+            unsigned int x = stop->getLocation().giveX();
+            unsigned int y = stop->getLocation().giveY();
+
+            mainwindow_.addActor(x,y);
+        };
         city_->movedActors_.clear();
 
     }
