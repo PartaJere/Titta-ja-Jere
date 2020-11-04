@@ -1,5 +1,6 @@
 #include "engine.hh"
 
+#include <QDebug>
 namespace Game {
 
     const QString BUS_DATA = ":/offlinedata/offlinedata/final_bus_liteN.json";
@@ -34,6 +35,25 @@ namespace Game {
     {
         logic_.setTime(QTime::currentTime().hour(), QTime::currentTime().minute());
         logic_.finalizeGameStart();
+        actors_ = city_->getActors();
+        for(auto actor : actors_){
+            int x = actor->giveLocation().giveX();
+            int y = actor->giveLocation().giveY();
+
+            mainwindow_.addActor(x,y);
+        }
+
+        stops_ = city_->getStops();
+        for(auto stop : stops_){
+            int x_stop = stop->getLocation().giveX();
+            int y_stop = stop->getLocation().giveY();
+            qDebug() << "x: " << x_stop << "y: " << y_stop;
+            mainwindow_.addActor(x_stop,y_stop);
+        }
+
+
+
+
 
     }
 }
