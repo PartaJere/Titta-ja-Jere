@@ -83,4 +83,14 @@ void MainWindow::on_startButton_clicked()
     emit gameStarted();
 }
 
+void MainWindow::keyPressEvent( QKeyEvent* event )
+{
+    emit keyPressed(event->key());
+    qDebug() << "Pressed: " << event->key();
+}
+void MainWindow::keyReleaseEvent( QKeyEvent* event )
+{
+    emit keyReleased(event->key());
+    qDebug() << "Released: " << event->key();
+}
 }
