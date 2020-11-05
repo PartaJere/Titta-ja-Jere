@@ -117,15 +117,18 @@ public:
 
     QImage getBasicBackground();
     std::vector<std::shared_ptr<Interface::IActor>> getActors();
+    std::vector<std::shared_ptr<Interface::IActor>> getMovedActors();
+    void clearMovedActors();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
 
-    std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
+
 private:
     QImage basicbackground_;
     QImage bigbackground_;
     QTime clock_;
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
+    std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
 
 
 
