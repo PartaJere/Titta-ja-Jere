@@ -6,21 +6,25 @@
 
 #include "core/location.hh"
 
-class player : public Interface::IActor
-{
-public:
-    player();
+namespace Game {
+    class player : public Interface::IActor
+    {
+    public:
+        player();
 
-    //Actor interface
-    std::string getName() const;
+        //Actor interface
+        std::string getName() const;
 
-    Interface::Location giveLocation() const;
-    void move(Interface::Location loc);
-    void remove();
-    bool isRemoved() const;
+        Interface::Location giveLocation() const;
+        void move(Interface::Location loc);
+        void remove();
+        bool isRemoved() const;
 
-private:
-    Interface::Location location_;
-};
+    private:
+        Interface::Location location_;
+        bool removed_;
+    };
+}
+
 
 #endif // PLAYER_HH
