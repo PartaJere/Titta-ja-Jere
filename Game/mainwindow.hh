@@ -3,6 +3,8 @@
 
 #include "interfaces/iactor.hh"
 #include "graphics/simpleactoritem.hh"
+#include "interfaces/iactor.hh"
+#include "interfaces/istop.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -29,8 +31,11 @@ public:
     void setSize(int w, int h);
     void setTick(int t);
 
-    virtual void addActor(int locX, int locY, int type = 0);
+    virtual void addActor(std::shared_ptr<Interface::IActor> actor,int locX, int locY);
+    void addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY);
     void updateCoords(int nX, int nY);
+
+    void moveActor(std::shared_ptr<Interface::IActor> actor);
     void setPicture(QImage &img);
 
     QGraphicsScene *map;
@@ -45,7 +50,8 @@ private:
     Ui::MainWindow *ui;
 
     QTimer *timer;
-    QVector<CourseSide::SimpleActorItem*> actors_;
+    QMap<std::shared_ptr<Interface::IActor>, CourseSide::SimpleActorItem*> actors_;
+    QMap<std::shared_ptr<Interface::IStop>, CourseSide::SimpleActorItem*> stops_;
     CourseSide::SimpleActorItem* last_;
 
     int width_ = 500; //pxls
