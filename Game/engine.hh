@@ -36,6 +36,7 @@ namespace Game  {
     private slots:
         void startGame();
         void advance();
+        void movePlayer(int key);
     };
 
 }
