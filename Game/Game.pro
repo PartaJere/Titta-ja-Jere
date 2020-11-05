@@ -10,7 +10,8 @@ SOURCES += \
     engine.cc \
     main.cc \
     creategame.cc \
-    mainwindow.cc
+    mainwindow.cc \
+    player.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -39,7 +40,8 @@ else:unix: PRE_TARGETDEPS += \
 HEADERS += \
     city.hh \
     engine.hh \
-    mainwindow.hh
+    mainwindow.hh \
+    player.hh
 
 FORMS += \
     mainwindow.ui
