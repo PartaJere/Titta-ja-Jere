@@ -7,7 +7,8 @@ namespace Game {
 
     Engine::Engine() :
         logic_(new CourseSide::Logic),
-        mainwindow_(new MainWindow)
+        mainwindow_(new MainWindow),
+        player_(new Game::player)
     {
         initGame();
 
@@ -30,6 +31,7 @@ namespace Game {
         QImage img = city_->getBasicBackground();
         mainwindow_.setPicture(img);
 
+        mainwindow_.addActor(player_, player_->giveLocation().giveX(), player_->giveLocation().giveY());
     }
 
     void Engine::startGame()

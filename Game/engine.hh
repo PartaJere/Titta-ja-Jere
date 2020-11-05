@@ -7,6 +7,7 @@
 #include "mainwindow.hh"
 #include "city.hh"
 #include "creategame.hh"
+#include "player.hh"
 
 /**
   * @file
@@ -28,6 +29,8 @@ namespace Game  {
         std::shared_ptr<Game::City> city_;
 
         QTimer timer_;
+
+        std::shared_ptr<Game::player> player_;
 
         void initGame();
     private slots:
