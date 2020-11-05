@@ -10,16 +10,14 @@
 
 namespace Game {
 
-class Graphicscontrol : public CourseSide::SimpleActorItem
+class ActorItem : public CourseSide::SimpleActorItem
 
 {
 
 public:
-    Graphicscontrol(int x, int y, int type = 0);
-    void checktype();
-    void paintBus();
-    void paintPassenger();
-    void paintStop();
+    ActorItem(int x, int y, int type = 0);
+    void paint(QPainter *painter, const QStyleOptionGraphicsItem *option = 0, QWidget *widget = 0) override;
+
 
 
 private:
