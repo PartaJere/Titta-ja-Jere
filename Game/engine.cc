@@ -52,7 +52,7 @@ namespace Game {
         actors_ = city_->getActors();
         for(std::shared_ptr<Interface::IActor> actor : actors_){
             int x = actor->giveLocation().giveX();
-            int y = actor->giveLocation().giveY();
+            int y = 500 - actor->giveLocation().giveY();
             setType(actor);
             mainwindow_.addActor(x,y, type_);
 
@@ -61,7 +61,7 @@ namespace Game {
         stops_ = city_->getStops();
         for(auto stop : stops_){
             int x= stop->getLocation().giveX();
-            int y = stop->getLocation().giveY();
+            int y = 500 -  stop->getLocation().giveY();
             type_ = 2;
             mainwindow_.addActor(x, y, type_);
         }
@@ -83,13 +83,13 @@ namespace Game {
 
 
             unsigned int x = actor->giveLocation().giveX();
-            unsigned int y = actor->giveLocation().giveY();
+            unsigned int y = 500 - actor->giveLocation().giveY();
 
             mainwindow_.addActor(x, y, type_);
         };
         for( auto stop : city_->getStops()){
             unsigned int x = stop->getLocation().giveX();
-            unsigned int y = stop->getLocation().giveY();
+            unsigned int y = 500 - stop->getLocation().giveY();
 
             mainwindow_.addActor(x,y,type_);
         };
