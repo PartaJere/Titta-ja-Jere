@@ -44,10 +44,18 @@ void MainWindow::setTick(int t)
     tick_ = t;
 }
 
-void MainWindow::addActor(int locX, int locY, int type)
+void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY, type);
-    actors_.push_back(nActor);
+    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    actors_.insert(actor, nActor);
+    map->addItem(nActor);
+    last_ = nActor;
+}
+
+void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
+{
+    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    stops_.insert(stop, nActor);
     map->addItem(nActor);
     last_ = nActor;
 }
@@ -55,6 +63,13 @@ void MainWindow::addActor(int locX, int locY, int type)
 void MainWindow::updateCoords(int nX, int nY)
 {
     last_->setCoord(nX, nY);
+}
+
+void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
+{
+    if(actors_.contains(actor)){
+        actors_[actor]->setCoord(actor->giveLocation().giveX(), 500-actor->giveLocation().giveY());
+    };
 }
 
 void MainWindow::setPicture(QImage &img)
