@@ -13,6 +13,7 @@
 #include <iostream>
 #include <memory>
 #include <QVector>
+#include <QKeyEvent>
 #include <map>
 
 namespace Ui {
@@ -43,9 +44,13 @@ public:
 
 signals:
     void gameStarted();
+    void keyPressed(int key);
+    void keyReleased(int key);
 
 private slots:
     void on_startButton_clicked();
+    void keyPressEvent( QKeyEvent* event );
+    void keyReleaseEvent( QKeyEvent* event);
 
 private:
     Ui::MainWindow *ui;

@@ -1,6 +1,14 @@
 #include "engine.hh"
 
+
+const int A_KEY = 65;
+const int S_KEY = 83;
+const int D_KEY = 68;
+const int W_KEY = 87;
+const int MOVE_PER_PRESS = 25;
+
 #include <QDebug>
+
 namespace Game {
 
     const QString BUS_DATA = ":/offlinedata/offlinedata/final_bus_liteN.json";
@@ -8,12 +16,15 @@ namespace Game {
 
     Engine::Engine() :
         logic_(new CourseSide::Logic),
-        mainwindow_(new MainWindow)
+        mainwindow_(new MainWindow),
+        player_(new Game::player)
     {
         initGame();
 
         QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
+        QObject::connect(&mainwindow_, &MainWindow::keyPressed,
+                         this, &Engine::movePlayer);
     }
 
 
@@ -31,11 +42,13 @@ namespace Game {
         QImage img = city_->getBasicBackground();
         mainwindow_.setPicture(img);
 
+        mainwindow_.addActor(player_, player_->giveLocation().giveX(), player_->giveLocation().giveY());
+        city_->addActor(player_);
     }
 
     void Engine::startGame()
     {
-        //logic_.setTime(10, 00);
+        logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
         for(auto actor : actors_){
@@ -82,5 +95,27 @@ namespace Game {
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
+    }
+
+    void Engine::movePlayer(int key)
+    {
+        int x = player_->giveLocation().giveX();
+        int y = player_->giveLocation().giveY();
+        if(key == A_KEY){
+             x -= MOVE_PER_PRESS;
+        }
+        if(key == D_KEY){
+            x += MOVE_PER_PRESS;
+        }
+        if(key == S_KEY){
+            y -= MOVE_PER_PRESS;
+        }
+        if(key == W_KEY){
+            y += MOVE_PER_PRESS;
+        }
+        Interface::Location loc = Interface::Location();
+        loc.setXY(x,y);
+        player_->move(loc);
+        city_->actorMoved(player_);
     };
 }
