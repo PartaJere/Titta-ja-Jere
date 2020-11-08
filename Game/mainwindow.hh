@@ -5,6 +5,7 @@
 #include "graphics/simpleactoritem.hh"
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
+#include "graphicscontrol.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -55,13 +56,14 @@ private:
     Ui::MainWindow *ui;
 
     QTimer *timer;
-    QMap<std::shared_ptr<Interface::IActor>, CourseSide::SimpleActorItem*> actors_;
-    QMap<std::shared_ptr<Interface::IStop>, CourseSide::SimpleActorItem*> stops_;
-    CourseSide::SimpleActorItem* last_;
+    QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsControl*> actors_;
+    QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsControl*> stops_;
+    Game::GraphicsControl* last_;
 
     int width_ = 500; //pxls
     int height_ = 500;
     int tick_ = 500; //ms
+    int type_;
 };
 
 } //namespace

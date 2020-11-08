@@ -8,6 +8,8 @@
 #include "city.hh"
 #include "creategame.hh"
 #include "player.hh"
+#include "graphics/simpleactoritem.hh"
+
 
 /**
   * @file
@@ -27,6 +29,9 @@ namespace Game  {
         CourseSide::Logic logic_;
         MainWindow mainwindow_;
         std::shared_ptr<Game::City> city_;
+        std::vector<std::shared_ptr<Interface::IActor>> actors_;
+        std::vector<std::shared_ptr<Interface::IStop>> stops_;
+
 
         QTimer timer_;
 

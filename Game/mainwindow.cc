@@ -46,7 +46,7 @@ void MainWindow::setTick(int t)
 
 void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, "bus");
     actors_.insert(actor, nActor);
     map->addItem(nActor);
     last_ = nActor;
@@ -54,7 +54,7 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
     last_ = nActor;
