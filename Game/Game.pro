@@ -11,7 +11,8 @@ SOURCES += \
     main.cc \
     creategame.cc \
     mainwindow.cc \
-    player.cc
+    player.cc \
+    graphicscontrol.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -41,8 +42,14 @@ HEADERS += \
     city.hh \
     engine.hh \
     mainwindow.hh \
-    player.hh
+    player.hh \
+    graphicscontrol.hh
 
 FORMS += \
     mainwindow.ui
+
+RESOURCES += \
+    images.qrc
+
+DISTFILES +=
 
