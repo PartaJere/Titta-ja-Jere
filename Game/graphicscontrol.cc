@@ -1,8 +1,10 @@
 #include "graphicscontrol.hh"
 #include <QImage>
 #include <memory>
+#include <QDebug>
 
-const QString BUS_FILE = ":/images/images/pipsapussi.png";
+const QString BUS_FILE = ":/images/pipsabussi.png";
+const QString BUSSTOP_FILE = ":/images/bussikyltti.png";
 
 
 
@@ -32,30 +34,38 @@ QRectF GraphicsControl::boundingRect() const
 void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
     QRectF bounds = boundingRect();
+    QImage picture;
 
     if(type_ == "bus"){
-        QImage busPicture = QImage(BUS_FILE, "png");
-        QBrush brush(busPicture);
-        painter->setBrush(busPicture);
-        painter->drawRect(bounds);
+
+        picture = QImage(BUS_FILE, "png");
+
+        QBrush brush(picture);
+        painter->drawImage(bounds, picture);
 
 
     }
-    else{
+    if(type_ == "stop"){
+        picture = QImage(BUSSTOP_FILE, "png");
+
+    }
+
+    if(type_ == "passenger"){
 
         QColor color(100, 100, 100);
         QBrush brush(color);
         painter->setBrush(brush);
-        painter->drawEllipse(bounds);
+        painter->drawEllipse(3,3,3,3);
 
     }
+    QBrush brush(picture);
+    painter->drawImage(bounds, picture);
+
     /*if(type_ == "passenger"){
         QColor color;
-    }
-
-    if(type_ == "stop"){
-        QColor color;
     }*/
+
+
 
 
 }
