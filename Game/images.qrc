@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/images">
+        <file>pipsabussi.png</file>
+    </qresource>
+</RCC>

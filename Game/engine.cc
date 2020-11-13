@@ -1,10 +1,13 @@
 #include "engine.hh"
 
+
 const int A_KEY = 65;
 const int S_KEY = 83;
 const int D_KEY = 68;
 const int W_KEY = 87;
 const int MOVE_PER_PRESS = 25;
+
+#include <QDebug>
 
 namespace Game {
 
@@ -47,6 +50,25 @@ namespace Game {
     {
         logic_.setTime(10, 00);
         logic_.finalizeGameStart();
+        actors_ = city_->getActors();
+        for(auto actor : actors_){
+            int x = actor->giveLocation().giveX();
+            int y = actor->giveLocation().giveY();
+
+            mainwindow_.addActor(x,y);
+        }
+
+        stops_ = city_->getStops();
+        for(auto stop : stops_){
+            int x_stop = stop->getLocation().giveX();
+            int y_stop = stop->getLocation().giveY();
+            qDebug() << "x: " << x_stop << "y: " << y_stop;
+            mainwindow_.addActor(x_stop,y_stop);
+        }
+
+
+
+
 
         for( auto actor : city_->getActors()){
             unsigned int x = actor->giveLocation().giveX();

@@ -46,7 +46,14 @@ void MainWindow::setTick(int t)
 
 void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    std::string type;
+    if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
+        type = "bus";
+    }
+    else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
+        type = "passenger";
+    }
+    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, type);
     actors_.insert(actor, nActor);
     map->addItem(nActor);
     last_ = nActor;
@@ -54,7 +61,7 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
 {
-    CourseSide::SimpleActorItem* nActor = new CourseSide::SimpleActorItem(locX, locY);
+    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
     last_ = nActor;
