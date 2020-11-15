@@ -7,6 +7,7 @@ CONFIG += c++14
 
 SOURCES += \
     city.cc \
+    dialog.cc \
     engine.cc \
     main.cc \
     creategame.cc \
@@ -41,6 +42,7 @@ else:unix: PRE_TARGETDEPS += \
 
 HEADERS += \
     city.hh \
+    dialog.hh \
     engine.hh \
     mainwindow.hh \
     player.hh \
@@ -48,6 +50,7 @@ HEADERS += \
     statistics.hh
 
 FORMS += \
+    dialog.ui \
     mainwindow.ui
 
 RESOURCES += \

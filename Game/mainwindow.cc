@@ -26,6 +26,9 @@ MainWindow::MainWindow(QWidget *parent) :
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
+
+    Dialog d;
+    d.exec();
 }
 
 MainWindow::~MainWindow()
