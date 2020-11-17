@@ -5,6 +5,7 @@
 
 const QString BUS_FILE = ":/images/pipsabussi.png";
 const QString BUSSTOP_FILE = ":/images/bussikyltti.png";
+const QString PLAYER_FILE = ":/images/plate.png";
 
 
 
@@ -40,13 +41,14 @@ void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 
         picture = QImage(BUS_FILE, "png");
 
-        QBrush brush(picture);
-        painter->drawImage(bounds, picture);
-
 
     }
     if(type_ == "stop"){
         picture = QImage(BUSSTOP_FILE, "png");
+
+    }
+    if(type_ == "player"){
+            picture = QImage(PLAYER_FILE, "png");
 
     }
 
@@ -58,13 +60,9 @@ void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
         painter->drawEllipse(3,3,3,3);
 
     }
+
     QBrush brush(picture);
     painter->drawImage(bounds, picture);
-
-    /*if(type_ == "passenger"){
-        QColor color;
-    }*/
-
 
 
 
