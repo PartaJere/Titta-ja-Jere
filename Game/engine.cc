@@ -1,4 +1,5 @@
 #include "engine.hh"
+<<<<<<< HEAD
 
 
 const int A_KEY = 65;
@@ -7,6 +8,8 @@ const int D_KEY = 68;
 const int W_KEY = 87;
 const int MOVE_PER_PRESS = 25;
 
+=======
+>>>>>>> 231cb46ec6361cc7b4df8616e083663ec74aac81
 #include <QDebug>
 
 namespace Game {
@@ -46,11 +49,25 @@ namespace Game {
         city_->addActor(player_);
     }
 
+    void Engine::setType(std::shared_ptr<Interface::IActor> actor)
+    {
+        if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(actor)){
+            type_ = 0;
+
+        }
+        else{
+            type_ = 1;
+
+        }
+
+    }
+
     void Engine::startGame()
     {
         logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
+<<<<<<< HEAD
 
 
 
@@ -75,11 +92,15 @@ namespace Game {
 
     void Engine::advance()
     {
+<<<<<<< HEAD
 
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
+
+
+
     }
 
     void Engine::movePlayer(int key)
