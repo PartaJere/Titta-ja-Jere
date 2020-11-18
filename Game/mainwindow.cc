@@ -61,7 +61,7 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
     }
     else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
         type = "passenger";
-    }else if(std::shared_ptr<Game::player> ptr = std::dynamic_pointer_cast<Game::player>(actor)){
+    }else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
         type = "player";
     }
 

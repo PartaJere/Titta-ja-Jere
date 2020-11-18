@@ -36,7 +36,7 @@ namespace Game  {
 
         QTimer timer_;
 
-        std::shared_ptr<Game::player> player_;
+        std::shared_ptr<Game::Player> player_;
 
         void initGame();
         void setType(std::shared_ptr<Interface::IActor>);
