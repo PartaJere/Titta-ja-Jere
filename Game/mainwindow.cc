@@ -1,6 +1,5 @@
 #include "mainwindow.hh"
 #include "ui_mainwindow.h"
-#include "startwindow.hh"
 #include <QDebug>
 
 
@@ -10,9 +9,13 @@ namespace Game {
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    startwindow_(new StartWindow(this))
 {
+
+
     ui->setupUi(this);
+
     ui->gameView->setFixedSize(width_, height_);
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
@@ -24,14 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
+    connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
+    startwindow_->show();
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
 
-    StartWindow d;
-    connect(&d, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
-    d.exec();
+
 }
 
 MainWindow::~MainWindow()
