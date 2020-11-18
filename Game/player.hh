@@ -59,11 +59,20 @@ namespace Game {
          * @post Exception guarantee: basic
          */
         bool changeSpeed(int newSpeed);
+        /**
+         * @brief Decreases hitpoints for the amount given. If HP reaches 0, removes player
+         * @pre toDec > 0
+         * @post hp > 0 or player removed
+         * @return -
+         * @post Exception guarantee: basic
+         */
+        void decreaseHP(int toDec);
 
     private:
         Interface::Location location_;
         bool removed_;
         int speed_;
+        int hitpoints_;
 
 
     };
