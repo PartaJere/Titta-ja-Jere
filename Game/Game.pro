@@ -15,7 +15,8 @@ SOURCES += \
     player.cc \
     graphicscontrol.cc \
     statistics.cc \
-    startwindow.cc
+    startwindow.cc \
+    restaurant.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -49,7 +50,8 @@ HEADERS += \
     player.hh \
     graphicscontrol.hh \
     statistics.hh \
-    startwindow.hh
+    startwindow.hh \
+    restaurant.hh
 
 FORMS += \
     gameendedwindow.ui \
