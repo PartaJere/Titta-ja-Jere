@@ -7,10 +7,10 @@
 #include "core/location.hh"
 
 namespace Game {
-    class player : public Interface::IActor
+    class Player : public Interface::IActor
     {
     public:
-        player();
+        Player();
 
         //Actor interface
         std::string getName() const;
@@ -20,7 +20,7 @@ namespace Game {
         void remove();
         bool isRemoved() const;
         int getSpeed();
-        bool changeSpeed();
+        bool changeSpeed(int newSpeed);
 
     private:
         Interface::Location location_;
