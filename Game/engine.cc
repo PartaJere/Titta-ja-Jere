@@ -62,6 +62,7 @@ namespace Game {
         else if( time_ > GAME_DURATION ){
             qDebug() << "Game is over: time is over";
             emit gameOver("Time ran out!");
+            timer_.stop();
             return true;
         }
 
