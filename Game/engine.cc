@@ -46,19 +46,6 @@ namespace Game {
         city_->addActor(player_);
     }
 
-    void Engine::setType(std::shared_ptr<Interface::IActor> actor)
-    {
-        if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(actor)){
-            type_ = 0;
-
-        }
-        else{
-            type_ = 1;
-
-        }
-
-    }
-
     void Engine::startGame()
     {
         logic_.setTime(10, 00);
