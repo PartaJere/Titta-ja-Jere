@@ -47,7 +47,7 @@ namespace Game {
 
     void Engine::startGame()
     {
-        logic_.setTime(10, 00);
+        //logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
         city_->addActor(player_);
@@ -78,6 +78,23 @@ namespace Game {
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
+
+        // Checks if player is hitting any vehicles. If so, damage is given.
+        for( auto actor : city_->getActors()){
+            if(player_ != actor){
+
+                if(std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
+
+                    if(player_->giveLocation().isClose(actor->giveLocation()) && !actor->isRemoved()){
+                        player_->decreaseHP(5);
+
+                        if(player_->isRemoved()){
+                            qDebug() << "Player died";
+                        }
+                    };
+                };
+            };
+        };
 
 
     }
