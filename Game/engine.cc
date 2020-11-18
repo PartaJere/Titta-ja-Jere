@@ -17,7 +17,7 @@ namespace Game {
     Engine::Engine() :
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
-        player_(new Game::player)
+        player_(new Game::Player)
     {
         initGame();
 
