@@ -7,14 +7,14 @@ CONFIG += c++14
 
 SOURCES += \
     city.cc \
-    dialog.cc \
     engine.cc \
     main.cc \
     creategame.cc \
     mainwindow.cc \
     player.cc \
     graphicscontrol.cc \
-    statistics.cc
+    statistics.cc \
+    startwindow.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -42,15 +42,15 @@ else:unix: PRE_TARGETDEPS += \
 
 HEADERS += \
     city.hh \
-    dialog.hh \
     engine.hh \
     mainwindow.hh \
     player.hh \
     graphicscontrol.hh \
-    statistics.hh
+    statistics.hh \
+    startwindow.hh
 
 FORMS += \
-    dialog.ui \
+    startwindow.ui \
     mainwindow.ui
 
 RESOURCES += \
