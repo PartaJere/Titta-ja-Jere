@@ -7,6 +7,7 @@ namespace Ui {
 class StartWindow;
 }
 
+namespace Game{
 class StartWindow : public QDialog
 {
     Q_OBJECT
@@ -26,5 +27,8 @@ private slots:
 private:
     Ui::StartWindow *ui;
 };
+
+}
+
 
 #endif // DIALOG_HH

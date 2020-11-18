@@ -1,6 +1,9 @@
 #include "startwindow.hh"
 #include "ui_startwindow.h"
 
+
+namespace Game {
+
 StartWindow::StartWindow(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::StartWindow)
@@ -24,3 +27,6 @@ void StartWindow::on_buttonBox_rejected()
 {
     StartWindow::close();
 }
+
+}
+
