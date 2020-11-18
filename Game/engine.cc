@@ -46,14 +46,24 @@ namespace Game {
         city_->addActor(player_);
     }
 
+    void Engine::setType(std::shared_ptr<Interface::IActor> actor)
+    {
+        if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(actor)){
+            type_ = 0;
+
+        }
+        else{
+            type_ = 1;
+
+        }
+
+    }
+
     void Engine::startGame()
     {
         logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
-
-
-
 
         for( auto actor : city_->getActors()){
             unsigned int x = actor->giveLocation().giveX();
@@ -68,6 +78,7 @@ namespace Game {
 
             mainwindow_.addStop(stop, x,500-y);
         };
+
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(100);
 
@@ -80,6 +91,7 @@ namespace Game {
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
+
     }
 
     void Engine::movePlayer(int key)
