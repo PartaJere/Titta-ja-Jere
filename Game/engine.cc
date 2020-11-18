@@ -42,8 +42,7 @@ namespace Game {
         QImage img = city_->getBasicBackground();
         mainwindow_.setPicture(img);
 
-        mainwindow_.addActor(player_, player_->giveLocation().giveX(), player_->giveLocation().giveY());
-        city_->addActor(player_);
+
     }
 
     void Engine::startGame()
@@ -51,7 +50,7 @@ namespace Game {
         logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
-
+        city_->addActor(player_);
 
 
         for( auto actor : city_->getActors()){
