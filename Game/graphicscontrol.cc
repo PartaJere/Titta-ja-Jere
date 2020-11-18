@@ -5,6 +5,7 @@
 
 const QString BUS_FILE = ":/images/pipsabussi.png";
 const QString BUSSTOP_FILE = ":/images/bussikyltti.png";
+const QString PLAYER_FILE = ":/images/plate.png";
 
 
 
@@ -33,20 +34,25 @@ QRectF GraphicsControl::boundingRect() const
 
 void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    QRectF bounds = boundingRect();
+
     QImage picture;
+    QRectF bounds;
 
     if(type_ == "bus"){
 
         picture = QImage(BUS_FILE, "png");
-
-        QBrush brush(picture);
-        painter->drawImage(bounds, picture);
+        bounds = QRectF(0, 0, 9, 15);
 
 
     }
     if(type_ == "stop"){
         picture = QImage(BUSSTOP_FILE, "png");
+        bounds = QRect(0,0,10,10);
+
+    }
+    if(type_ == "player"){
+            picture = QImage(PLAYER_FILE, "png");
+            bounds = QRectF(0,0,30,30);
 
     }
 
@@ -58,13 +64,9 @@ void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
         painter->drawEllipse(3,3,3,3);
 
     }
+
     QBrush brush(picture);
     painter->drawImage(bounds, picture);
-
-    /*if(type_ == "passenger"){
-        QColor color;
-    }*/
-
 
 
 

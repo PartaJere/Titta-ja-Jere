@@ -19,10 +19,15 @@ namespace Game {
         void move(Interface::Location loc);
         void remove();
         bool isRemoved() const;
+        int getSpeed();
+        bool changeSpeed();
 
     private:
         Interface::Location location_;
         bool removed_;
+        int speed_;
+
+
     };
 }
 

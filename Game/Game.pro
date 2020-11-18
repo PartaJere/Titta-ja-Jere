@@ -13,7 +13,8 @@ SOURCES += \
     mainwindow.cc \
     player.cc \
     graphicscontrol.cc \
-    statistics.cc
+    statistics.cc \
+    startwindow.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -45,9 +46,11 @@ HEADERS += \
     mainwindow.hh \
     player.hh \
     graphicscontrol.hh \
-    statistics.hh
+    statistics.hh \
+    startwindow.hh
 
 FORMS += \
+    startwindow.ui \
     mainwindow.ui
 
 RESOURCES += \

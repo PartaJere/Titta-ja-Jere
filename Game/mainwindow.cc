@@ -2,15 +2,20 @@
 #include "ui_mainwindow.h"
 #include <QDebug>
 
+
 const int PADDING = 10;
 
 namespace Game {
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    ui(new Ui::MainWindow),
+    startwindow_(new StartWindow(this))
 {
+
+
     ui->setupUi(this);
+
     ui->gameView->setFixedSize(width_, height_);
     ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
 
@@ -22,10 +27,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
+    connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
+    startwindow_->show();
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
+
+
 }
 
 MainWindow::~MainWindow()
@@ -52,7 +61,10 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
     }
     else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
         type = "passenger";
+    }else if(std::shared_ptr<Game::player> ptr = std::dynamic_pointer_cast<Game::player>(actor)){
+        type = "player";
     }
+
     Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, type);
     actors_.insert(actor, nActor);
     map->addItem(nActor);
@@ -99,5 +111,11 @@ void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
     emit keyReleased(event->key());
     qDebug() << "Released: " << event->key();
+}
+
+void MainWindow::setPlayer(std::string name)
+{
+    name_ = name;
+
 }
 }

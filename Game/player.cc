@@ -1,31 +1,50 @@
 #include "player.hh"
 
+int DEFAULT_SPEED = 25;
 namespace Game {
-    player::player() : location_(),
-                       removed_(false)
+    Player::Player() : location_(),
+                       removed_(false),
+                       speed_(DEFAULT_SPEED)
 
     {
         location_.setXY(250,250);
     }
 
-    Interface::Location player::giveLocation() const
+    Interface::Location Player::giveLocation() const
     {
         return location_;
     }
 
-    void player::move(Interface::Location loc)
+    void Player::move(Interface::Location loc)
     {
         location_ = loc;
     }
 
-    void player::remove()
+    void Player::remove()
     {
         removed_ = true;
     }
 
-    bool player::isRemoved() const
+    bool Player::isRemoved() const
     {
         return removed_;
     }
+
+    int Player::getSpeed()
+    {
+        return speed_;
+    }
+
+    bool Player::changeSpeed(int newSpeed)
+    {
+        if(5 < newSpeed && newSpeed < 50){
+            speed_ = newSpeed;
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
 
 }
