@@ -95,6 +95,12 @@ void MainWindow::setPicture(QImage &img)
     map->setBackgroundBrush(img);
 }
 
+void MainWindow::gameEnded(std::string message)
+{
+    Game::GameEndedWindow w(this, message);
+    w.exec();
+}
+
 void MainWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
