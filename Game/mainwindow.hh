@@ -6,6 +6,7 @@
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
 #include "graphicscontrol.hh"
+#include "player.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -51,6 +52,7 @@ private slots:
     void on_startButton_clicked();
     void keyPressEvent( QKeyEvent* event );
     void keyReleaseEvent( QKeyEvent* event);
+    void setPlayer(std::string name);
 
 private:
     Ui::MainWindow *ui;
@@ -64,6 +66,7 @@ private:
     int height_ = 500;
     int tick_ = 500; //ms
     int type_;
+    std::string name_;
 };
 
 } //namespace

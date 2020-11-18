@@ -1,6 +1,8 @@
 #include "mainwindow.hh"
 #include "ui_mainwindow.h"
+#include "startwindow.hh"
 #include <QDebug>
+
 
 const int PADDING = 10;
 
@@ -27,7 +29,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
 
-    Dialog d;
+    StartWindow d;
+    connect(&d, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
     d.exec();
 }
 
@@ -55,7 +58,10 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
     }
     else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
         type = "passenger";
+    }else if(std::shared_ptr<Game::player> ptr = std::dynamic_pointer_cast<Game::player>(actor)){
+        type = "player";
     }
+
     Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, type);
     actors_.insert(actor, nActor);
     map->addItem(nActor);
@@ -102,5 +108,11 @@ void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
     emit keyReleased(event->key());
     qDebug() << "Released: " << event->key();
+}
+
+void MainWindow::setPlayer(std::string name)
+{
+    name_ = name;
+
 }
 }
