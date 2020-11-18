@@ -8,6 +8,7 @@ CONFIG += c++14
 SOURCES += \
     city.cc \
     engine.cc \
+    gameendedwindow.cc \
     main.cc \
     creategame.cc \
     mainwindow.cc \
@@ -43,6 +44,7 @@ else:unix: PRE_TARGETDEPS += \
 HEADERS += \
     city.hh \
     engine.hh \
+    gameendedwindow.hh \
     mainwindow.hh \
     player.hh \
     graphicscontrol.hh \
@@ -50,6 +52,7 @@ HEADERS += \
     startwindow.hh
 
 FORMS += \
+    gameendedwindow.ui \
     startwindow.ui \
     mainwindow.ui
 
