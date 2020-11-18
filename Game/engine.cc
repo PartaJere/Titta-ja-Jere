@@ -6,6 +6,8 @@ const int D_KEY = 68;
 const int W_KEY = 87;
 const int MOVE_PER_PRESS = 25;
 
+const int GAME_DURATION = 300;
+
 
 #include <QDebug>
 
@@ -17,7 +19,9 @@ namespace Game {
     Engine::Engine() :
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
+        time_(0),
         player_(new Game::Player)
+
     {
         initGame();
 
@@ -25,6 +29,8 @@ namespace Game {
                          this, &Engine::startGame);
         QObject::connect(&mainwindow_, &MainWindow::keyPressed,
                          this, &Engine::movePlayer);
+        QObject::connect(this, &Engine::gameOver, &mainwindow_,
+                         &MainWindow::gameEnded);
     }
 
 
@@ -43,6 +49,25 @@ namespace Game {
         mainwindow_.setPicture(img);
 
 
+    }
+
+    bool Engine::isGameOver()
+    {
+        if( player_->isRemoved() ){
+            qDebug() << "Game is over: player died";
+            emit gameOver("Player died!");
+            timer_.stop();
+            return true;
+        }
+        else if( time_ > GAME_DURATION ){
+            qDebug() << "Game is over: time is over";
+            emit gameOver("Time ran out!");
+            return true;
+        }
+
+        else{
+            return false;
+        }
     }
 
     void Engine::startGame()
@@ -73,7 +98,7 @@ namespace Game {
 
     void Engine::advance()
     {
-
+        time_ += 0.1;
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -87,14 +112,11 @@ namespace Game {
 
                     if(player_->giveLocation().isClose(actor->giveLocation()) && !actor->isRemoved()){
                         player_->decreaseHP(5);
-
-                        if(player_->isRemoved()){
-                            qDebug() << "Player died";
-                        }
                     };
                 };
             };
         };
+        isGameOver();
 
 
     }
