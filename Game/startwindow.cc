@@ -1,25 +1,26 @@
-#include "dialog.hh"
+#include "startwindow.hh"
 #include "ui_dialog.h"
 
-Dialog::Dialog(QWidget *parent) :
+StartWindow::StartWindow(QWidget *parent) :
     QDialog(parent),
-    ui(new Ui::Dialog)
+    ui(new Ui::StartWindow)
 {
     ui->setupUi(this);
 }
 
-Dialog::~Dialog()
+StartWindow::~StartWindow()
 {
     delete ui;
 }
 
-void Dialog::on_buttonBox_accepted()
+void StartWindow::on_buttonBox_accepted()
 {
     std::string playerName = ui->lineEdit->text().toStdString();
-    Dialog::close();
+    emit setPlayerName(playerName);
+    StartWindow::close();
 }
 
-void Dialog::on_buttonBox_rejected()
+void StartWindow::on_buttonBox_rejected()
 {
-    Dialog::close();
+    StartWindow::close();
 }

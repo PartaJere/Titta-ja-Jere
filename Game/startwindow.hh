@@ -4,16 +4,19 @@
 #include <QDialog>
 
 namespace Ui {
-class Dialog;
+class StartWindow;
 }
 
-class Dialog : public QDialog
+class StartWindow : public QDialog
 {
     Q_OBJECT
 
 public:
-    explicit Dialog(QWidget *parent = nullptr);
-    ~Dialog();
+    explicit StartWindow(QWidget *parent = nullptr);
+    ~StartWindow();
+
+signals:
+    void setPlayerName(std::string name);
 
 private slots:
     void on_buttonBox_accepted();
@@ -21,7 +24,7 @@ private slots:
     void on_buttonBox_rejected();
 
 private:
-    Ui::Dialog *ui;
+    Ui::StartWindow *ui;
 };
 
 #endif // DIALOG_HH
