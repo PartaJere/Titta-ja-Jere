@@ -8,6 +8,7 @@
 #include "graphicscontrol.hh"
 #include "player.hh"
 #include "startwindow.hh"
+#include "gameendedwindow.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -44,6 +45,8 @@ public:
 
     QGraphicsScene *map;
 
+public slots:
+    void gameEnded(std::string message);
 signals:
     void gameStarted();
     void keyPressed(int key);

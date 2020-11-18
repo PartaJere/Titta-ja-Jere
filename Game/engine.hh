@@ -22,6 +22,10 @@ namespace Game  {
         Q_OBJECT
     public:
         Engine();
+
+    signals:
+        void gameOver(std::string message);
+
     public slots:
 
 
@@ -35,10 +39,14 @@ namespace Game  {
 
 
         QTimer timer_;
-
+        float time_;
         std::shared_ptr<Game::Player> player_;
 
         void initGame();
+
+        bool isGameOver();
+
+        void stopGame();
 
     private slots:
         void startGame();

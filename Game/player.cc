@@ -1,13 +1,16 @@
 #include "player.hh"
 
+#include <QDebug>
+
 int DEFAULT_SPEED = 25;
 namespace Game {
     Player::Player() : location_(),
                        removed_(false),
-                       speed_(DEFAULT_SPEED)
+                       speed_(DEFAULT_SPEED),
+                       hitpoints_(100)
 
     {
-        location_.setXY(250,250);
+        location_.setXY(100, 100);
     }
 
     Interface::Location Player::giveLocation() const
@@ -43,6 +46,15 @@ namespace Game {
         }
         else{
             return false;
+        }
+    }
+
+    void Player::decreaseHP(int toDec)
+    {
+        hitpoints_ -= toDec;
+        qDebug() << "hp: " << hitpoints_;
+        if (hitpoints_ <= 0){
+            remove();
         }
     }
 
