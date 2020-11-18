@@ -10,7 +10,8 @@ namespace Game {
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
-    startwindow_(new StartWindow(this))
+    startwindow_(new StartWindow(this)),
+    isGameStarted_(false)
 {
 
 
@@ -27,14 +28,12 @@ MainWindow::MainWindow(QWidget *parent) :
 
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
-    connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
-    startwindow_->show();
 
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
 
-
+    connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
 }
 
 MainWindow::~MainWindow()
@@ -99,7 +98,11 @@ void MainWindow::setPicture(QImage &img)
 void MainWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
-    emit gameStarted();
+    if(!isGameStarted_){
+        startwindow_->exec();
+        emit gameStarted();
+        isGameStarted_ = true;
+    };
 }
 
 void MainWindow::keyPressEvent( QKeyEvent* event )

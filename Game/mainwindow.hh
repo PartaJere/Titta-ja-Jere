@@ -68,6 +68,8 @@ private:
     int tick_ = 500; //ms
     int type_;
     std::string name_;
+
+    bool isGameStarted_;
 };
 
 } //namespace
