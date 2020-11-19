@@ -5,6 +5,7 @@
 #include <QGraphicsScene>
 #include <QPainter>
 #include <QString>
+#include <QPixmap>
 
 namespace Game {
 
@@ -12,12 +13,11 @@ namespace Game {
 const int WIDTH = 5;
 const int HEIGHT = 5;
 
-class GraphicsControl : public QGraphicsItem
+class GraphicsControl : public QGraphicsPixmapItem
 {
 public:
     GraphicsControl(int x, int y, std::string type=0);
     virtual ~GraphicsControl();
-    QRectF boundingRect() const;
     void paint(QPainter *painter, const QStyleOptionGraphicsItem *option = 0, QWidget *widget = 0);
     void setCoord(int x, int y);
 
