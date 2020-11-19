@@ -100,6 +100,10 @@ void MainWindow::updateTimeLeft(int timeLeft)
     ui->timeLeft->display(timeLeft);
 }
 
+void MainWindow::updateHpBar(int hp)
+{
+    ui->hpBar->setValue(hp);
+}
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);

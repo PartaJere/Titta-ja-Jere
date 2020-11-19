@@ -43,6 +43,7 @@ public:
     void moveActor(std::shared_ptr<Interface::IActor> actor);
     void setPicture(QImage &img);
     void updateTimeLeft(int timeLeft);
+    void updateHpBar(int hp);
     QGraphicsScene *map;
 
 public slots:
