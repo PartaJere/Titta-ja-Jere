@@ -10,6 +10,9 @@ SOURCES += \
     core/engine.cc \
     core/statistics.cc \
     core/creategame.cc \
+    graphics/busgraphics.cc \
+    graphics/playergraphics.cc \
+    graphics/stopgraphics.cc \
     windows/gameendedwindow.cc \
     windows/startwindow.cc \
     windows/mainwindow.cc \
@@ -47,6 +50,9 @@ HEADERS += \
     core/city.hh \
     core/engine.hh \
     core/statistics.hh \
+    graphics/busgraphics.hh \
+    graphics/playergraphics.hh \
+    graphics/stopgraphics.hh \
     windows/gameendedwindow.hh \
     windows/mainwindow.hh \
     windows/startwindow.hh\
