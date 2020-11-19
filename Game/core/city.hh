@@ -6,6 +6,7 @@
 #include "graphics/simplemainwindow.hh"
 #include "errors/initerror.hh"
 #include "graphics/simpleactoritem.hh"
+#include "actors/restaurant.hh"
 
 
 
@@ -121,6 +122,8 @@ public:
     void clearMovedActors();
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
 
+    std::vector<std::shared_ptr<Game::Restaurant>> getRestaurants();
+
 
 private:
     QImage basicbackground_;
@@ -129,7 +132,7 @@ private:
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
-
+    std::vector<std::shared_ptr<Game::Restaurant>> restaurants_;
 
 
 

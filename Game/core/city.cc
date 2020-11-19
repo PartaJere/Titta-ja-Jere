@@ -123,6 +123,11 @@ void City::clearMovedActors()
 std::vector<std::shared_ptr<Interface::IStop> > City::getStops()
 {
     return stops_;
+}
+
+std::vector<std::shared_ptr<Restaurant> > City::getRestaurants()
+{
+    return restaurants_;
 };
 
 }
