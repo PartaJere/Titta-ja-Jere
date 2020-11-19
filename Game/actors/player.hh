@@ -68,6 +68,8 @@ namespace Game {
          */
         void decreaseHP(int toDec);
 
+        int getHP();
+
     private:
         Interface::Location location_;
         bool removed_;

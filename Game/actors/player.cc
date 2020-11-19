@@ -58,5 +58,10 @@ namespace Game {
         }
     }
 
+    int Player::getHP()
+    {
+        return hitpoints_;
+    }
+
 
 }
