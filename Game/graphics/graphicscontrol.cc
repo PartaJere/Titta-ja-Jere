@@ -51,9 +51,9 @@ void GraphicsControl::paint(QPainter *painter, const QStyleOptionGraphicsItem *o
 
     }
     if(type_ == "player"){
-            picture = QImage(PLAYER_FILE, "png");
+            //picture = QImage(PLAYER_FILE, "png");
             bounds = QRectF(0,0,30,30);
-
+            painter->drawEllipse(10,4,10,4);
     }
 
     if(type_ == "passenger"){

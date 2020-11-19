@@ -4,10 +4,10 @@
 #include <QObject>
 
 #include "core/logic.hh"
-#include "mainwindow.hh"
+#include "windows/mainwindow.hh"
 #include "city.hh"
 #include "creategame.hh"
-#include "player.hh"
+#include "actors/player.hh"
 #include "graphics/simpleactoritem.hh"
 
 
