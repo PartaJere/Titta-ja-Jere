@@ -95,6 +95,11 @@ void MainWindow::setPicture(QImage &img)
     map->setBackgroundBrush(img);
 }
 
+void MainWindow::updateTimeLeft(int timeLeft)
+{
+    ui->timeLeft->display(timeLeft);
+}
+
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);
