@@ -1,5 +1,5 @@
 #include <QApplication>
-#include <engine.hh>
+#include "core/engine.hh"
 
 int main(int argc, char *argv[])
 {

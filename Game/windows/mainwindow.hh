@@ -5,10 +5,10 @@
 #include "graphics/simpleactoritem.hh"
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
-#include "graphicscontrol.hh"
-#include "player.hh"
-#include "startwindow.hh"
-#include "gameendedwindow.hh"
+#include "graphics/graphicscontrol.hh"
+#include "actors/player.hh"
+#include "windows/startwindow.hh"
+#include "windows/gameendedwindow.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>

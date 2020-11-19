@@ -6,16 +6,16 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
-    city.cc \
-    engine.cc \
-    gameendedwindow.cc \
+    core/city.cc \
+    core/engine.cc \
+    windows/gameendedwindow.cc \
     main.cc \
-    creategame.cc \
-    mainwindow.cc \
-    player.cc \
-    graphicscontrol.cc \
+    core/creategame.cc \
+    windows/mainwindow.cc \
+    actors/player.cc \
+    graphics/graphicscontrol.cc \
     statistics.cc \
-    startwindow.cc
+    windows/startwindow.cc
 
 win32:CONFIG(release, debug|release): LIBS += \
     -L$$OUT_PWD/../Course/CourseLib/release/ -lCourseLib
@@ -42,19 +42,19 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
-    city.hh \
-    engine.hh \
-    gameendedwindow.hh \
-    mainwindow.hh \
-    player.hh \
-    graphicscontrol.hh \
+    core/city.hh \
+    core/engine.hh \
+    windows/gameendedwindow.hh \
+    windows/mainwindow.hh \
+    actors/player.hh \
+    graphics/graphicscontrol.hh \
     statistics.hh \
-    startwindow.hh
+    windows/startwindow.hh
 
 FORMS += \
-    gameendedwindow.ui \
-    startwindow.ui \
-    mainwindow.ui
+    windows/gameendedwindow.ui \
+    windows/startwindow.ui \
+    windows/mainwindow.ui
 
 RESOURCES += \
     images.qrc
