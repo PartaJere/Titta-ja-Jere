@@ -95,12 +95,14 @@ namespace Game {
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(100);
         mainwindow_.updateTimeLeft(time_);
+        mainwindow_.updateHpBar(player_->getHP());
 
     }
 
     void Engine::advance()
     {
         time_ -= 0.1;
+
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -121,8 +123,10 @@ namespace Game {
         for( auto restaurant : city_->getRestaurants()){
 
         }
+        mainwindow_.updateHpBar(player_->getHP());
         isGameOver();
         mainwindow_.updateTimeLeft(time_);
+
 
 
     }
