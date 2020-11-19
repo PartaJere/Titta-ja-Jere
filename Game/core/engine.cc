@@ -6,7 +6,7 @@ const int D_KEY = 68;
 const int W_KEY = 87;
 const int MOVE_PER_PRESS = 25;
 
-const int GAME_DURATION = 300;
+const int GAME_DURATION = 300; //seconds
 
 
 #include <QDebug>
@@ -19,7 +19,7 @@ namespace Game {
     Engine::Engine() :
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
-        time_(0),
+        time_(GAME_DURATION),
         player_(new Game::Player)
 
     {
@@ -59,7 +59,7 @@ namespace Game {
             timer_.stop();
             return true;
         }
-        else if( time_ > GAME_DURATION ){
+        else if( time_ <= 0 ){
             qDebug() << "Game is over: time is over";
             emit gameOver("Time ran out!");
             timer_.stop();
@@ -94,12 +94,13 @@ namespace Game {
         };
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(100);
+        mainwindow_.updateTimeLeft(time_);
 
     }
 
     void Engine::advance()
     {
-        time_ += 0.1;
+        time_ -= 0.1;
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -117,7 +118,11 @@ namespace Game {
                 };
             };
         };
+        for( auto restaurant : city_->getRestaurants()){
+
+        }
         isGameOver();
+        mainwindow_.updateTimeLeft(time_);
 
 
     }
