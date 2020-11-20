@@ -1,4 +1,4 @@
-#include "graphicscontrol.hh"
+#include "objectcontrol.hh"
 #include <QImage>
 #include <memory>
 #include <QDebug>
@@ -12,20 +12,20 @@ const QString PLAYER_FILE = ":/images/plate.png";
 
 namespace Game {
 
-GraphicsControl::GraphicsControl(int x, int y, std::string type):x_(x), y_(y), type_(type)
+ObjectControl::ObjectControl(int x, int y, std::string type):x_(x), y_(y), type_(type)
 {
     setPos(mapToParent(x_,y_));
     assert(picture_.load(BUS_FILE));
     setPixmap(picture_);
 }
 
-GraphicsControl::~GraphicsControl()
+ObjectControl::~ObjectControl()
 {
 
 }
 
 
-void GraphicsControl::setCoord(int x, int y)
+void ObjectControl::setCoord(int x, int y)
 {
     setX( x );
     setY( y );
