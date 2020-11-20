@@ -6,10 +6,12 @@
 #include <QString>
 #include <QPixmap>
 
+#include "graphics/objectcontrol.hh"
+
 
 namespace Game {
 
-class BusGraphics : public QGraphicsPixmapItem
+class BusGraphics : public ObjectControl
 {
 public:
     BusGraphics(int x, int y, std::string type=0);
