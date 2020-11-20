@@ -5,10 +5,14 @@
 #include "graphics/simpleactoritem.hh"
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
-#include "graphics/graphicscontrol.hh"
+#include "graphics/objectcontrol.hh"
 #include "actors/player.hh"
 #include "windows/startwindow.hh"
 #include "windows/gameendedwindow.hh"
+#include "graphics/busgraphics.hh"
+#include "graphics/stopgraphics.hh"
+#include "graphics/playergraphics.hh"
+#include "graphics/passengergraphics.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -38,7 +42,6 @@ public:
 
     virtual void addActor(std::shared_ptr<Interface::IActor> actor,int locX, int locY);
     void addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY);
-    void updateCoords(int nX, int nY);
 
     void moveActor(std::shared_ptr<Interface::IActor> actor);
     void setPicture(QImage &img);
@@ -63,9 +66,9 @@ private:
     Ui::MainWindow *ui;
 
     QTimer *timer;
-    QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsControl*> actors_;
-    QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsControl*> stops_;
-    Game::GraphicsControl* last_;
+    QMap<std::shared_ptr<Interface::IActor>, Game::ObjectControl*> actors_;
+    QMap<std::shared_ptr<Interface::IStop>, Game::ObjectControl*> stops_;
+    Game::ObjectControl* last_;
     StartWindow* startwindow_;
     int width_ = 500; //pxls
     int height_ = 500;

@@ -55,16 +55,18 @@ void MainWindow::setTick(int t)
 void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
 {
     std::string type;
+    Game::ObjectControl* nActor;
     if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
         type = "bus";
+        nActor = new Game::BusGraphics(locX, locY, type);
     }
     else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
         type = "passenger";
+        nActor = new Game::PassengerGraphics(locX, locY, type);
     }else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
         type = "player";
+        nActor = new Game::PlayerGraphics(locX, locY, type);
     }
-
-    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, type);
     actors_.insert(actor, nActor);
     map->addItem(nActor);
     last_ = nActor;
@@ -72,16 +74,12 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
 {
-    Game::GraphicsControl* nActor = new Game::GraphicsControl(locX, locY, "stop");
+    Game::ObjectControl* nActor = new Game::StopGraphics(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
     last_ = nActor;
 }
 
-void MainWindow::updateCoords(int nX, int nY)
-{
-    last_->setCoord(nX, nY);
-}
 
 void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {
