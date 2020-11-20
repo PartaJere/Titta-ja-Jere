@@ -2,6 +2,9 @@
 #include <QDebug>
 
 const QString BUSSTOP_FILE = ":/images/bussikyltti.png";
+const int WIDTH = 12;
+const int HEIGHT = 10;
+
 
 namespace Game {
 
@@ -9,6 +12,7 @@ StopGraphics::StopGraphics(int x, int y, std::string type):x_(x), y_(y), type_(t
 {
     setPos(mapToParent(x_,y_));
     assert(picture_.load(BUSSTOP_FILE));
+    picture_ = picture_.scaled(WIDTH, HEIGHT);
     setPixmap(picture_);
 
 

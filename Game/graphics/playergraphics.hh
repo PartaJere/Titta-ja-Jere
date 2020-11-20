@@ -7,9 +7,11 @@
 #include <QString>
 #include <QPixmap>
 
+#include "graphics/objectcontrol.hh"
+
 namespace Game {
 
-class PlayerGraphics : public QGraphicsPixmapItem
+class PlayerGraphics : public ObjectControl
 {
 public:
     PlayerGraphics(int x, int y, std::string type=0);

@@ -11,6 +11,7 @@ SOURCES += \
     core/statistics.cc \
     core/creategame.cc \
     graphics/busgraphics.cc \
+    graphics/passengergraphics.cc \
     graphics/playergraphics.cc \
     graphics/stopgraphics.cc \
     windows/gameendedwindow.cc \
@@ -18,7 +19,6 @@ SOURCES += \
     windows/mainwindow.cc \
     actors/player.cc \
     actors/restaurant.cc \
-    graphics/graphicscontrol.cc \
     main.cc
 
 
@@ -51,14 +51,15 @@ HEADERS += \
     core/engine.hh \
     core/statistics.hh \
     graphics/busgraphics.hh \
+    graphics/objectcontrol.hh \
+    graphics/passengergraphics.hh \
     graphics/playergraphics.hh \
     graphics/stopgraphics.hh \
     windows/gameendedwindow.hh \
     windows/mainwindow.hh \
     windows/startwindow.hh\
     actors/player.hh \
-    actors/restaurant.hh \
-    graphics/graphicscontrol.hh
+    actors/restaurant.hh
 
 
 

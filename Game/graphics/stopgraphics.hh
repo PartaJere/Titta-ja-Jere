@@ -7,13 +7,15 @@
 #include <QString>
 #include <QPixmap>
 
+#include "graphics/objectcontrol.hh"
+
 namespace Game {
 
-class BusStopGraphics : public QGraphicsPixmapItem
+class StopGraphics : public ObjectControl
 {
 public:
-    BusStopGraphics(int x, int y, std::string type=0);
-    virtual ~BusStopGraphics();
+    StopGraphics(int x, int y, std::string type=0);
+    virtual ~StopGraphics();
     void setCoord(int x, int y);
 
 private:
