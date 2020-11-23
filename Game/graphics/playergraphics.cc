@@ -2,7 +2,7 @@
 
 #include <QDebug>
 
-const QString PLAYER_FILE = ":/images/plate.png";
+const QString PLAYER_FILE = ":/images/autekmopo.png";
 const int WIDTH = 30;
 const int HEIGHT = 30;
 
