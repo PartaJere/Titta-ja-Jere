@@ -4,6 +4,8 @@
 
 
 const int PADDING = 10;
+const int X_COMPENSATION = 355;
+const int Y_COMPENSATION = 547;
 
 namespace Game {
 
@@ -54,8 +56,10 @@ void MainWindow::setTick(int t)
 
 void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
 {
+    locX = locX + X_COMPENSATION;
+    locY = Y_COMPENSATION - locY;
     std::string type;
-    Game::ObjectControl* nActor;
+    Game::GraphicsObject* nActor;
     if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
         type = "bus";
         nActor = new Game::BusGraphics(locX, locY, type);
@@ -74,7 +78,9 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
 {
-    Game::ObjectControl* nActor = new Game::StopGraphics(locX, locY, "stop");
+    locX = locX + X_COMPENSATION;
+    locY = Y_COMPENSATION - locY;
+    Game::GraphicsObject* nActor = new Game::StopGraphics(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
     last_ = nActor;
@@ -84,7 +90,7 @@ void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int l
 void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {
     if(actors_.contains(actor)){
-        actors_[actor]->setCoord(actor->giveLocation().giveX(), 500-actor->giveLocation().giveY());
+        actors_[actor]->setCoord(actor->giveLocation().giveX()+X_COMPENSATION, Y_COMPENSATION-actor->giveLocation().giveY());
     };
 }
 

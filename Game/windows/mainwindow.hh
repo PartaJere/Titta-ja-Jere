@@ -5,7 +5,7 @@
 #include "graphics/simpleactoritem.hh"
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
-#include "graphics/objectcontrol.hh"
+#include "graphics/graphicsobject.hh"
 #include "actors/player.hh"
 #include "windows/startwindow.hh"
 #include "windows/gameendedwindow.hh"
@@ -66,12 +66,12 @@ private:
     Ui::MainWindow *ui;
 
     QTimer *timer;
-    QMap<std::shared_ptr<Interface::IActor>, Game::ObjectControl*> actors_;
-    QMap<std::shared_ptr<Interface::IStop>, Game::ObjectControl*> stops_;
-    Game::ObjectControl* last_;
+    QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsObject*> actors_;
+    QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsObject*> stops_;
+    Game::GraphicsObject* last_;
     StartWindow* startwindow_;
-    int width_ = 500; //pxls
-    int height_ = 500;
+    int width_ = 1095; //pxls
+    int height_ = 592;
     int tick_ = 500; //ms
     int type_;
     std::string name_;
