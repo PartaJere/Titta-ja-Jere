@@ -13,8 +13,7 @@ City::City() : Interface::ICity()
 void City::setBackground(QImage &basicbackground, QImage &bigbackground)
 {
     try {
-        basicbackground_ = basicbackground;
-        bigbackground_ = bigbackground;
+        background_ = bigbackground;
     }
 
      catch (...) {
@@ -100,9 +99,9 @@ bool City::isGameOver() const
     return false;
 }
 
-QImage City::getBasicBackground()
+QImage City::getBackground()
 {
-    return basicbackground_;
+    return background_;
 }
 
 std::vector<std::shared_ptr<Interface::IActor> > City::getActors()

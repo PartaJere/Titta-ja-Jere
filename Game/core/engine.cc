@@ -4,7 +4,8 @@ const int A_KEY = 65;
 const int S_KEY = 83;
 const int D_KEY = 68;
 const int W_KEY = 87;
-const int MOVE_PER_PRESS = 25;
+const int MOVE_PER_PRESS = 5;
+
 
 const int GAME_DURATION = 300; //seconds
 
@@ -45,7 +46,7 @@ namespace Game {
         city_ = cityptr;
 
         mainwindow_.show();
-        QImage img = city_->getBasicBackground();
+        QImage img = city_->getBackground();
         mainwindow_.setPicture(img);
 
 
@@ -73,7 +74,7 @@ namespace Game {
 
     void Engine::startGame()
     {
-        //logic_.setTime(10, 00);
+        logic_.setTime(10, 00);
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
         city_->addActor(player_);
@@ -83,14 +84,14 @@ namespace Game {
             unsigned int x = actor->giveLocation().giveX();
             unsigned int y = actor->giveLocation().giveY();
 
-            mainwindow_.addActor(actor, x, 500-y);
+            mainwindow_.addActor(actor, x, y);
         };
 
         for( auto stop : city_->getStops()){
             unsigned int x = stop->getLocation().giveX();
             unsigned int y = stop->getLocation().giveY();
 
-            mainwindow_.addStop(stop, x,500-y);
+            mainwindow_.addStop(stop, x, y);
         };
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(100);
