@@ -84,7 +84,7 @@ namespace Game {
         logic_.finalizeGameStart();
         actors_ = city_->getActors();
         city_->addActor(player_);
-
+        mainwindow_.moveView(player_->giveLocation());
 
         for( auto actor : city_->getActors()){
             unsigned int x = actor->giveLocation().giveX();
@@ -116,8 +116,10 @@ namespace Game {
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
+        mainwindow_.moveView(player_->giveLocation());
 
         checkPlayerDmg();
+
 
         mainwindow_.updateHpBar(player_->getHP());
         isGameOver();
@@ -148,6 +150,7 @@ namespace Game {
             loc.setXY(x,y);
             player_->move(loc);
             city_->actorMoved(player_);
+
     };
 
     void Engine::checkPlayerDmg()

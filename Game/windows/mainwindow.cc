@@ -26,11 +26,15 @@ MainWindow::MainWindow(QWidget *parent) :
 
     map = new QGraphicsScene(this);
     ui->gameView->setScene(map);
-    map->setSceneRect(0,0,width_,height_);
+    ui->gameView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->gameView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->gameView->scale(1.2,1.2);
 
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
+
+    map->setSceneRect(0,0,width_,height_);
     timer = new QTimer(this);
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
@@ -73,7 +77,6 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
     }
     actors_.insert(actor, nActor);
     map->addItem(nActor);
-    last_ = nActor;
 }
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
@@ -83,7 +86,6 @@ void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int l
     Game::GraphicsObject* nActor = new Game::StopGraphics(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
-    last_ = nActor;
 }
 
 
@@ -108,6 +110,12 @@ void MainWindow::updateHpBar(int hp)
 {
     ui->hpBar->setValue(hp);
 }
+
+void MainWindow::moveView(Interface::Location loc)
+{
+    ui->gameView->centerOn(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
+}
+
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);

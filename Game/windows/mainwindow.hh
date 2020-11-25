@@ -47,6 +47,7 @@ public:
     void setPicture(QImage &img);
     void updateTimeLeft(int timeLeft);
     void updateHpBar(int hp);
+    void moveView(Interface::Location loc);
     QGraphicsScene *map;
 
 public slots:
@@ -68,7 +69,6 @@ private:
     QTimer *timer;
     QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsObject*> actors_;
     QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsObject*> stops_;
-    Game::GraphicsObject* last_;
     StartWindow* startwindow_;
     int width_ = 1095; //pxls
     int height_ = 592;
