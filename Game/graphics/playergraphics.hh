@@ -7,11 +7,11 @@
 #include <QString>
 #include <QPixmap>
 
-#include "graphics/objectcontrol.hh"
+#include "graphics/graphicsobject.hh"
 
 namespace Game {
 
-class PlayerGraphics : public ObjectControl
+class PlayerGraphics : public GraphicsObject
 {
 public:
     PlayerGraphics(int x, int y, std::string type=0);

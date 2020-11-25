@@ -51,7 +51,7 @@ HEADERS += \
     core/engine.hh \
     core/statistics.hh \
     graphics/busgraphics.hh \
-    graphics/objectcontrol.hh \
+    graphics/graphicsobject.hh \
     graphics/passengergraphics.hh \
     graphics/playergraphics.hh \
     graphics/stopgraphics.hh \
