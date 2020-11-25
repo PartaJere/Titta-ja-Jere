@@ -127,8 +127,13 @@ namespace Game {
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
-
         city_->clearMovedActors();
+
+        for( auto actor : city_->getActors()){
+            if( actor->isRemoved()){
+                mainwindow_.deleteActor(actor);
+            }
+        }
         mainwindow_.moveView(player_->giveLocation());
 
 
