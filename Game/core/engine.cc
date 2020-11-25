@@ -99,6 +99,15 @@ namespace Game {
 
             mainwindow_.addStop(stop, x, y);
         };
+
+        for( auto restaurant : city_->getRestaurants()){
+            unsigned int x = restaurant->giveLocation().giveX();
+            unsigned int y = restaurant->giveLocation().giveY();
+
+            mainwindow_.addRestaurant(restaurant, x, y);
+
+        }
+
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(TICK);
         mainwindow_.updateTimeLeft(time_);

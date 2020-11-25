@@ -2,17 +2,19 @@
 #define MAINWINDOW_HH
 
 #include "interfaces/iactor.hh"
-#include "graphics/simpleactoritem.hh"
 #include "interfaces/iactor.hh"
 #include "interfaces/istop.hh"
-#include "graphics/graphicsobject.hh"
 #include "actors/player.hh"
+#include "actors/restaurant.hh"
 #include "windows/startwindow.hh"
 #include "windows/gameendedwindow.hh"
+#include "graphics/graphicsobject.hh"
 #include "graphics/busgraphics.hh"
 #include "graphics/stopgraphics.hh"
 #include "graphics/playergraphics.hh"
 #include "graphics/passengergraphics.hh"
+#include "graphics/restaurantgraphics.hh"
+
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -42,6 +44,7 @@ public:
 
     virtual void addActor(std::shared_ptr<Interface::IActor> actor,int locX, int locY);
     void addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY);
+    void addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int locX, int locY);
 
     void moveActor(std::shared_ptr<Interface::IActor> actor);
     void setPicture(QImage &img);
@@ -69,6 +72,7 @@ private:
     QTimer *timer;
     QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsObject*> actors_;
     QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsObject*> stops_;
+    QMap<std::shared_ptr<Game::Restaurant>, Game::GraphicsObject*> restaurants_;
     StartWindow* startwindow_;
     int width_ = 1095; //pxls
     int height_ = 592;
