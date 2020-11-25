@@ -50,7 +50,7 @@ namespace Game  {
 
         void stopGame();
 
-        void checkPlayerDmg();
+        void checkInteractions();
 
     private slots:
         void startGame();

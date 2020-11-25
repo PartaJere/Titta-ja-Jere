@@ -130,8 +130,8 @@ namespace Game {
         city_->clearMovedActors();
         mainwindow_.moveView(player_->giveLocation());
 
-        checkPlayerDmg();
 
+        checkInteractions();
 
         mainwindow_.updateHpBar(player_->getHP());
         isGameOver();
@@ -165,17 +165,15 @@ namespace Game {
 
     };
 
-    void Engine::checkPlayerDmg()
+    void Engine::checkInteractions()
     {
-        for( auto actor : city_->getActors()){
-            if(player_ != actor){
-                if(std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
-                    if(player_->giveLocation().isClose(actor->giveLocation())
-                       && !actor->isRemoved()){
-                        player_->decreaseHP(5);
-                    };
-                };
+        Interface::Location loc = player_->giveLocation();
+        for( auto bus : city_->getBuses()){
+            if(loc.isClose(bus->giveLocation(), 20)){
+                player_->decreaseHP(3);
             };
         };
     }
+
+
 }
