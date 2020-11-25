@@ -8,11 +8,11 @@
 #include <QPixmap>
 #include <QPainter>
 
-#include "graphics/objectcontrol.hh"
+#include "graphics/graphicsobject.hh"
 
 namespace Game {
 
-class PassengerGraphics : public ObjectControl
+class PassengerGraphics : public GraphicsObject
 {
 public:
     PassengerGraphics(int x, int y, std::string type=0);

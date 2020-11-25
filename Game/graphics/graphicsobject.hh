@@ -10,11 +10,11 @@
 namespace Game {
 
 
-class ObjectControl : public QGraphicsPixmapItem
+class GraphicsObject : public QGraphicsPixmapItem
 {
 public:
-    ObjectControl() = default;
-    virtual ~ObjectControl() = default;
+    GraphicsObject() = default;
+    virtual ~GraphicsObject() = default;
     virtual void setCoord(int x, int y) = 0;
 
 };
