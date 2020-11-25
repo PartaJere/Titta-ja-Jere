@@ -2,14 +2,14 @@
 #include <QTime>
 #include <algorithm>
 
+const QString RESTAURANT_DATA = ":/data/restaurantdata.json";
+
 namespace Game
 {
 
 City::City() : Interface::ICity()
 {
-    loc_.setXY(200,200);
-    std::shared_ptr<Game::Restaurant> NewRestaurant = std::make_shared<Game::Restaurant>(loc_);
-    restaurants_.push_back(NewRestaurant);
+
 
 }
 
@@ -116,6 +116,34 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getNearbyActors(Interface
 bool City::isGameOver() const
 {
     return false;
+}
+
+void City::addRestaurants()
+{
+    QString filecontent;
+    QFile file;
+    file.setFileName(RESTAURANT_DATA);
+    file.open(QIODevice::ReadOnly | QIODevice::Text);
+    filecontent = file.readAll();
+    file.close();
+
+    QJsonDocument document = QJsonDocument::fromJson(filecontent.toUtf8());
+    QJsonObject jsonObject = document.object();
+    QJsonArray jsonArray = document.array();
+
+
+    for (int i = 0; i < jsonArray.size(); i++) {
+        QJsonObject o = jsonArray.at(i).toObject();
+        int id = o.value("restaurantId").toString().toInt();
+        int maxFood = o.value("maxFood").toString().toInt();
+        int x = o.value("x").toString().toInt();
+        int y = o.value("y").toString().toInt();
+
+        loc_.setXY(x,y);
+        std::shared_ptr<Game::Restaurant> NewRestaurant = std::make_shared<Game::Restaurant>(loc_);
+        restaurants_.push_back(NewRestaurant);
+
+    }
 }
 
 QImage City::getBackground()

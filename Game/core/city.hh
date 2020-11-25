@@ -16,6 +16,12 @@
 
 #include <vector>
 #include <QTime>
+#include <QFile>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QDebug>
+#include <QJsonArray>
+#include <QString>
 
 namespace Game
 {
@@ -119,7 +125,7 @@ public:
      * @post Exception guarantee: nothrow.
      */
     bool isGameOver() const override;
-
+    void addRestaurants();
 
     QImage getBackground();
     std::vector<std::shared_ptr<Interface::IActor>> getActors();
