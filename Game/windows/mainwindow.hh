@@ -13,6 +13,7 @@
 #include "graphics/stopgraphics.hh"
 #include "graphics/playergraphics.hh"
 #include "graphics/passengergraphics.hh"
+#include "graphics/customergraphics.hh"
 
 #include <QMainWindow>
 #include <QGraphicsScene>
@@ -21,6 +22,7 @@
 #include <memory>
 #include <QVector>
 #include <QKeyEvent>
+#include <QMouseEvent>
 #include <map>
 
 namespace Ui {
@@ -77,6 +79,8 @@ private:
     std::string name_;
 
     bool isGameStarted_;
+
+
 };
 
 } //namespace

@@ -6,11 +6,13 @@ QT += core gui widgets network multimedia
 CONFIG += c++14
 
 SOURCES += \
+    actors/customer.cc \
     core/city.cc \
     core/engine.cc \
     core/statistics.cc \
     core/creategame.cc \
     graphics/busgraphics.cc \
+    graphics/customergraphics.cc \
     graphics/passengergraphics.cc \
     graphics/playergraphics.cc \
     graphics/stopgraphics.cc \
@@ -47,10 +49,12 @@ else:unix: PRE_TARGETDEPS += \
     $$OUT_PWD/../Course/CourseLib/libCourseLib.a
 
 HEADERS += \
+    actors/customer.hh \
     core/city.hh \
     core/engine.hh \
     core/statistics.hh \
     graphics/busgraphics.hh \
+    graphics/customergraphics.hh \
     graphics/graphicsobject.hh \
     graphics/passengergraphics.hh \
     graphics/playergraphics.hh \

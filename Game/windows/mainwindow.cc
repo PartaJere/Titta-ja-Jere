@@ -71,9 +71,14 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, in
     else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
         type = "passenger";
         nActor = new Game::PassengerGraphics(locX, locY, type);
-    }else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
+    }
+    else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
         type = "player";
         nActor = new Game::PlayerGraphics(locX, locY, type);
+    }
+    else{
+        type = "customer";
+        nActor = new Game::CustomerGraphics(locX, locY, type);
     }
     actors_.insert(actor, nActor);
     map->addItem(nActor);
@@ -137,6 +142,7 @@ void MainWindow::keyPressEvent( QKeyEvent* event )
     emit keyPressed(event->key());
     qDebug() << "Pressed: " << event->key();
 }
+
 void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
     emit keyReleased(event->key());

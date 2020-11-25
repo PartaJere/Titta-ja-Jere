@@ -1,4 +1,5 @@
 #include "engine.hh"
+#include "actors/customer.hh"
 
 const int A_KEY = 65;
 const int S_KEY = 83;
@@ -7,7 +8,7 @@ const int W_KEY = 87;
 const int MOVE_PER_PRESS = 5;
 
 const int GAME_DURATION = 300; //seconds
-const int TICK = 32; //updates per second
+const int TICK = 30; //updates per second
 
 
 
@@ -52,6 +53,8 @@ namespace Game {
         mainwindow_.show();
         QImage img = city_->getBackground();
         mainwindow_.setPicture(img);
+        std::shared_ptr<Customer> customer = std::make_shared<Customer>(Customer());
+        city_->addActor(customer);
 
 
     }
