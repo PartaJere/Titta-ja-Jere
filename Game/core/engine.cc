@@ -127,8 +127,19 @@ namespace Game {
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
-
         city_->clearMovedActors();
+
+        for( auto actor : city_->getActors()){
+            if( actor->isRemoved()){
+                mainwindow_.deleteActor(actor);
+            }
+        }
+        if( rand()%100 > 98 ){
+            std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
+            city_->addActor(newCustomer);
+            Interface::Location loc = newCustomer->giveLocation();
+            mainwindow_.addActor(newCustomer, loc.giveX(), loc.giveY());
+        }
         mainwindow_.moveView(player_->giveLocation());
 
 
@@ -181,8 +192,9 @@ namespace Game {
         };
         for( auto customer : city_->getCustomers()){
             if(loc.isClose(customer->giveLocation(), 15) && !customer->isRemoved()){
-                player_->decreaseFood(1);
-                customer->decreaseHunger(1);
+                if(player_->decreaseFood(1)){
+                    customer->decreaseHunger(1);
+                }
             }
         }
 
