@@ -7,7 +7,8 @@ namespace Game {
     Player::Player() : location_(),
                        removed_(false),
                        speed_(DEFAULT_SPEED),
-                       hitpoints_(100)
+                       hitpoints_(100),
+                       food_(0)
 
     {
         location_.setXY(100, 100);
@@ -63,5 +64,23 @@ namespace Game {
         return hitpoints_;
     }
 
+    void Player::increaseFood(int amount)
+    {
+        food_ += amount;
+        qDebug() << "Player has food: " << food_;
+    }
+
+    bool Player::decreaseFood(int amount)
+    {
+        if(food_ >= amount){
+            food_ -= amount;
+            qDebug() << "Player has food: " << food_;
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
 
 }

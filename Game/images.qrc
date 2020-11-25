@@ -6,7 +6,11 @@
         <file>customer.png</file>
         <file>restaurant.png</file>
     </qresource>
+<<<<<<< HEAD
     <qresource prefix="/data">
         <file>restaurantdata.json</file>
     </qresource>
+=======
+    <qresource prefix="/"/>
+>>>>>>> 6a60fd28f746df37f776d7a97515da74d419828d
 </RCC>
