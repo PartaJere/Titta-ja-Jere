@@ -6,8 +6,9 @@ const int D_KEY = 68;
 const int W_KEY = 87;
 const int MOVE_PER_PRESS = 5;
 
-
 const int GAME_DURATION = 300; //seconds
+const int TICK = 32; //updates per second
+
 
 
 #include <QDebug>
@@ -21,7 +22,8 @@ namespace Game {
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
         time_(GAME_DURATION),
-        player_(new Game::Player)
+        player_(new Game::Player),
+        keyPressed_(0)
 
     {
         initGame();
@@ -32,6 +34,8 @@ namespace Game {
                          this, &Engine::movePlayer);
         QObject::connect(this, &Engine::gameOver, &mainwindow_,
                          &MainWindow::gameEnded);
+
+        mainwindow_.setTick(TICK);
     }
 
 
@@ -72,6 +76,8 @@ namespace Game {
         }
     }
 
+
+
     void Engine::startGame()
     {
         logic_.setTime(10, 00);
@@ -94,7 +100,7 @@ namespace Game {
             mainwindow_.addStop(stop, x, y);
         };
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
-        timer_.start(100);
+        timer_.start(TICK);
         mainwindow_.updateTimeLeft(time_);
         mainwindow_.updateHpBar(player_->getHP());
 
@@ -102,28 +108,17 @@ namespace Game {
 
     void Engine::advance()
     {
-        time_ -= 0.1;
-
+        time_ -= 1/TICK;
+        if( keyPressed_ ){
+            movePlayer(keyPressed_);
+        }
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
         city_->clearMovedActors();
 
-        // Checks if player is hitting any vehicles. If so, damage is given.
-        for( auto actor : city_->getActors()){
-            if(player_ != actor){
+        checkPlayerDmg();
 
-                if(std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
-
-                    if(player_->giveLocation().isClose(actor->giveLocation()) && !actor->isRemoved()){
-                        player_->decreaseHP(5);
-                    };
-                };
-            };
-        };
-        for( auto restaurant : city_->getRestaurants()){
-
-        }
         mainwindow_.updateHpBar(player_->getHP());
         isGameOver();
         mainwindow_.updateTimeLeft(time_);
@@ -134,23 +129,38 @@ namespace Game {
 
     void Engine::movePlayer(int key)
     {
-        int x = player_->giveLocation().giveX();
-        int y = player_->giveLocation().giveY();
-        if(key == A_KEY){
-             x -= MOVE_PER_PRESS;
-        }
-        if(key == D_KEY){
-            x += MOVE_PER_PRESS;
-        }
-        if(key == S_KEY){
-            y -= MOVE_PER_PRESS;
-        }
-        if(key == W_KEY){
-            y += MOVE_PER_PRESS;
-        }
-        Interface::Location loc = Interface::Location();
-        loc.setXY(x,y);
-        player_->move(loc);
-        city_->actorMoved(player_);
+
+            int x = player_->giveLocation().giveX();
+            int y = player_->giveLocation().giveY();
+            if(key == A_KEY){
+                 x -= MOVE_PER_PRESS;
+            }
+            if(key == D_KEY){
+                x += MOVE_PER_PRESS;
+            }
+            if(key == S_KEY){
+                y -= MOVE_PER_PRESS;
+            }
+            if(key == W_KEY){
+                y += MOVE_PER_PRESS;
+            }
+            Interface::Location loc = Interface::Location();
+            loc.setXY(x,y);
+            player_->move(loc);
+            city_->actorMoved(player_);
     };
+
+    void Engine::checkPlayerDmg()
+    {
+        for( auto actor : city_->getActors()){
+            if(player_ != actor){
+                if(std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
+                    if(player_->giveLocation().isClose(actor->giveLocation())
+                       && !actor->isRemoved()){
+                        player_->decreaseHP(5);
+                    };
+                };
+            };
+        };
+    }
 }

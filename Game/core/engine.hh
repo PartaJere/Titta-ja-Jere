@@ -42,11 +42,15 @@ namespace Game  {
         float time_;
         std::shared_ptr<Game::Player> player_;
 
+        int keyPressed_;
+
         void initGame();
 
         bool isGameOver();
 
         void stopGame();
+
+        void checkPlayerDmg();
 
     private slots:
         void startGame();
