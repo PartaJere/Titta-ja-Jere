@@ -56,6 +56,7 @@ public:
     void updateTimeLeft(int timeLeft);
     void updateHpBar(int hp);
     void moveView(Interface::Location loc);
+    void deleteActor(std::shared_ptr<Interface::IActor> actor);
     QGraphicsScene *map;
 
 public slots:

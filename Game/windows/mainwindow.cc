@@ -131,6 +131,14 @@ void MainWindow::moveView(Interface::Location loc)
     ui->gameView->centerOn(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
 }
 
+void MainWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
+{
+    if(actor->isRemoved()){
+        delete actors_[actor];
+        actors_.remove(actor);
+    };
+}
+
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);
