@@ -1,6 +1,4 @@
 #include "busgraphics.hh"
-#include <QImage>
-#include <memory>
 #include <QDebug>
 
 

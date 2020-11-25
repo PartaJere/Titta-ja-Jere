@@ -1,5 +1,4 @@
 #include "playergraphics.hh"
-
 #include <QDebug>
 
 const QString PLAYER_FILE = ":/images/autekmopo.png";
