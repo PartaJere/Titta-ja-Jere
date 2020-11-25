@@ -5,8 +5,12 @@
 #include "interfaces/istop.hh"
 #include "graphics/simplemainwindow.hh"
 #include "errors/initerror.hh"
+#include "errors/gameerror.hh"
 #include "graphics/simpleactoritem.hh"
 #include "actors/restaurant.hh"
+#include "actors/nysse.hh"
+#include "actors/player.hh"
+#include "actors/customer.hh"
 
 
 
@@ -125,14 +129,27 @@ public:
 
     std::vector<std::shared_ptr<Game::Restaurant>> getRestaurants();
 
+    std::vector<std::shared_ptr<CourseSide::Passenger>> getPassengers();
+
+    std::vector<std::shared_ptr<CourseSide::Nysse>> getBuses();
+
+    std::vector<std::shared_ptr<Game::Customer>> getCustomers();
+
+    std::vector<std::shared_ptr<Game::Player>> getPlayers();
 
 private:
     QImage background_;
     QTime clock_;
+
     std::vector<std::shared_ptr<Interface::IStop>> stops_;
+    std::vector<std::shared_ptr<CourseSide::Nysse>> buses_;
+    std::vector<std::shared_ptr<CourseSide::Passenger>> passengers_;
+    std::vector<std::shared_ptr<Game::Restaurant>> restaurants_;
+    std::vector<std::shared_ptr<Game::Customer>> customers_;
+    std::vector<std::shared_ptr<Game::Player>> players_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
-    std::vector<std::shared_ptr<Game::Restaurant>> restaurants_;
+
     Interface::Location loc_;
 
 

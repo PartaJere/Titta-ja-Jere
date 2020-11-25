@@ -48,6 +48,22 @@ void City::startGame()
 void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     actors_.push_back(newactor);
+    if(std::shared_ptr<CourseSide::Nysse> ptr = std::dynamic_pointer_cast<CourseSide::Nysse>(newactor)){
+        buses_.push_back(ptr);
+    }
+    else if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(newactor)){
+        passengers_.push_back(ptr);
+    }
+    else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(newactor)){
+        players_.push_back(ptr);
+    }
+    else if(std::shared_ptr<Game::Customer> ptr = std::dynamic_pointer_cast<Game::Customer>(newactor)){
+        customers_.push_back(ptr);
+    }
+    else{
+        Interface::GameError err("Tried to add unknown actor!");
+        throw err;
+    }
 }
 
 void City::removeActor(std::shared_ptr<Interface::IActor> actor)
@@ -130,6 +146,26 @@ std::vector<std::shared_ptr<Interface::IStop> > City::getStops()
 std::vector<std::shared_ptr<Restaurant> > City::getRestaurants()
 {
     return restaurants_;
+}
+
+std::vector<std::shared_ptr<CourseSide::Passenger> > City::getPassengers()
+{
+    return passengers_;
+}
+
+std::vector<std::shared_ptr<CourseSide::Nysse> > City::getBuses()
+{
+    return buses_;
+}
+
+std::vector<std::shared_ptr<Customer> > City::getCustomers()
+{
+    return customers_;
+}
+
+std::vector<std::shared_ptr<Player> > City::getPlayers()
+{
+    return players_;
 };
 
 }
