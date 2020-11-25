@@ -78,6 +78,7 @@ namespace Game {
             return true;
         }
         else{
+            qDebug() << "No food in the trunk";
             return false;
         }
 
