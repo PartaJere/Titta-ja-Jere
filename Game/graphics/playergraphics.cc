@@ -2,8 +2,8 @@
 #include <QDebug>
 
 const QString PLAYER_FILE = ":/images/autekmopo.png";
-const int WIDTH = 30;
-const int HEIGHT = 30;
+const int WIDTH = 50;
+const int HEIGHT = 50;
 
 namespace Game {
 
