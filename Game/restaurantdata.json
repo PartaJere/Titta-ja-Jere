@@ -1,0 +1,38 @@
+[
+    {
+        "restaurantId": "1",
+        "maxFood": "35",
+        "x": "175" ,
+        "y": "187" ,
+
+    }
+    {
+         "restaurantId": "2",
+          "maxFood": "20",
+          "x": "77",
+          "y": "281"
+    }
+    {
+
+        "restaurantId": "3",
+        "maxFood": "45",
+        "x": "390",
+        "y": "248"
+
+    }
+    {
+        "restaurantId": "5",
+        "maxFood": "40",
+        "x": "38",
+        "y": "115"
+
+    }
+    {
+        "restaurantId": "5",
+        "maxFood": "40",
+        "x": "-60",
+        "y": "280"
+    }
+
+
+]
