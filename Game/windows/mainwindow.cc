@@ -93,6 +93,16 @@ void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int l
     map->addItem(nActor);
 }
 
+void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int locX, int locY)
+{
+    locX = locX + X_COMPENSATION;
+    locY = Y_COMPENSATION - locY;
+    Game::GraphicsObject* nRestaurant = new Game::RestaurantGraphics(locX, locY, "restaurant");
+    restaurants_.insert(restaurant, nRestaurant);
+    map->addItem(nRestaurant);
+
+}
+
 
 void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {

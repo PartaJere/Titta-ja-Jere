@@ -116,6 +116,7 @@ public:
      */
     bool isGameOver() const override;
 
+
     QImage getBackground();
     std::vector<std::shared_ptr<Interface::IActor>> getActors();
     std::vector<std::shared_ptr<Interface::IActor>> getMovedActors();
@@ -132,6 +133,7 @@ private:
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
     std::vector<std::shared_ptr<Game::Restaurant>> restaurants_;
+    Interface::Location loc_;
 
 
 

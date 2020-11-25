@@ -15,6 +15,7 @@ SOURCES += \
     graphics/customergraphics.cc \
     graphics/passengergraphics.cc \
     graphics/playergraphics.cc \
+    graphics/restaurantgraphics.cc \
     graphics/stopgraphics.cc \
     windows/gameendedwindow.cc \
     windows/startwindow.cc \
@@ -58,6 +59,7 @@ HEADERS += \
     graphics/graphicsobject.hh \
     graphics/passengergraphics.hh \
     graphics/playergraphics.hh \
+    graphics/restaurantgraphics.hh \
     graphics/stopgraphics.hh \
     windows/gameendedwindow.hh \
     windows/mainwindow.hh \

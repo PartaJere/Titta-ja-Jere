@@ -7,6 +7,9 @@ namespace Game
 
 City::City() : Interface::ICity()
 {
+    loc_.setXY(200,200);
+    std::shared_ptr<Game::Restaurant> NewRestaurant = std::make_shared<Game::Restaurant>(loc_);
+    restaurants_.push_back(NewRestaurant);
 
 }
 
