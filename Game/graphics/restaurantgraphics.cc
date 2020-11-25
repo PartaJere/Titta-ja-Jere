@@ -5,9 +5,8 @@
 
 
 const QString RESTAURANT_FILE = ":/images/restaurant.png";
-const int WIDTH = 20;
-const int HEIGHT = 20;
-
+const int WIDTH = 30;
+const int HEIGHT = 30;
 namespace Game {
 
 RestaurantGraphics::RestaurantGraphics(int x, int y, std::string type): x_(x), y_(y), type_(type)
@@ -26,6 +25,8 @@ RestaurantGraphics::~RestaurantGraphics()
 
 void RestaurantGraphics::setCoord(int x, int y)
 {
+    setX( x );
+    setY( y );
 
 }
 
