@@ -134,6 +134,12 @@ namespace Game {
                 mainwindow_.deleteActor(actor);
             }
         }
+        if( rand()%100 > 98 ){
+            std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
+            city_->addActor(newCustomer);
+            Interface::Location loc = newCustomer->giveLocation();
+            mainwindow_.addActor(newCustomer, loc.giveX(), loc.giveY());
+        }
         mainwindow_.moveView(player_->giveLocation());
 
 
