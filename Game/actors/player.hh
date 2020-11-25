@@ -70,11 +70,16 @@ namespace Game {
 
         int getHP();
 
+        void increaseFood(int amount);
+
+        bool decreaseFood(int amount);
+
     private:
         Interface::Location location_;
         bool removed_;
         int speed_;
         int hitpoints_;
+        int food_;
 
 
     };

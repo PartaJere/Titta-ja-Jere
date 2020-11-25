@@ -44,9 +44,11 @@ namespace Game {
          */
         bool isRemoved() const;
 
+        void decreaseHunger(int amount);
     private:
         Interface::Location location_;
         bool removed_;
+        int levelOfHunger_;
     };
 }
 

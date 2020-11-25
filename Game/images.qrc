@@ -6,4 +6,5 @@
         <file>customer.png</file>
         <file>restaurant.png</file>
     </qresource>
+    <qresource prefix="/"/>
 </RCC>

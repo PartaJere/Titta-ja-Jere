@@ -127,6 +127,7 @@ namespace Game {
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
+
         city_->clearMovedActors();
         mainwindow_.moveView(player_->giveLocation());
 
@@ -169,10 +170,22 @@ namespace Game {
     {
         Interface::Location loc = player_->giveLocation();
         for( auto bus : city_->getBuses()){
-            if(loc.isClose(bus->giveLocation(), 20)){
+            if(loc.isClose(bus->giveLocation(), 15)){
                 player_->decreaseHP(3);
             };
         };
+        for( auto restaurant : city_->getRestaurants()){
+            if(loc.isClose(restaurant->giveLocation(), 15)){
+                player_->increaseFood(1);
+            }
+        };
+        for( auto customer : city_->getCustomers()){
+            if(loc.isClose(customer->giveLocation(), 15) && !customer->isRemoved()){
+                player_->decreaseFood(1);
+                customer->decreaseHunger(1);
+            }
+        }
+
     }
 
 
