@@ -17,7 +17,8 @@ const int TICK = 30; //updates per second
 namespace Game {
 
     const QString BUS_DATA = ":/offlinedata/offlinedata/final_bus_liteN.json";
-    const QString STOP_DATA = ":/offlinedata/offlinedata/full_stations_kkj3.json";
+    const QString STOP_DATA = ":/offlinedata/offlinedata/full_stations_kkj3.json";    
+
 
     Engine::Engine() :
         logic_(new CourseSide::Logic),
@@ -55,6 +56,7 @@ namespace Game {
         mainwindow_.setPicture(img);
         std::shared_ptr<Customer> customer = std::make_shared<Customer>(Customer());
         city_->addActor(customer);
+        city_->addRestaurants();
 
 
     }
