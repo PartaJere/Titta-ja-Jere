@@ -4,5 +4,6 @@
         <file>bussikyltti.png</file>
         <file>autekmopo.png</file>
         <file>customer.png</file>
+        <file>restaurant.png</file>
     </qresource>
 </RCC>
