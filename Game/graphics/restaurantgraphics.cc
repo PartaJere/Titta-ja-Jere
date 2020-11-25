@@ -4,7 +4,7 @@
 #include <QDebug>
 
 
-const QString RESTAURANT_FILE = ":/images/mcdonalds.png";
+const QString RESTAURANT_FILE = ":/images/restaurant.png";
 const int WIDTH = 20;
 const int HEIGHT = 20;
 
