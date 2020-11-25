@@ -181,8 +181,9 @@ namespace Game {
         };
         for( auto customer : city_->getCustomers()){
             if(loc.isClose(customer->giveLocation(), 15) && !customer->isRemoved()){
-                player_->decreaseFood(1);
-                customer->decreaseHunger(1);
+                if(player_->decreaseFood(1)){
+                    customer->decreaseHunger(1);
+                }
             }
         }
 
