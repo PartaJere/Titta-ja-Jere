@@ -2,5 +2,6 @@
     <qresource prefix="/images">
         <file>pipsabussi.png</file>
         <file>bussikyltti.png</file>
+        <file>autekmopo.png</file>
     </qresource>
 </RCC>
