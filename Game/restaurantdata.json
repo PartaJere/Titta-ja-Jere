@@ -28,9 +28,27 @@
 
     },
     {
-        "restaurantId": "5",
+        "restaurantId": "6",
         "maxFood": "30",
         "x": "-60",
         "y": "280"
+    },
+    {
+        "restaurantId": "7",
+        "maxFood": "20",
+        "x": "300",
+        "y": "420"
+    },
+    {
+        "restaurantId": "8",
+        "maxFood": "30",
+        "x": "600",
+        "y": "380"
+    },
+    {
+        "restaurantId": "9",
+        "maxFood": "30",
+        "x": "630",
+        "y": "100"
     }
 ]
