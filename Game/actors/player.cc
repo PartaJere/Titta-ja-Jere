@@ -66,8 +66,12 @@ namespace Game {
 
     void Player::increaseFood(int amount)
     {
-        food_ += amount;
-        qDebug() << "Player has food: " << food_;
+        if(food_ < maxfood_){
+            food_ += amount;
+            qDebug() << "Player has food: " << food_;
+        }
+
+
     }
 
     bool Player::decreaseFood(int amount)
@@ -82,6 +86,11 @@ namespace Game {
             return false;
         }
 
+    }
+
+    int Player::getFood()
+    {
+        return food_;
     }
 
 }

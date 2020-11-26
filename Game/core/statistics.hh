@@ -1,8 +1,11 @@
 #ifndef STATISTICS_H
 #define STATISTICS_H
 
+#include <iostream>
 #include "interfaces/istatistics.hh"
 
+
+namespace Game {
 
 class Statistics : Interface::IStatistics
 {
@@ -12,9 +15,23 @@ public:
     void nysseRemoved() override;
     void newNysse() override;
     void nysseLeft() override;
+    void newCustomer();
+    void fedCustomer();
+    void addPoints(int points);
+    int getPoints();
+
+private:
+    int buses_;
+    int customers_;
+    int points_;
+    int passengers_;
 
 
 
 };
+
+
+}
+
 
 #endif // STATISTICS_H

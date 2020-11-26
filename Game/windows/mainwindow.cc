@@ -126,6 +126,11 @@ void MainWindow::updateHpBar(int hp)
     ui->hpBar->setValue(hp);
 }
 
+void MainWindow::updatePoints(int points)
+{
+    ui->points->display(points);
+}
+
 void MainWindow::moveView(Interface::Location loc)
 {
     ui->gameView->centerOn(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
@@ -158,13 +163,11 @@ void MainWindow::on_startButton_clicked()
 void MainWindow::keyPressEvent( QKeyEvent* event )
 {
     emit keyPressed(event->key());
-    qDebug() << "Pressed: " << event->key();
 }
 
 void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
     emit keyReleased(event->key());
-    qDebug() << "Released: " << event->key();
 }
 
 void MainWindow::setPlayer(std::string name)

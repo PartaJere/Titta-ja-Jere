@@ -74,12 +74,15 @@ namespace Game {
 
         bool decreaseFood(int amount);
 
+        int getFood();
+
     private:
         Interface::Location location_;
         bool removed_;
         int speed_;
         int hitpoints_;
         int food_;
+        int maxfood_ = 50;
 
 
     };

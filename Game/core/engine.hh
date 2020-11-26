@@ -9,7 +9,7 @@
 #include "creategame.hh"
 #include "actors/player.hh"
 #include "graphics/simpleactoritem.hh"
-
+#include "core/statistics.hh"
 
 /**
   * @file
@@ -37,8 +37,11 @@ namespace Game  {
         QTimer timer_;
         float time_;
         std::shared_ptr<Game::Player> player_;
+        Game::Statistics *statistics_;
 
         int keyPressed_;
+
+
 
         void initGame();
 

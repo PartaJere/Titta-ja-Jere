@@ -8,6 +8,7 @@ namespace Game {
         int y = 200 + rand()%500;
         location_.setXY(x, y);
         levelOfHunger_ = 1+rand()%20;
+        initialLevelOfHunger_ = levelOfHunger_;
     }
 
     Interface::Location Customer::giveLocation() const
@@ -35,6 +36,15 @@ namespace Game {
         qDebug() << "Level of hunger: " << levelOfHunger_;
         if(levelOfHunger_ <= 0){
             remove();
+
+
         }
     }
+
+    int Customer::getInitialLevelOfHunger()
+    {
+        return initialLevelOfHunger_;
+    }
+
+
 }
