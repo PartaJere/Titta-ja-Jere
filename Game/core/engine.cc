@@ -154,6 +154,7 @@ namespace Game {
             isGameOver();
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
+            mainwindow_.updatePoints(statistics_->getPoints());
             mainwindow_.updateHpBar(player_->getHP());
             mainwindow_.updateTimeLeft(time_);
         };
