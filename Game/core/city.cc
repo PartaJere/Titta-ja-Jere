@@ -140,7 +140,10 @@ void City::addRestaurants()
         int y = o.value("y").toString().toInt();
 
         loc_.setXY(x,y);
-        std::shared_ptr<Game::Restaurant> NewRestaurant = std::make_shared<Game::Restaurant>(loc_);
+        std::shared_ptr<Game::Restaurant> NewRestaurant = std::make_shared<Game::Restaurant>(loc_, maxFood);
+
+        NewRestaurant->setMaxFood(maxFood);
+        NewRestaurant->setId(id);
         restaurants_.push_back(NewRestaurant);
 
     }
