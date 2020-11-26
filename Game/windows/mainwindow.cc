@@ -101,6 +101,13 @@ void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int
     restaurants_.insert(restaurant, nRestaurant);
     map->addItem(nRestaurant);
 
+    QGraphicsTextItem* nLabel = new QGraphicsTextItem();
+    nLabel->setPlainText(QString::number(restaurant->getFoodReady()));
+    nLabel->setX(locX);
+    nLabel->setY(locY-20);
+    restaurantLabels_.insert(restaurant, nLabel);
+    map->addItem(nLabel);
+
 }
 
 
@@ -126,9 +133,17 @@ void MainWindow::updateHpBar(int hp)
     ui->hpBar->setValue(hp);
 }
 
+
+void MainWindow::updateRestaurant(std::shared_ptr<Restaurant> restaurant)
+{
+    QGraphicsTextItem* label = restaurantLabels_[restaurant];
+    label->setPlainText(QString::number(restaurant->getFoodReady()));
+}
+
 void MainWindow::updatePoints(int points)
 {
     ui->points->display(points);
+
 }
 
 void MainWindow::moveView(Interface::Location loc)

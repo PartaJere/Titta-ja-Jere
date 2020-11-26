@@ -142,7 +142,9 @@ namespace Game {
                 mainwindow_.deleteActor(actor);
             }
         }
-
+        for ( auto restaurant : city_->getRestaurants()){
+            mainwindow_.updateRestaurant(restaurant);
+        }
 
         if(gameStartedBool){
             if( rand()%100 > 98 ){

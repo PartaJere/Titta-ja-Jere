@@ -46,6 +46,11 @@ Restaurant::Restaurant(Interface::Location location, int maxFood) :  location_(l
         return maxFood_;
     }
 
+    int Restaurant::getFoodReady()
+    {
+        return foodReady_;
+    }
+
     void Restaurant::removeFood(int amount)
     {
         if(foodReady_ > amount){
@@ -54,6 +59,7 @@ Restaurant::Restaurant(Interface::Location location, int maxFood) :  location_(l
             foodReady_ = 0;
             qDebug() << "There's no food ready in this restaurant";
         }
+
 
     }
 
