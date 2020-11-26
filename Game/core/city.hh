@@ -125,22 +125,70 @@ public:
      * @post Exception guarantee: nothrow.
      */
     bool isGameOver() const override;
+
+    /**
+     * @brief creates pointers to restaurants from restaurant data and adds them to restaurant vector
+     * @pre City is in initstate
+     */
     void addRestaurants();
 
+    /**
+     * @brief getBackground returns background
+     * @return Image of background
+     */
     QImage getBackground();
+
+    /**
+     * @brief getActors returns actors.
+     * @return vector containing all existing actors.
+     */
     std::vector<std::shared_ptr<Interface::IActor>> getActors();
+
+    /**
+     * @brief getMovedActors returns moved actors.
+     * @return vector of actors that have been moved.
+     */
     std::vector<std::shared_ptr<Interface::IActor>> getMovedActors();
+
+    /**
+     * @brief clearMovedActors clears all the actors that have been moved.
+     */
     void clearMovedActors();
+
+    /**
+     * @brief getStops returns all stops.
+     * @return vector containing stops.
+     */
     std::vector<std::shared_ptr<Interface::IStop>> getStops();
 
+    /**
+     * @brief getRestaurants returns restaurants.
+     * @return vector containing restaurants.
+     */
     std::vector<std::shared_ptr<Game::Restaurant>> getRestaurants();
 
+    /**
+     * @brief getPassengers returns passengers.
+     * @return vector containing passengers.
+     */
     std::vector<std::shared_ptr<CourseSide::Passenger>> getPassengers();
 
+    /**
+     * @brief getBuses returns buses.
+     * @return vector containing buses.
+     */
     std::vector<std::shared_ptr<CourseSide::Nysse>> getBuses();
 
+    /**
+     * @brief getCustomers returns customers.
+     * @return vector containing customers.
+     */
     std::vector<std::shared_ptr<Game::Customer>> getCustomers();
 
+    /**
+     * @brief getPlayers returns players
+     * @return vector containing players.
+     */
     std::vector<std::shared_ptr<Game::Player>> getPlayers();
 
 private:
