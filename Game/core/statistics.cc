@@ -57,6 +57,10 @@ void Statistics::addPoints(int points)
     points_ += points;
     std::cout << "Player has" << points_ << "points!" << std::endl;
 }
+int Statistics::getPoints()
+{
+    return points_;
+}
 
 
 }

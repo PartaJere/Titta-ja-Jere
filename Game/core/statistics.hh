@@ -18,6 +18,7 @@ public:
     void newCustomer();
     void fedCustomer();
     void addPoints(int points);
+    int getPoints();
 
 private:
     int buses_;
