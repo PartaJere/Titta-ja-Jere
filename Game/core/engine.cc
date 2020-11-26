@@ -54,8 +54,7 @@ namespace Game {
         mainwindow_.show();
         QImage img = city_->getBackground();
         mainwindow_.setPicture(img);
-        std::shared_ptr<Customer> customer = std::make_shared<Customer>(Customer());
-        city_->addActor(customer);
+
         city_->addRestaurants();
 
 
