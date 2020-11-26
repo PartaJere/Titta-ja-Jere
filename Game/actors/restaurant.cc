@@ -7,7 +7,7 @@ Restaurant::Restaurant(Interface::Location location, int maxFood) :  location_(l
 
     {
         connect(&timer_, &QTimer::timeout, this, &Restaurant::addFood);
-        timer_.start(1000);
+        timer_.start(2000);
         foodReady_ = maxFood_/2;
     }
 
