@@ -58,6 +58,7 @@ public:
     void setPicture(QImage &img);
     void updateTimeLeft(int timeLeft);
     void updateHpBar(int hp);
+    void updateRestaurant(std::shared_ptr<Game::Restaurant> restaurant);
     void moveView(Interface::Location loc);
     void deleteActor(std::shared_ptr<Interface::IActor> actor);
     QGraphicsScene *map;
