@@ -23,9 +23,9 @@ namespace Game {
     Engine::Engine() :
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
+        gameStartedBool(false),
         time_(GAME_DURATION),
-        player_(nullptr),
-        gameStartedBool(false)
+        player_(nullptr)
 
     {
         initGame();
@@ -129,10 +129,8 @@ namespace Game {
 
     void Engine::advance()
     {
-        time_ -= 1/TICK;
-        if( keyPressed_ ){
-            movePlayer(keyPressed_);
-        }
+        //time_ -= 1/TICK;
+
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -143,13 +141,15 @@ namespace Game {
                 mainwindow_.deleteActor(actor);
             }
         }
-        if( rand()%100 > 98 ){
-            std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
-            city_->addActor(newCustomer);
-            Interface::Location loc = newCustomer->giveLocation();
-            mainwindow_.addActor(newCustomer, loc.giveX(), loc.giveY());
-        }
+
+
         if(gameStartedBool){
+            if( rand()%100 > 98 ){
+                std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
+                city_->addActor(newCustomer);
+                Interface::Location loc = newCustomer->giveLocation();
+                mainwindow_.addActor(newCustomer, loc.giveX(), loc.giveY());
+            }
             isGameOver();
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
