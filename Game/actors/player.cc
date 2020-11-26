@@ -12,6 +12,7 @@ namespace Game {
 
     {
         location_.setXY(100, 100);
+        maxfood_ = 50;
     }
 
     Interface::Location Player::giveLocation() const
@@ -91,6 +92,11 @@ namespace Game {
     int Player::getFood()
     {
         return food_;
+    }
+
+    int Player::getmaxFood()
+    {
+        return maxfood_;
     }
 
 }
