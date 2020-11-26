@@ -198,8 +198,12 @@ namespace Game {
         };
         for( auto restaurant : city_->getRestaurants()){
             if(loc.isClose(restaurant->giveLocation(), 15)){
-                restaurant->removeFood(1);
-                player_->increaseFood(1);
+                if(player_->getFood() < player_->getmaxFood()){
+                    restaurant->removeFood(1);
+                    player_->increaseFood(1);
+
+                }
+
             }
         };
         for( auto customer : city_->getCustomers()){
