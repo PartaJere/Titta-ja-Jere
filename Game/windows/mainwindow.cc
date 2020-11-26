@@ -133,10 +133,17 @@ void MainWindow::updateHpBar(int hp)
     ui->hpBar->setValue(hp);
 }
 
+
 void MainWindow::updateRestaurant(std::shared_ptr<Restaurant> restaurant)
 {
     QGraphicsTextItem* label = restaurantLabels_[restaurant];
     label->setPlainText(QString::number(restaurant->getFoodReady()));
+}
+
+void MainWindow::updatePoints(int points)
+{
+    ui->points->display(points);
+
 }
 
 void MainWindow::moveView(Interface::Location loc)
@@ -171,13 +178,11 @@ void MainWindow::on_startButton_clicked()
 void MainWindow::keyPressEvent( QKeyEvent* event )
 {
     emit keyPressed(event->key());
-    qDebug() << "Pressed: " << event->key();
 }
 
 void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
     emit keyReleased(event->key());
-    qDebug() << "Released: " << event->key();
 }
 
 void MainWindow::setPlayer(std::string name)

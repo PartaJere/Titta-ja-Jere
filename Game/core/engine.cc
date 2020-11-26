@@ -25,7 +25,8 @@ namespace Game {
         mainwindow_(new MainWindow),
         gameStartedBool(false),
         time_(GAME_DURATION),
-        player_(nullptr)
+        player_(nullptr),
+        statistics_(new Game::Statistics)
 
     {
         initGame();
@@ -155,6 +156,7 @@ namespace Game {
             isGameOver();
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
+            mainwindow_.updatePoints(statistics_->getPoints());
             mainwindow_.updateHpBar(player_->getHP());
             mainwindow_.updateTimeLeft(time_);
         };
@@ -198,6 +200,7 @@ namespace Game {
         };
         for( auto restaurant : city_->getRestaurants()){
             if(loc.isClose(restaurant->giveLocation(), 15)){
+                restaurant->removeFood(1);
                 player_->increaseFood(1);
             }
         };
@@ -205,6 +208,10 @@ namespace Game {
             if(loc.isClose(customer->giveLocation(), 15) && !customer->isRemoved()){
                 if(player_->decreaseFood(1)){
                     customer->decreaseHunger(1);
+                    if(customer->isRemoved()){
+                        statistics_->addPoints(customer->getInitialLevelOfHunger());
+                    }
+
                 }
             }
         }
