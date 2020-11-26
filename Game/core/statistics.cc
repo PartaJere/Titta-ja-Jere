@@ -1,7 +1,14 @@
 #include "statistics.hh"
 
+namespace Game {
+
 Statistics::Statistics()
 {
+    buses_ = 0;
+    customers_ = 0;
+    points_ = 0;
+    passengers_ = 0;
+
 
 }
 
@@ -50,3 +57,7 @@ void Statistics::addPoints(int points)
     points_ += points;
     std::cout << "Player has" << points_ << "points!" << std::endl;
 }
+
+
+}
+

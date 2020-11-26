@@ -5,6 +5,7 @@
 #include "interfaces/istatistics.hh"
 
 
+namespace Game {
 
 class Statistics : Interface::IStatistics
 {
@@ -19,13 +20,17 @@ public:
     void addPoints(int points);
 
 private:
-    int buses_ = 0;
-    int customers_ = 0;
-    int points_ = 0;
-    int passengers_ = 0;
+    int buses_;
+    int customers_;
+    int points_;
+    int passengers_;
 
 
 
 };
+
+
+}
+
 
 #endif // STATISTICS_H
