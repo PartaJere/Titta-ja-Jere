@@ -9,7 +9,7 @@ namespace Game
 
 City::City() : Interface::ICity()
 {
-
+    addRestaurants();
 
 }
 
@@ -52,7 +52,9 @@ void City::addActor(std::shared_ptr<Interface::IActor> newactor)
         buses_.push_back(ptr);
     }
     else if(std::shared_ptr<CourseSide::Passenger> ptr = std::dynamic_pointer_cast<CourseSide::Passenger>(newactor)){
-        passengers_.push_back(ptr);
+        if(rand()%100 > 95){
+            passengers_.push_back(ptr);
+        };
     }
     else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(newactor)){
         players_.push_back(ptr);

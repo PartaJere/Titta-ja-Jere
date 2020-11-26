@@ -148,11 +148,11 @@ void MainWindow::gameEnded(std::string message)
 void MainWindow::on_startButton_clicked()
 {
     qDebug() << "Start clicked";
-    if(!isGameStarted_){
-        startwindow_->exec();
-        emit gameStarted();
-        isGameStarted_ = true;
-    };
+
+    startwindow_->exec();
+    emit gameStarted();
+    isGameStarted_ = true;
+
 }
 
 void MainWindow::keyPressEvent( QKeyEvent* event )

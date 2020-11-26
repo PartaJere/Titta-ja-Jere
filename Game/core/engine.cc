@@ -24,8 +24,8 @@ namespace Game {
         logic_(new CourseSide::Logic),
         mainwindow_(new MainWindow),
         time_(GAME_DURATION),
-        player_(new Game::Player),
-        keyPressed_(0)
+        player_(nullptr),
+        gameStartedBool(false)
 
     {
         initGame();
@@ -36,6 +36,7 @@ namespace Game {
                          this, &Engine::movePlayer);
         QObject::connect(this, &Engine::gameOver, &mainwindow_,
                          &MainWindow::gameEnded);
+        QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
 
         mainwindow_.setTick(TICK);
     }
@@ -55,40 +56,7 @@ namespace Game {
         QImage img = city_->getBackground();
         mainwindow_.setPicture(img);
 
-        city_->addRestaurants();
-
-
-    }
-
-    bool Engine::isGameOver()
-    {
-        if( player_->isRemoved() ){
-            qDebug() << "Game is over: player died";
-            emit gameOver("Player died!");
-            timer_.stop();
-            return true;
-        }
-        else if( time_ <= 0 ){
-            qDebug() << "Game is over: time is over";
-            emit gameOver("Time ran out!");
-            timer_.stop();
-            return true;
-        }
-
-        else{
-            return false;
-        }
-    }
-
-
-
-    void Engine::startGame()
-    {
-        logic_.setTime(10, 00);
         logic_.finalizeGameStart();
-        actors_ = city_->getActors();
-        city_->addActor(player_);
-        mainwindow_.moveView(player_->giveLocation());
 
         for( auto actor : city_->getActors()){
             unsigned int x = actor->giveLocation().giveX();
@@ -112,10 +80,50 @@ namespace Game {
 
         }
 
-        QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
         timer_.start(TICK);
-        mainwindow_.updateTimeLeft(time_);
-        mainwindow_.updateHpBar(player_->getHP());
+
+
+    }
+
+    bool Engine::isGameOver()
+    {
+
+        if( player_->isRemoved() ){
+            qDebug() << "Game is over: player died";
+            emit gameOver("Player died!");
+            mainwindow_.deleteActor(player_);
+            gameStartedBool = false;
+            return true;
+        }
+        else if( time_ <= 0 ){
+            qDebug() << "Game is over: time is over";
+            emit gameOver("Time ran out!");
+            mainwindow_.deleteActor(player_);
+            gameStartedBool = false;
+            return true;
+        }
+
+        else{
+            return false;
+        }
+    }
+
+
+
+    void Engine::startGame()
+    {
+        if(!gameStartedBool){
+            //logic_.setTime(10, 00);
+            player_ = std::make_shared<Player>(Player());
+            city_->addActor(player_);
+            Interface::Location loc = player_->giveLocation();
+            mainwindow_.addActor(player_, loc.giveX(), loc.giveY());
+            mainwindow_.moveView(player_->giveLocation());
+            mainwindow_.updateTimeLeft(time_);
+            mainwindow_.updateHpBar(player_->getHP());
+
+            gameStartedBool = true;
+        };
 
     }
 
@@ -141,14 +149,14 @@ namespace Game {
             Interface::Location loc = newCustomer->giveLocation();
             mainwindow_.addActor(newCustomer, loc.giveX(), loc.giveY());
         }
-        mainwindow_.moveView(player_->giveLocation());
+        if(gameStartedBool){
+            isGameOver();
+            mainwindow_.moveView(player_->giveLocation());
+            checkInteractions();
+            mainwindow_.updateHpBar(player_->getHP());
+            mainwindow_.updateTimeLeft(time_);
+        };
 
-
-        checkInteractions();
-
-        mainwindow_.updateHpBar(player_->getHP());
-        isGameOver();
-        mainwindow_.updateTimeLeft(time_);
 
 
 
@@ -198,6 +206,11 @@ namespace Game {
                 }
             }
         }
+
+    }
+
+    void Engine::restartGame()
+    {
 
     }
 
