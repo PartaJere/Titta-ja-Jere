@@ -1,17 +1,22 @@
 #ifndef RESTAURANT_HH
 #define RESTAURANT_HH
 
+#include <QTimer>
+#include <QDebug>
+
+
 #include "interfaces/iactor.hh"
 
 
 namespace Game {
 
-class Restaurant : Interface::IActor
+class Restaurant : public QObject, Interface::IActor
 {
+    Q_OBJECT
 public:
 
 
-    Restaurant(Interface::Location location);
+    Restaurant(Interface::Location location, int maxFood);
 
     /**
      * @brief giveLocation returns the location of the actor.
@@ -46,10 +51,26 @@ public:
      */
     bool isRemoved() const;
 
+    void setMaxFood(int maxFood);
+
+    void setId(int id);
+
+    int getMaxFood();
+
+public slots:
+    void addFood();
+
 private:
     Interface::Location location_;
     bool removed_;
     bool hasFood_;
+    int maxFood_;
+    int foodReady_;
+    int id_;
+    QTimer timer_;
+
+
+
 
 };
 
