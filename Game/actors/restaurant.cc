@@ -46,6 +46,11 @@ Restaurant::Restaurant(Interface::Location location, int maxFood) :  location_(l
         return maxFood_;
     }
 
+    int Restaurant::getFoodReady()
+    {
+        return foodReady_;
+    }
+
     void Restaurant::addFood()
     {
         if(foodReady_ < maxFood_){

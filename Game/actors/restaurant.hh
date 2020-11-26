@@ -57,6 +57,8 @@ public:
 
     int getMaxFood();
 
+    int getFoodReady();
+
 public slots:
     void addFood();
 
