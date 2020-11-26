@@ -57,6 +57,8 @@ public:
 
     int getMaxFood();
 
+    void removeFood(int amount);
+
 public slots:
     void addFood();
 
