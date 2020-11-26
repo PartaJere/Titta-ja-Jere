@@ -33,11 +33,7 @@ namespace Game  {
         CourseSide::Logic logic_;
         MainWindow mainwindow_;
         std::shared_ptr<Game::City> city_;
-        std::vector<std::shared_ptr<Interface::IActor>> actors_;
-        std::vector<std::shared_ptr<Interface::IStop>> stops_;
-        int type_;
-
-
+        bool gameStartedBool;
         QTimer timer_;
         float time_;
         std::shared_ptr<Game::Player> player_;
@@ -51,6 +47,8 @@ namespace Game  {
         void stopGame();
 
         void checkInteractions();
+
+        void restartGame();
 
     private slots:
         void startGame();
