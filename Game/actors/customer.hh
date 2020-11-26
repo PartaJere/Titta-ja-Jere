@@ -4,6 +4,7 @@
 #include <string>
 
 #include "interfaces/iactor.hh"
+#include "core/statistics.hh"
 
 namespace Game {
     class Customer : public Interface::IActor
@@ -45,10 +46,14 @@ namespace Game {
         bool isRemoved() const;
 
         void decreaseHunger(int amount);
+
+        int getInitialLevelOfHunger();
+
     private:
         Interface::Location location_;
         bool removed_;
         int levelOfHunger_;
+        int initialLevelOfHunger_;
     };
 }
 
