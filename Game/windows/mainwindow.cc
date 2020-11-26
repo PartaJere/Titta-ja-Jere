@@ -101,6 +101,13 @@ void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int
     restaurants_.insert(restaurant, nRestaurant);
     map->addItem(nRestaurant);
 
+    QGraphicsTextItem* nLabel = new QGraphicsTextItem();
+    nLabel->setPlainText(QString::number(restaurant->getMaxFood()));
+    nLabel->setX(locX);
+    nLabel->setY(locY-20);
+    restaurantLabels_.insert(restaurant, nLabel);
+    map->addItem(nLabel);
+
 }
 
 

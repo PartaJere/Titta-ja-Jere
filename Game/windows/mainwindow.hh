@@ -19,15 +19,18 @@
 #include "graphics/restaurantgraphics.hh"
 
 
-
+#include <iostream>
+#include <string>
 #include <QMainWindow>
 #include <QGraphicsScene>
+#include <QGraphicsTextItem>
 #include <QTimer>
 #include <iostream>
 #include <memory>
 #include <QVector>
 #include <QKeyEvent>
 #include <QMouseEvent>
+#include <QMap>
 #include <map>
 
 namespace Ui {
@@ -79,6 +82,7 @@ private:
     QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsObject*> actors_;
     QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsObject*> stops_;
     QMap<std::shared_ptr<Game::Restaurant>, Game::GraphicsObject*> restaurants_;
+    QMap<std::shared_ptr<Game::Restaurant>, QGraphicsTextItem*> restaurantLabels_;
     StartWindow* startwindow_;
     int width_ = 1095; //pxls
     int height_ = 592;
