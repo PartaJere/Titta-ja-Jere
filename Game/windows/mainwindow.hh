@@ -13,6 +13,7 @@
 #include "graphics/stopgraphics.hh"
 #include "graphics/playergraphics.hh"
 #include "graphics/passengergraphics.hh"
+#include "core/statistics.hh"
 
 #include "graphics/customergraphics.hh"
 
@@ -59,8 +60,8 @@ public:
     void updateTimeLeft(int timeLeft);
     void updateHpBar(int hp);
     void updateRestaurant(std::shared_ptr<Game::Restaurant> restaurant);
-
-    void updatePoints(int points);
+    void updateTrunk(int amount);
+    //void updatePoints(std::shared_ptr<Game::Statistics> statistics);
 
     void moveView(Interface::Location loc);
     void deleteActor(std::shared_ptr<Interface::IActor> actor);
@@ -78,6 +79,7 @@ private slots:
     void keyPressEvent( QKeyEvent* event );
     void keyReleaseEvent( QKeyEvent* event);
     void setPlayer(std::string name);
+    void setGoal(std::string difficulty);
 
 private:
     Ui::MainWindow *ui;
@@ -97,6 +99,8 @@ private:
     int tick_ = 500; //ms
     int type_;
     std::string name_;
+
+    // std::shared_ptr<Game::Statistics> statistics_;
 
     bool isGameStarted_;
 

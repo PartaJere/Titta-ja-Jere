@@ -43,6 +43,8 @@ MainWindow::MainWindow(QWidget *parent) :
     timer->start(tick_);
 
     connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
+    connect(startwindow_, &StartWindow::setDifficulty, this, &MainWindow::setGoal);
+
 }
 
 MainWindow::~MainWindow()
@@ -151,11 +153,18 @@ void MainWindow::updateRestaurant(std::shared_ptr<Restaurant> restaurant)
     label->setPlainText(QString::number(restaurant->getFoodReady()));
 }
 
-void MainWindow::updatePoints(int points)
+void MainWindow::updateTrunk(int amount)
 {
-    ui->points->display(points);
+    ui->trunk->display(amount);
 
 }
+
+/* void MainWindow::updatePoints(std::shared_ptr<Game::Statistics> statistics)
+{
+    statistics_ = statistics;
+    ui->points->display(statistics_->getPoints());
+
+} */
 
 void MainWindow::moveView(Interface::Location loc)
 {
@@ -200,5 +209,10 @@ void MainWindow::setPlayer(std::string name)
 {
     name_ = name;
 
+}
+
+void MainWindow::setGoal(std::string difficulty)
+{
+    //statistics_->setPointGoal(difficulty);
 }
 }
