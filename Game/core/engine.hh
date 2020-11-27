@@ -39,7 +39,6 @@ namespace Game  {
         float time_;
         std::shared_ptr<Game::Player> player_;
         std::shared_ptr<Game::Statistics> statistics_;
-        std::shared_ptr<Interface::IActor> actorsOnScene_;
 
 
 
@@ -52,7 +51,8 @@ namespace Game  {
 
         void checkInteractions();
 
-        void restartGame();
+        void clearGame();
+
 
     private slots:
         void startGame();

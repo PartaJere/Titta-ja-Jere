@@ -24,7 +24,7 @@ namespace Game {
         mainwindow_(new MainWindow),
         gameStartedBool(false),
         time_(GAME_DURATION),
-        player_(nullptr),
+        player_(new Game::Player),
         statistics_(nullptr)
 
     {
@@ -40,6 +40,8 @@ namespace Game {
 
         mainwindow_.setTick(TICK);
 
+
+
         statistics_ = std::make_shared<Statistics>(Statistics());
         mainwindow_.takeStatistics(statistics_);
     }
@@ -48,6 +50,7 @@ namespace Game {
 
     void Engine::initGame()
     {
+
         std::shared_ptr<Interface::ICity> icityptr = Interface::createGame();
         logic_.takeCity(icityptr);
         logic_.fileConfig();
@@ -118,10 +121,12 @@ namespace Game {
 
     void Engine::startGame()
     {
-        if(!gameStartedBool){
 
+        if(!gameStartedBool){
+            clearGame();
             //logic_.setTime(10, 00);
             player_ = std::make_shared<Player>(Player());
+
 
 
             city_->addActor(player_);
@@ -227,6 +232,24 @@ namespace Game {
             }
         }
 
+    }
+
+    void Engine::clearGame()
+    {
+
+        mainwindow_.deleteActor(player_);
+        player_.reset();
+        statistics_->reset();
+        time_ = GAME_DURATION;
+
+        for(auto restaurant : city_->getRestaurants()){
+            restaurant->reset();
+        }
+
+        for(auto customer : city_->getCustomers()){
+            mainwindow_.deleteActor(customer);
+            customer.reset();
+        }
     }
 
 }
