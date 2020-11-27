@@ -50,7 +50,7 @@ public:
     void setSize(int w, int h);
     void setTick(int t);
 
-    virtual void addActor(std::shared_ptr<Interface::IActor> actor,int locX, int locY);
+    virtual void addActor(std::shared_ptr<Interface::IActor> actor);
     void addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY);
     void addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int locX, int locY);
 
@@ -88,8 +88,12 @@ private:
     QMap<std::shared_ptr<Game::Restaurant>, Game::GraphicsObject*> restaurants_;
     QMap<std::shared_ptr<Game::Restaurant>, QGraphicsTextItem*> restaurantLabels_;
     StartWindow* startwindow_;
+
+
     int width_ = 1095; //pxls
     int height_ = 592;
+
+    Interface::Location centreOfMap_;
     int tick_ = 500; //ms
     int type_;
     std::string name_;

@@ -10,6 +10,7 @@
 #include "actors/player.hh"
 #include "graphics/simpleactoritem.hh"
 #include "core/statistics.hh"
+#include "actors/customer.hh"
 
 /**
   * @file
@@ -38,8 +39,8 @@ namespace Game  {
         float time_;
         std::shared_ptr<Game::Player> player_;
         Game::Statistics *statistics_;
+        std::shared_ptr<Interface::IActor> actorsOnScene_;
 
-        int keyPressed_;
 
 
 

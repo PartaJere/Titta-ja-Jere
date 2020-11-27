@@ -13,6 +13,9 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow),
     startwindow_(new StartWindow(this)),
+    width_(1095),
+    height_(592),
+    centreOfMap_(Interface::Location(0,0)),
     isGameStarted_(false)
 {
 
@@ -58,30 +61,35 @@ void MainWindow::setTick(int t)
     tick_ = t;
 }
 
-void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor, int locX, int locY)
+void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor)
 {
-    locX = locX + X_COMPENSATION;
-    locY = Y_COMPENSATION - locY;
-    std::string type;
-    Game::GraphicsObject* nActor;
-    if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
-        type = "bus";
-        nActor = new Game::BusGraphics(locX, locY, type);
+    Interface::Location loc = actor->giveLocation();
+    loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
+
+    if(loc.isClose(centreOfMap_, width_/1.5)){
+        int locX = loc.giveX();
+        int locY = loc.giveY();
+        std::string type;
+        Game::GraphicsObject* nActor;
+        if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
+            type = "bus";
+            nActor = new Game::BusGraphics(locX, locY, type);
+        }
+        else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
+            type = "passenger";
+            nActor = new Game::PassengerGraphics(locX, locY, type);
+        }
+        else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
+            type = "player";
+            nActor = new Game::PlayerGraphics(locX, locY, type);
+        }
+        else{
+            type = "customer";
+            nActor = new Game::CustomerGraphics(locX, locY, type);
+        }
+        actors_.insert(actor, nActor);
+        map->addItem(nActor);
     }
-    else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
-        type = "passenger";
-        nActor = new Game::PassengerGraphics(locX, locY, type);
-    }
-    else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
-        type = "player";
-        nActor = new Game::PlayerGraphics(locX, locY, type);
-    }
-    else{
-        type = "customer";
-        nActor = new Game::CustomerGraphics(locX, locY, type);
-    }
-    actors_.insert(actor, nActor);
-    map->addItem(nActor);
 }
 
 void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
@@ -115,7 +123,10 @@ void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {
     if(actors_.contains(actor)){
         actors_[actor]->setCoord(actor->giveLocation().giveX()+X_COMPENSATION, Y_COMPENSATION-actor->giveLocation().giveY());
-    };
+    }
+    else{
+        addActor(actor);
+    }
 }
 
 void MainWindow::setPicture(QImage &img)
