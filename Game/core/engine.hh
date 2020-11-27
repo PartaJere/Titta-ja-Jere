@@ -38,7 +38,7 @@ namespace Game  {
         QTimer timer_;
         float time_;
         std::shared_ptr<Game::Player> player_;
-        Game::Statistics *statistics_;
+        std::shared_ptr<Game::Statistics> statistics_;
         std::shared_ptr<Interface::IActor> actorsOnScene_;
 
 

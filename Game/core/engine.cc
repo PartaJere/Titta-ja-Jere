@@ -98,7 +98,13 @@ namespace Game {
             mainwindow_.deleteActor(player_);
             gameStartedBool = false;
             return true;
-        }
+        }/*else if(statistics_->isWon()){
+            emit gameOver("You reached your point goal! You win!");
+            mainwindow_.deleteActor(player_);
+            gameStartedBool = false;
+            return true;
+
+        }*/
 
         else{
             return false;
@@ -112,6 +118,7 @@ namespace Game {
         if(!gameStartedBool){
             //logic_.setTime(10, 00);
             player_ = std::make_shared<Player>(Player());
+            statistics_ = std::make_shared<Statistics>(Statistics());
 
             city_->addActor(player_);
 
@@ -152,7 +159,8 @@ namespace Game {
             isGameOver();
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
-            mainwindow_.updatePoints(statistics_->getPoints());
+            //mainwindow_.updatePoints(statistics_);
+            mainwindow_.updateTrunk(player_->getFood());
             mainwindow_.updateHpBar(player_->getHP());
             mainwindow_.updateTimeLeft(time_);
         };
