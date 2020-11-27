@@ -127,8 +127,6 @@ namespace Game {
 
     void Engine::advance()
     {
-        time_ -= 1/TICK;
-
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -144,6 +142,8 @@ namespace Game {
         }
 
         if(gameStartedBool){
+            time_ -= 1/static_cast<double>(TICK);
+
             if( rand()%100 > 98 ){
                 std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
                 city_->addActor(newCustomer);
