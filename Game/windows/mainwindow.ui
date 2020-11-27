@@ -64,6 +64,9 @@
       <height>23</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLCDNumber{color:rgb(85, 85, 255);background-color:rgb(0, 170, 255);}</string>
+    </property>
    </widget>
    <widget class="QProgressBar" name="hpBar">
     <property name="geometry">
@@ -100,6 +103,9 @@
       <height>21</height>
      </rect>
     </property>
+    <property name="styleSheet">
+     <string notr="true">QLCDNumber{color:rgb(85, 85, 255);background-color:rgb(255, 255, 127)}</string>
+    </property>
    </widget>
    <widget class="QLCDNumber" name="trunk">
     <property name="geometry">
@@ -109,6 +115,9 @@
       <width>64</width>
       <height>23</height>
      </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QLCDNumber{color:rgb(85, 85, 255);background-color:rgb(245, 86, 86);}</string>
     </property>
    </widget>
    <widget class="QLabel" name="label_2">
