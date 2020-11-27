@@ -23,6 +23,7 @@ public:
     int getPoints();
     void setPointGoal(std::string difficulty);
     bool isWon();
+    void reset();
 
 private:
     int buses_;

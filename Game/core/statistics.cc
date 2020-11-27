@@ -86,6 +86,12 @@ bool Statistics::isWon()
     return hasWon_;
 }
 
+void Statistics::reset()
+{
+    points_ = 0;
+    hasWon_ = false;
+}
+
 
 
 
