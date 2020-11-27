@@ -41,7 +41,8 @@ private:
     int x_;
     int y_;
     std::string type_;
-    QPixmap picture_;
+    QPixmap pictureLeft_;
+    QPixmap pictureRight_;
 };
 
 

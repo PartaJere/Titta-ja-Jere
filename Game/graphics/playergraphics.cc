@@ -1,18 +1,22 @@
 #include "playergraphics.hh"
 #include <QDebug>
 
-const QString PLAYER_FILE = ":/images/autekmopo.png";
-const int WIDTH = 50;
-const int HEIGHT = 50;
+const QString PLAYER_FILE_LEFT = ":/images/autekmopoleft.png";
+const QString PLAYER_FILE_RIGHT = ":/images/autekmoporight.png";
+const int WIDTH = 35;
+const int HEIGHT = 35;
 
 namespace Game {
 
 PlayerGraphics::PlayerGraphics(int x, int y, std::string type):x_(x), y_(y), type_(type)
 {
     setPos(mapToParent(x_,y_));
-    assert(picture_.load(PLAYER_FILE));
-    picture_ = picture_.scaled(WIDTH, HEIGHT);
-    setPixmap(picture_);
+    assert(pictureLeft_.load(PLAYER_FILE_LEFT));
+    assert(pictureRight_.load(PLAYER_FILE_RIGHT));
+    pictureRight_ = pictureRight_.scaled(WIDTH, HEIGHT);
+    pictureLeft_ = pictureLeft_.scaled(WIDTH, HEIGHT);
+
+    setPixmap(pictureRight_);
 
 
 }
@@ -24,8 +28,16 @@ PlayerGraphics::~PlayerGraphics()
 
 void PlayerGraphics::setCoord(int x, int y)
 {
+    if( x_ - x > 0){
+        setPixmap(pictureLeft_);
+    }
+    else if( x - x_ > 0){
+        setPixmap(pictureRight_);
+    }
     setX( x );
     setY( y );
+    x_ = x;
+    y_ = y;
 }
 
 }
