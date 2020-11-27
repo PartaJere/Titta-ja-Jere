@@ -62,6 +62,8 @@ public:
 
     void removeFood(int amount);
 
+    void reset();
+
 public slots:
     void addFood();
 
