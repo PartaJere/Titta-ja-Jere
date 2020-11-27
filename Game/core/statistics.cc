@@ -10,12 +10,14 @@ Statistics::Statistics()
     passengers_ = 0;
 
 
+
 }
 
 void Statistics::morePassengers(int num)
 {
 
     passengers_ += num;
+    Q_ASSERT(passengers_ = passengers_ + 1);
     return;
 }
 
@@ -61,6 +63,31 @@ int Statistics::getPoints()
 {
     return points_;
 }
+
+void Statistics::setPointGoal(std::string difficulty)
+{
+
+    if(difficulty == "Easy"){
+        maxpoints_ = 100;
+    }else if(difficulty == "Medium"){
+        maxpoints_ = 250;
+    }else{
+        maxpoints_ = 500;
+    }
+}
+
+bool Statistics::isWon()
+{
+    if(points_ >= maxpoints_){
+        hasWon_ = true;
+    }else{
+        hasWon_ = false;
+    }
+    return hasWon_;
+}
+
+
+
 
 
 }

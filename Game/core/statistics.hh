@@ -2,6 +2,8 @@
 #define STATISTICS_H
 
 #include <iostream>
+#include <QDebug>
+#include <QObject>
 #include "interfaces/istatistics.hh"
 
 
@@ -19,12 +21,16 @@ public:
     void fedCustomer();
     void addPoints(int points);
     int getPoints();
+    void setPointGoal(std::string difficulty);
+    bool isWon();
 
 private:
     int buses_;
     int customers_;
     int points_;
+    int maxpoints_;
     int passengers_;
+    bool hasWon_;
 
 
 
