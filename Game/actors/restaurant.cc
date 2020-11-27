@@ -57,18 +57,22 @@ Restaurant::Restaurant(Interface::Location location, int maxFood) :  location_(l
             foodReady_ -= amount;
         }else{
             foodReady_ = 0;
-            qDebug() << "There's no food ready in this restaurant";
         }
 
 
     }
 
+
     void Restaurant::addFood()
     {
         if(foodReady_ < maxFood_){
             foodReady_ += 1;
-            qDebug() << "Restaurant has " << foodReady_ << "food ready.";
         }
+    }
+
+    void Restaurant::reset()
+    {
+        foodReady_ = maxFood_/2;
     }
 
 }
