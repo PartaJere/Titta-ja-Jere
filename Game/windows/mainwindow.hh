@@ -61,10 +61,12 @@ public:
     void updateHpBar(int hp);
     void updateRestaurant(std::shared_ptr<Game::Restaurant> restaurant);
     void updateTrunk(int amount);
-    //void updatePoints(std::shared_ptr<Game::Statistics> statistics);
+    void updatePoints(std::shared_ptr<Game::Statistics> statistics);
 
     void moveView(Interface::Location loc);
     void deleteActor(std::shared_ptr<Interface::IActor> actor);
+
+    void takeStatistics(std::shared_ptr<Game::Statistics> statistics);
     QGraphicsScene *map;
 
 public slots:
@@ -100,7 +102,7 @@ private:
     int type_;
     std::string name_;
 
-    // std::shared_ptr<Game::Statistics> statistics_;
+    std::shared_ptr<Game::Statistics> statistics_;
 
     bool isGameStarted_;
 

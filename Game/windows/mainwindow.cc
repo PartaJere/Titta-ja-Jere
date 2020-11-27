@@ -156,15 +156,14 @@ void MainWindow::updateRestaurant(std::shared_ptr<Restaurant> restaurant)
 void MainWindow::updateTrunk(int amount)
 {
     ui->trunk->display(amount);
-
 }
 
-/* void MainWindow::updatePoints(std::shared_ptr<Game::Statistics> statistics)
+void MainWindow::updatePoints(std::shared_ptr<Game::Statistics> statistics)
 {
     statistics_ = statistics;
     ui->points->display(statistics_->getPoints());
 
-} */
+}
 
 void MainWindow::moveView(Interface::Location loc)
 {
@@ -179,6 +178,11 @@ void MainWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
     };
 }
 
+void MainWindow::takeStatistics(std::shared_ptr<Statistics> statistics)
+{
+    statistics_ = statistics;
+}
+
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);
@@ -190,6 +194,7 @@ void MainWindow::on_startButton_clicked()
     qDebug() << "Start clicked";
 
     startwindow_->exec();
+
     emit gameStarted();
     isGameStarted_ = true;
 
@@ -213,6 +218,7 @@ void MainWindow::setPlayer(std::string name)
 
 void MainWindow::setGoal(std::string difficulty)
 {
-    //statistics_->setPointGoal(difficulty);
+
+    statistics_->setPointGoal(difficulty);
 }
 }
