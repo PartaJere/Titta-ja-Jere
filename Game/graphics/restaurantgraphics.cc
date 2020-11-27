@@ -12,6 +12,7 @@ namespace Game {
 RestaurantGraphics::RestaurantGraphics(int x, int y, std::string type): x_(x), y_(y), type_(type)
 {
     setPos(mapToParent(x_,y_));
+    setOffset(QPointF(-WIDTH/2, -HEIGHT/2));
     assert(picture_.load(RESTAURANT_FILE));
     picture_ = picture_.scaled(WIDTH, HEIGHT);
     setPixmap(picture_);

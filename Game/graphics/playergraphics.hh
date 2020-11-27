@@ -6,6 +6,7 @@
 #include <QPainter>
 #include <QString>
 #include <QPixmap>
+#include <QPointF>
 
 #include "graphics/graphicsobject.hh"
 
