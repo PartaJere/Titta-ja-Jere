@@ -25,7 +25,7 @@ namespace Game {
         gameStartedBool(false),
         time_(GAME_DURATION),
         player_(nullptr),
-        statistics_(new Game::Statistics)
+        statistics_(nullptr)
 
     {
         initGame();
@@ -39,6 +39,9 @@ namespace Game {
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
 
         mainwindow_.setTick(TICK);
+
+        statistics_ = std::make_shared<Statistics>(Statistics());
+        mainwindow_.takeStatistics(statistics_);
     }
 
 
@@ -98,13 +101,13 @@ namespace Game {
             mainwindow_.deleteActor(player_);
             gameStartedBool = false;
             return true;
-        }/*else if(statistics_->isWon()){
+        }else if(statistics_->isWon()){
             emit gameOver("You reached your point goal! You win!");
             mainwindow_.deleteActor(player_);
             gameStartedBool = false;
             return true;
 
-        }*/
+        }
 
         else{
             return false;
@@ -116,9 +119,10 @@ namespace Game {
     void Engine::startGame()
     {
         if(!gameStartedBool){
+
             //logic_.setTime(10, 00);
             player_ = std::make_shared<Player>(Player());
-            statistics_ = std::make_shared<Statistics>(Statistics());
+
 
             city_->addActor(player_);
 
@@ -156,10 +160,11 @@ namespace Game {
                 city_->addActor(newCustomer);
                 mainwindow_.addActor(newCustomer);
             }
+
             isGameOver();
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
-            //mainwindow_.updatePoints(statistics_);
+            mainwindow_.updatePoints(statistics_);
             mainwindow_.updateTrunk(player_->getFood());
             mainwindow_.updateHpBar(player_->getHP());
             mainwindow_.updateTimeLeft(time_);
