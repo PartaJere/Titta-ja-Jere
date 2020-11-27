@@ -6,6 +6,7 @@
 #include "interfaces/iactor.hh"
 #include "core/statistics.hh"
 
+
 namespace Game {
     class Customer : public Interface::IActor
     {
