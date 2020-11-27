@@ -2,7 +2,10 @@
 #define DIALOG_HH
 
 #include <QDialog>
-
+#include <QDebug>
+#include <string>
+#include <algorithm>
+#include <locale>
 namespace Ui {
 class StartWindow;
 }
