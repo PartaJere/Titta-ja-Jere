@@ -18,6 +18,7 @@ public:
 
 signals:
     void setPlayerName(std::string name);
+    void setDifficulty(std::string difficulty);
 
 private slots:
     void on_buttonBox_accepted();

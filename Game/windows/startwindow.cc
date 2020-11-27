@@ -19,7 +19,10 @@ StartWindow::~StartWindow()
 void StartWindow::on_buttonBox_accepted()
 {
     std::string playerName = ui->lineEdit->text().toStdString();
+    std::string difficulty = ui->comboBox->currentText().toStdString();
+
     emit setPlayerName(playerName);
+    emit setDifficulty(difficulty);
     StartWindow::close();
 }
 
