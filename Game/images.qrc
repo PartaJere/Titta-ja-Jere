@@ -1,10 +1,11 @@
 <RCC>
     <qresource prefix="/images">
-        <file>autekmopo.png</file>
         <file>bussikyltti.png</file>
         <file>restaurant.png</file>
         <file>pipsabussi.png</file>
         <file>customer.png</file>
+        <file>autekmopoleft.png</file>
+        <file>autekmoporight.png</file>
     </qresource>
     <qresource prefix="/data">
         <file>restaurantdata.json</file>
