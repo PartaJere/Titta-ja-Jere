@@ -186,6 +186,7 @@ void MainWindow::gameEnded(std::string message)
     Game::GameEndedWindow w(this, message);
     keysPressed_.clear();
     w.exec();
+    on_startButton_clicked();
 }
 
 void MainWindow::on_startButton_clicked()
