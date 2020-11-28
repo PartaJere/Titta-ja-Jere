@@ -252,8 +252,10 @@ namespace Game {
 
         for(auto customer : city_->getCustomers()){
             mainwindow_.deleteActor(customer);
-            customer.reset();
+
         }
+
+        city_->resetCity();
     }
 
 }

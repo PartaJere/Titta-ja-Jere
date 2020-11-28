@@ -174,10 +174,9 @@ void MainWindow::moveView(Interface::Location loc)
 
 void MainWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
 {
-    if(actor->isRemoved()){
-        delete actors_[actor];
-        actors_.remove(actor);
-    };
+     delete actors_[actor];
+     actors_.remove(actor);
+
 }
 
 void MainWindow::takeStatistics(std::shared_ptr<Statistics> statistics)
