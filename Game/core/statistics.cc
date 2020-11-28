@@ -115,6 +115,11 @@ int Statistics::getBuses()
     return buses_;
 }
 
+int Statistics::getCustomers()
+{
+    return customers_;
+}
+
 
 
 

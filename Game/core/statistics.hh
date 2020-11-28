@@ -97,6 +97,7 @@ public:
     void reset();
 
     int getBuses();
+    int getCustomers();
 
 private:
     int buses_;
