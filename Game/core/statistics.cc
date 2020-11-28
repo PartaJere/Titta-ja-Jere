@@ -105,6 +105,14 @@ void Statistics::reset()
 {
     points_ = 0;
     isWon_ = false;
+    passengers_ = 0;
+    buses_ = 0;
+    customers_ = 0;
+}
+
+int Statistics::getBuses()
+{
+    return buses_;
 }
 
 
