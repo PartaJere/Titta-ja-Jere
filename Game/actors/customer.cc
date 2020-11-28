@@ -1,11 +1,13 @@
 #include "customer.hh"
 #include <QDebug>
+
+
 namespace Game {
     Customer::Customer() : location_(),
                             removed_(false)
     {
-        int x = 100 + rand()%500;
-        int y = 200 + rand()%500;
+        int x = -330 + rand()%1095;
+        int y = -10 + rand()%592;
         location_.setXY(x, y);
         levelOfHunger_ = 1+rand()%20;
         initialLevelOfHunger_ = levelOfHunger_;
