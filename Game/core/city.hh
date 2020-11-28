@@ -151,9 +151,19 @@ public:
     std::vector<std::shared_ptr<Interface::IActor>> getMovedActors();
 
     /**
-     * @brief clearMovedActors clears all the actors that have been moved.
+     * @brief clearMovedActors empties the movedActors_ vector
      */
     void clearMovedActors();
+
+    /**
+     * @brief getNewActors
+     * @return vector of recently added actors
+     */
+    std::vector<std::shared_ptr<Interface::IActor>> getNewActors();
+    /**
+     * @brief clearNewActors empties the newActors_ vector
+     */
+    void clearNewActors();
 
     /**
      * @brief getStops returns all stops.
@@ -208,6 +218,7 @@ private:
     std::vector<std::shared_ptr<Game::Player>> players_;
     std::vector<std::shared_ptr<Interface::IActor>> actors_;
     std::vector<std::shared_ptr<Interface::IActor>> movedActors_;
+    std::vector<std::shared_ptr<Interface::IActor>> newActors_;
 
     Interface::Location loc_;
 

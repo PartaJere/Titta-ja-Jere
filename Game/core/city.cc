@@ -48,6 +48,7 @@ void City::startGame()
 void City::addActor(std::shared_ptr<Interface::IActor> newactor)
 {
     actors_.push_back(newactor);
+    newActors_.push_back(newactor);
     if(std::shared_ptr<CourseSide::Nysse> ptr = std::dynamic_pointer_cast<CourseSide::Nysse>(newactor)){
         buses_.push_back(ptr);
     }
@@ -169,6 +170,16 @@ std::vector<std::shared_ptr<Interface::IActor> > City::getMovedActors()
 void City::clearMovedActors()
 {
     movedActors_.clear();
+}
+
+std::vector<std::shared_ptr<Interface::IActor> > City::getNewActors()
+{
+    return newActors_;
+}
+
+void City::clearNewActors()
+{
+    newActors_.clear();
 }
 
 std::vector<std::shared_ptr<Interface::IStop> > City::getStops()

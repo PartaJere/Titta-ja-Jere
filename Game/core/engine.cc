@@ -32,24 +32,18 @@ namespace Game {
 
         QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
-
         QObject::connect(this, &Engine::gameOver, &mainwindow_,
                          &MainWindow::gameEnded);
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
 
         mainwindow_.setTick(TICK);
 
-
-
         statistics_ = std::make_shared<Statistics>(Statistics());
         mainwindow_.takeStatistics(statistics_);
     }
 
-
-
     void Engine::initGame()
     {
-
         std::shared_ptr<Interface::ICity> icityptr = Interface::createGame();
         logic_.takeCity(icityptr);
         logic_.fileConfig();
@@ -63,28 +57,18 @@ namespace Game {
 
         logic_.finalizeGameStart();
 
-        for( auto actor : city_->getActors()){
-            mainwindow_.addActor(actor);
-        };
-
         for( auto stop : city_->getStops()){
             unsigned int x = stop->getLocation().giveX();
             unsigned int y = stop->getLocation().giveY();
-
             mainwindow_.addStop(stop, x, y);
         };
 
         for( auto restaurant : city_->getRestaurants()){
             unsigned int x = restaurant->giveLocation().giveX();
             unsigned int y = restaurant->giveLocation().giveY();
-
             mainwindow_.addRestaurant(restaurant, x, y);
-
         }
-
         timer_.start(TICK);
-
-
     }
 
     bool Engine::isGameOver()
@@ -121,7 +105,6 @@ namespace Game {
 
             city_->addActor(player_);
 
-            mainwindow_.addActor(player_);
             mainwindow_.moveView(player_->giveLocation());
             mainwindow_.updateTimeLeft(time_);
             mainwindow_.updateHpBar(player_->getHP());
@@ -133,6 +116,11 @@ namespace Game {
 
     void Engine::advance()
     {
+        for( auto actor : city_->getNewActors()){
+            mainwindow_.addActor(actor);
+        }
+        city_->clearNewActors();
+
         for( auto actor : city_->getMovedActors()){
             mainwindow_.moveActor(actor);
         };
@@ -150,10 +138,9 @@ namespace Game {
         if(gameStartedBool){
             time_ -= 1/static_cast<double>(TICK);
 
-            if( rand()%100 > 98 ){
+            if( rand()%100 > 97 ){
                 std::shared_ptr<Customer> newCustomer = std::make_shared<Customer>(Customer());
                 city_->addActor(newCustomer);
-                mainwindow_.addActor(newCustomer);
             }
             isGameOver();
             movePlayer(mainwindow_.getKeysPressed());
@@ -165,16 +152,10 @@ namespace Game {
             mainwindow_.updateTimeLeft(time_);
             mainwindow_.moveView(player_->giveLocation());
         };
-
-
-
-
     }
 
     void Engine::movePlayer(QVector<int> keysPressed)
     {
-
-
             int x = player_->giveLocation().giveX();
             int y = player_->giveLocation().giveY();
             for(int key : keysPressed ){
@@ -221,11 +202,9 @@ namespace Game {
                     if(customer->isRemoved()){
                         statistics_->addPoints(customer->getInitialLevelOfHunger());
                     }
-
                 }
             }
         }
-
     }
 
     void Engine::clearGame()
