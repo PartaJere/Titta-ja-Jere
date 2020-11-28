@@ -10,38 +10,49 @@ Statistics::Statistics()
     passengers_ = 0;
 
 
-
 }
 
 void Statistics::morePassengers(int num)
 {
-
+    Q_ASSERT(passengers_ >= 0);
+    Q_ASSERT(num > 0);
     passengers_ += num;
-    Q_ASSERT(passengers_ = passengers_ + 1);
     return;
 }
 
 void Statistics::nysseRemoved()
 {
-    buses_ -= 1;
-    std::cout <<  "There are" << buses_ << "buses in game." << std::endl;
+    Q_ASSERT(buses_ > 0);
+    if(buses_ > 0){
+        buses_ -= 1;
+    }
+
+    std::cout <<  "There are" << buses_ << " Nysses in game." << std::endl;
 
 }
 
 void Statistics::newNysse()
 {
+    Q_ASSERT(buses_ > 0);
     buses_ += 1;
-    std::cout <<  "There are" << buses_ << "buses in game." << std::endl;
+    std::cout <<  "There are" << buses_ << " buses in game." << std::endl;
 
 }
 
 void Statistics::nysseLeft()
 {
+    Q_ASSERT(buses_ > 0);
+
+    if(buses_ > 0){
+        buses_ -= 1;
+    }
+    std::cout << "Nysse has left the game. There are " << buses_ << " Nysses in game." << std::endl;
     return;
 }
 
 void Statistics::newCustomer()
 {
+    Q_ASSERT(customers_ >= 0);
     customers_ += 1;
     std::cout << "New customer has become hungry." << std::endl;
 
@@ -49,8 +60,11 @@ void Statistics::newCustomer()
 
 void Statistics::fedCustomer()
 {
-    customers_ -= 1;
-    std::cout << "Customer has been fed." << std::endl;
+    Q_ASSERT(customers_ > 0);
+    if(customers_ > 0){
+        customers_ -= 1;
+        std::cout << "Customer has been fed." << std::endl;
+    }
 
 }
 
@@ -59,6 +73,7 @@ void Statistics::addPoints(int points)
     points_ += points;
     std::cout << "Player has" << points_ << "points!" << std::endl;
 }
+
 int Statistics::getPoints()
 {
     return points_;
@@ -79,17 +94,17 @@ void Statistics::setPointGoal(std::string difficulty)
 bool Statistics::isWon()
 {
     if(points_ >= maxpoints_){
-        hasWon_ = true;
+        isWon_= true;
     }else{
-        hasWon_ = false;
+        isWon_ = false;
     }
-    return hasWon_;
+    return isWon_;
 }
 
 void Statistics::reset()
 {
     points_ = 0;
-    hasWon_ = false;
+    isWon_ = false;
 }
 
 
