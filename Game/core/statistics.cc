@@ -10,14 +10,12 @@ Statistics::Statistics()
     passengers_ = 0;
 
 
-
 }
 
 void Statistics::morePassengers(int num)
 {
 
     passengers_ += num;
-    Q_ASSERT(passengers_ = passengers_ + 1);
     return;
 }
 
