@@ -167,12 +167,13 @@ namespace Game {
             isGameOver();
             movePlayer(mainwindow_.getKeysPressed());
 
-            mainwindow_.moveView(player_->giveLocation());
+
             checkInteractions();
             mainwindow_.updatePoints(statistics_);
             mainwindow_.updateTrunk(player_->getFood());
             mainwindow_.updateHpBar(player_->getHP());
             mainwindow_.updateTimeLeft(time_);
+            mainwindow_.moveView(player_->giveLocation());
         };
 
 

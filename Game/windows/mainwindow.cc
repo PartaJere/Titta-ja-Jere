@@ -193,6 +193,7 @@ QVector<int> MainWindow::getKeysPressed()
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);
+    keysPressed_.clear();
     w.exec();
 }
 
