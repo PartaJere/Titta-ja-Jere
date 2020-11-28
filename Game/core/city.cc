@@ -199,6 +199,13 @@ std::vector<std::shared_ptr<Customer> > City::getCustomers()
 std::vector<std::shared_ptr<Player> > City::getPlayers()
 {
     return players_;
+}
+
+void City::resetCity()
+{
+    players_.clear();
+    customers_.clear();
+
 };
 
 }

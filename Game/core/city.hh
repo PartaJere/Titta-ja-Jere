@@ -191,6 +191,11 @@ public:
      */
     std::vector<std::shared_ptr<Game::Player>> getPlayers();
 
+    /**
+     * @brief resetCity puts city back in init state. Clears
+     *  players and customers
+     */
+    void resetCity();
 private:
     QImage background_;
     QTime clock_;
