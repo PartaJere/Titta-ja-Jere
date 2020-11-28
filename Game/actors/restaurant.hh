@@ -6,6 +6,7 @@
 
 
 #include "interfaces/iactor.hh"
+#include "errors/gameerror.hh"
 
 
 namespace Game {
@@ -23,7 +24,6 @@ public:
      * @pre -
      * @return Actors location.
      * @post Exception guarantee: strong.
-     * @exception GameError - actor wasn't given a location.
      */
     Interface::Location giveLocation() const;
 
@@ -51,20 +51,52 @@ public:
      */
     bool isRemoved() const;
 
+    /**
+     * @brief setMaxFood sets maxFood_ as given parameter
+     * @pre maxFood >= 0 and maxFood_ >= 0
+     * @param maxFood is the amount of food restaurant can carry at a time
+     * @post Restaurants maximum food in now maxFood
+     */
     void setMaxFood(int maxFood);
 
+    /**
+     * @brief setId sets id of restaurant
+     * @pre -
+     * @param id is the id of restaurant
+     * @post Restaurants id_ is id.
+     */
     void setId(int id);
 
+    /**
+     * @brief getMaxFood returns the max food of restaurant
+     * @return maxFood_
+     */
     int getMaxFood();
 
-
+    /**
+     * @brief getFoodReady returns the amount of food that is readily available in restaurant
+     * @return foodReady_
+     */
     int getFoodReady();
 
+    /**
+     * @brief removeFood removes given amount of food from restaurant
+     * @pre amount >= 0
+     * @param amount is how many foods will we removed
+     * @post foodReady -= amount OR foodReady = 0
+     */
     void removeFood(int amount);
 
+    /**
+     * @brief reset resets the amount of food that is ready in a restaurant
+     */
     void reset();
 
 public slots:
+
+    /**
+     * @brief addFood adds a food to restaurant
+     */
     void addFood();
 
 private:
