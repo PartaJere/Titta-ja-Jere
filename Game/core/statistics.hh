@@ -99,6 +99,7 @@ public:
     int getBuses();
     int getCustomers();
     int getMaxPoints();
+    int getPassengers();
 
 private:
     int buses_;

@@ -125,6 +125,11 @@ int Statistics::getMaxPoints()
     return maxpoints_;
 }
 
+int Statistics::getPassengers()
+{
+    return passengers_;
+}
+
 
 
 
