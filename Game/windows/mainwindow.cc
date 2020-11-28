@@ -18,8 +18,6 @@ MainWindow::MainWindow(QWidget *parent) :
     centreOfMap_(Interface::Location(0,0)),
     isGameStarted_(false)
 {
-
-
     ui->setupUi(this);
 
     ui->gameView->setFixedSize(width_, height_);
@@ -33,11 +31,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gameView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->gameView->scale(1.2,1.2);
 
-
-
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
-
 
     map->setSceneRect(0,0,width_,height_);
     timer = new QTimer(this);
@@ -46,7 +41,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
     connect(startwindow_, &StartWindow::setDifficulty, this, &MainWindow::setGoal);
-
 }
 
 MainWindow::~MainWindow()
@@ -119,7 +113,6 @@ void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int
     nLabel->setY(locY-20);
     restaurantLabels_.insert(restaurant, nLabel);
     map->addItem(nLabel);
-
 }
 
 
@@ -176,7 +169,6 @@ void MainWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
 {
      delete actors_[actor];
      actors_.remove(actor);
-
 }
 
 void MainWindow::takeStatistics(std::shared_ptr<Statistics> statistics)
@@ -194,6 +186,7 @@ void MainWindow::gameEnded(std::string message)
     Game::GameEndedWindow w(this, message);
     keysPressed_.clear();
     w.exec();
+    on_startButton_clicked();
 }
 
 void MainWindow::on_startButton_clicked()
@@ -204,16 +197,13 @@ void MainWindow::on_startButton_clicked()
 
     emit gameStarted();
     isGameStarted_ = true;
-
 }
 
 void MainWindow::keyPressEvent( QKeyEvent* event )
 {
     if(!event->isAutoRepeat()){
         keysPressed_.push_back(event->key());
-
     }
-
 }
 
 void MainWindow::keyReleaseEvent( QKeyEvent* event )
@@ -222,28 +212,21 @@ void MainWindow::keyReleaseEvent( QKeyEvent* event )
         int i = 0;
         int eventKey = event->key();
         for(int key : keysPressed_){
-            if(key = eventKey){
+            if(key == eventKey){
                 keysPressed_.remove(i);
-                break;
             }
             ++i;
         }
-
-
     }
-
-
 }
 
 void MainWindow::setPlayer(std::string name)
 {
     name_ = name;
-
 }
 
 void MainWindow::setGoal(std::string difficulty)
 {
-
     statistics_->setPointGoal(difficulty);
 }
 }

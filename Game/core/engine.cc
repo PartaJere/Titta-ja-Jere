@@ -91,27 +91,20 @@ namespace Game {
     {
 
         if( player_->isRemoved() ){
+            gameStartedBool = false;
             qDebug() << "Game is over: player died";
             emit gameOver("Player died!");
-            mainwindow_.deleteActor(player_);
-            gameStartedBool = false;
             return true;
-        }
-        else if( time_ <= 0 ){
+        }else if( time_ <= 0 ){
+            gameStartedBool = false;
             qDebug() << "Game is over: time is over";
             emit gameOver("Time ran out!");
-            mainwindow_.deleteActor(player_);
-            gameStartedBool = false;
             return true;
         }else if(statistics_->isWon()){
-            emit gameOver("You reached your point goal! You win!");
-            mainwindow_.deleteActor(player_);
             gameStartedBool = false;
+            emit gameOver("You reached your point goal! You win!");
             return true;
-
-        }
-
-        else{
+        }else{
             return false;
         }
     }
@@ -125,8 +118,6 @@ namespace Game {
             clearGame();
             //logic_.setTime(10, 00);
             player_ = std::make_shared<Player>(Player());
-
-
 
             city_->addActor(player_);
 
@@ -166,7 +157,6 @@ namespace Game {
             }
             isGameOver();
             movePlayer(mainwindow_.getKeysPressed());
-
 
             checkInteractions();
             mainwindow_.updatePoints(statistics_);
@@ -249,12 +239,9 @@ namespace Game {
         for(auto restaurant : city_->getRestaurants()){
             restaurant->reset();
         }
-
         for(auto customer : city_->getCustomers()){
             mainwindow_.deleteActor(customer);
-
         }
-
         city_->resetCity();
     }
 
