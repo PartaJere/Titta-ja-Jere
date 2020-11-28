@@ -98,6 +98,7 @@ public:
 
     int getBuses();
     int getCustomers();
+    int getMaxPoints();
 
 private:
     int buses_;

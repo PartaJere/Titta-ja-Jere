@@ -120,6 +120,11 @@ int Statistics::getCustomers()
     return customers_;
 }
 
+int Statistics::getMaxPoints()
+{
+    return maxpoints_;
+}
+
 
 
 
