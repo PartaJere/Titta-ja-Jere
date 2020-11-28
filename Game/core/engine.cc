@@ -32,8 +32,7 @@ namespace Game {
 
         QObject::connect(&mainwindow_, &MainWindow::gameStarted,
                          this, &Engine::startGame);
-        QObject::connect(&mainwindow_, &MainWindow::keyPressed,
-                         this, &Engine::movePlayer);
+
         QObject::connect(this, &Engine::gameOver, &mainwindow_,
                          &MainWindow::gameEnded);
         QObject::connect(&timer_, &QTimer::timeout, this, &Engine::advance);
@@ -165,8 +164,9 @@ namespace Game {
                 city_->addActor(newCustomer);
                 mainwindow_.addActor(newCustomer);
             }
-
             isGameOver();
+            movePlayer(mainwindow_.getKeysPressed());
+
             mainwindow_.moveView(player_->giveLocation());
             checkInteractions();
             mainwindow_.updatePoints(statistics_);
@@ -180,22 +180,25 @@ namespace Game {
 
     }
 
-    void Engine::movePlayer(int key)
+    void Engine::movePlayer(QVector<int> keysPressed)
     {
+
 
             int x = player_->giveLocation().giveX();
             int y = player_->giveLocation().giveY();
-            if(key == A_KEY){
-                 x -= MOVE_PER_PRESS;
-            }
-            if(key == D_KEY){
-                x += MOVE_PER_PRESS;
-            }
-            if(key == S_KEY){
-                y -= MOVE_PER_PRESS;
-            }
-            if(key == W_KEY){
-                y += MOVE_PER_PRESS;
+            for(int key : keysPressed ){
+                if(key == A_KEY){
+                     x -= MOVE_PER_PRESS;
+                }
+                if(key == D_KEY){
+                    x += MOVE_PER_PRESS;
+                }
+                if(key == S_KEY){
+                    y -= MOVE_PER_PRESS;
+                }
+                if(key == W_KEY){
+                    y += MOVE_PER_PRESS;
+                }
             }
             Interface::Location loc = Interface::Location();
             loc.setXY(x,y);

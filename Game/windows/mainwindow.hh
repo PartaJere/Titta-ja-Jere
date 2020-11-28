@@ -67,14 +67,15 @@ public:
     void deleteActor(std::shared_ptr<Interface::IActor> actor);
 
     void takeStatistics(std::shared_ptr<Game::Statistics> statistics);
-    QGraphicsScene *map;
+
+    QVector<int> getKeysPressed();
+
 
 public slots:
     void gameEnded(std::string message);
 signals:
     void gameStarted();
-    void keyPressed(int key);
-    void keyReleased(int key);
+    void keyEvent(QVector<int> keysPressed_);
 
 private slots:
     void on_startButton_clicked();
@@ -86,6 +87,8 @@ private slots:
 private:
     Ui::MainWindow *ui;
 
+    QGraphicsScene *map;
+
     QTimer *timer;
     QMap<std::shared_ptr<Interface::IActor>, Game::GraphicsObject*> actors_;
     QMap<std::shared_ptr<Interface::IStop>, Game::GraphicsObject*> stops_;
@@ -93,6 +96,7 @@ private:
     QMap<std::shared_ptr<Game::Restaurant>, QGraphicsTextItem*> restaurantLabels_;
     StartWindow* startwindow_;
 
+    QVector<int> keysPressed_;
 
     int width_ = 1095; //pxls
     int height_ = 592;

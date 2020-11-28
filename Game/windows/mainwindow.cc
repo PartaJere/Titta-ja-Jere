@@ -33,6 +33,8 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gameView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->gameView->scale(1.2,1.2);
 
+
+
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
@@ -183,6 +185,11 @@ void MainWindow::takeStatistics(std::shared_ptr<Statistics> statistics)
     statistics_ = statistics;
 }
 
+QVector<int> MainWindow::getKeysPressed()
+{
+    return keysPressed_;
+}
+
 void MainWindow::gameEnded(std::string message)
 {
     Game::GameEndedWindow w(this, message);
@@ -202,12 +209,30 @@ void MainWindow::on_startButton_clicked()
 
 void MainWindow::keyPressEvent( QKeyEvent* event )
 {
-    emit keyPressed(event->key());
+    if(!event->isAutoRepeat()){
+        keysPressed_.push_back(event->key());
+
+    }
+
 }
 
 void MainWindow::keyReleaseEvent( QKeyEvent* event )
 {
-    emit keyReleased(event->key());
+    if(!event->isAutoRepeat()){
+        int i = 0;
+        int eventKey = event->key();
+        for(int key : keysPressed_){
+            if(key = eventKey){
+                keysPressed_.remove(i);
+                break;
+            }
+            ++i;
+        }
+
+
+    }
+
+
 }
 
 void MainWindow::setPlayer(std::string name)
