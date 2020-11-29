@@ -15,10 +15,10 @@ MainWindow::MainWindow(QWidget *parent) :
     startwindow_(new StartWindow(this)),
     width_(1095),
     height_(592),
-    centreOfMap_(Interface::Location()),
+    centerOfMap_(Interface::Location()),
     isGameStarted_(false)
 {
-    centreOfMap_.setXY(width_/2, height_/2);
+    centerOfMap_.setXY(width_/2, height_/2);
     ui->setupUi(this);
 
     ui->gameView->setFixedSize(width_, height_);
@@ -51,11 +51,6 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
-void MainWindow::setSize(int w, int h)
-{
-    width_ = w;
-    height_ = h;
-}
 
 void MainWindow::setTick(int t)
 {
@@ -67,7 +62,7 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor)
     Interface::Location loc = actor->giveLocation();
     loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
 
-    if(loc.isClose(centreOfMap_, width_/1.5)){
+    if(loc.isClose(centerOfMap_, width_/1.5)){
         int locX = loc.giveX();
         int locY = loc.giveY();
         std::string type;
@@ -129,7 +124,7 @@ void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {
     Interface::Location loc = actor->giveLocation();
     loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
-    if(loc.isClose(centreOfMap_, width_/1.5)){
+    if(loc.isClose(centerOfMap_, width_/1.5)){
         if(actors_.contains(actor)){
             actors_[actor]->setCoord(loc.giveX(), loc.giveY());
         }
