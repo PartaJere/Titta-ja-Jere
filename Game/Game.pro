@@ -76,7 +76,6 @@ FORMS += \
     windows/mainwindow.ui
 
 RESOURCES += \
-    images.qrc \
     images.qrc
 
 DISTFILES +=
