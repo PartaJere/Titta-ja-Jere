@@ -9,7 +9,7 @@ namespace Game {
         ui->setupUi(this);
         QString QStrMsg = QString::fromStdString(message);
         ui->gameEndReason->setText(QStrMsg);
-        ui->pushButton->setText(QString("Restart"));
+        ui->pushButton->setText(QString("Ok"));
     }
 
     GameEndedWindow::~GameEndedWindow()
