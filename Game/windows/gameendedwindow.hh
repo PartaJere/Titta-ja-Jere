@@ -13,10 +13,18 @@ namespace Game {
         Q_OBJECT
 
     public:
+        /**
+         * @brief GameEndedWindow
+         * @param parent
+         * @param message, displayed in the window
+         */
         explicit GameEndedWindow(QWidget *parent = nullptr, std::string message = 0);
         ~GameEndedWindow();
 
     private slots:
+        /**
+         * @brief on_pushButton_clicked closed the window when called
+         */
         void on_pushButton_clicked();
 
     private:
