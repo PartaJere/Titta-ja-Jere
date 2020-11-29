@@ -58,15 +58,11 @@ namespace Game {
         logic_.finalizeGameStart();
 
         for( auto stop : city_->getStops()){
-            unsigned int x = stop->getLocation().giveX();
-            unsigned int y = stop->getLocation().giveY();
-            mainwindow_.addStop(stop, x, y);
+            mainwindow_.addStop(stop);
         };
 
         for( auto restaurant : city_->getRestaurants()){
-            unsigned int x = restaurant->giveLocation().giveX();
-            unsigned int y = restaurant->giveLocation().giveY();
-            mainwindow_.addRestaurant(restaurant, x, y);
+            mainwindow_.addRestaurant(restaurant);
         }
         timer_.start(TICK);
     }

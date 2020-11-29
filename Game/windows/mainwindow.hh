@@ -51,9 +51,18 @@ public:
     void setSize(int w, int h);
     void setTick(int t);
 
+    /**
+     * @brief addActor adds new actor to the scene. It will recognize the type
+     * of the actor (player, customer, passenger, bus)
+     * @param actor, shared_ptr<Interface::IActor>
+     */
     virtual void addActor(std::shared_ptr<Interface::IActor> actor);
-    void addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY);
-    void addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int locX, int locY);
+    /**
+     * @brief addStop
+     * @param stop, shared_ptr<Interface::IStop>
+     */
+    void addStop(std::shared_ptr<Interface::IStop> stop);
+    void addRestaurant(std::shared_ptr<Game::Restaurant> restaurant);
 
     void moveActor(std::shared_ptr<Interface::IActor> actor);
     void setPicture(QImage &img);
@@ -74,14 +83,43 @@ public:
 public slots:
     void gameEnded(std::string message);
 signals:
+    /**
+     * @brief gameStarted signal
+     */
     void gameStarted();
+    /**
+     * @brief keyEvent
+     * @param keysPressed_, QVector, contains pressed keys number values
+     */
     void keyEvent(QVector<int> keysPressed_);
 
 private slots:
+    /**
+     * @brief on_startButton_clicked opens startWindow, and emits gameStarted
+     * signal
+     */
     void on_startButton_clicked();
+    /**
+     * @brief keyPressEvent reads key presses, updates keysPressed_ and emits
+     * it in signal keyEvent
+     * @param event
+     */
     void keyPressEvent( QKeyEvent* event );
+    /**
+     * @brief keyReleaseEvent reads key presses, updates keysPressed_ and emits
+     * it in signal keyEvent
+     * @param event
+     */
     void keyReleaseEvent( QKeyEvent* event);
+    /**
+     * @brief setPlayer saves players name to the mainwindow
+     * @param name
+     */
     void setPlayer(std::string name);
+    /**
+     * @brief setGoal gives the point goal to statistics
+     * @param difficulty
+     */
     void setGoal(std::string difficulty);
 
 private:
