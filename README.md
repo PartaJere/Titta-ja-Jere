@@ -6,4 +6,4 @@ a food moped driver, whose job is to feed customers.
 Project is done using QT and c++ 14. There is also CourseLib, which is used to get buses, passengers
 and bus stops (through logic). There is some more classes that are used either as is or by inheriting from them.
 
-More information in documentation/
+More information in documentation/ (only in finnish :-( )
