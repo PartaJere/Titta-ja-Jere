@@ -129,11 +129,13 @@ int Statistics::getPassengers()
 {
     return passengers_;
 }
-void Statistics::lessPassenger(int num)
+void Statistics::lessPassengers(int num)
 {
     Q_ASSERT(num >= 0);
     if(passengers_ >= num){
         passengers_-= num;
+    }else{
+        passengers_ = 0;
     }
 
 
