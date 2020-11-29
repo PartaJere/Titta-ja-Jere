@@ -104,7 +104,7 @@ void StatisticsTest::passengers()
                                           "times");
 
     for(int i = 0; i < 15; i++){
-        stats.lessPassenger(1);
+        stats.lessPassengers(1);
     }
 
     for(int i = 0; i < 15; i++){
@@ -114,7 +114,7 @@ void StatisticsTest::passengers()
                                           " morePassengers(5) is called 15 times");
 
     for(int i = 0; i < 15; i++){
-        stats.lessPassenger(5);
+        stats.lessPassengers(5);
     }
     QVERIFY2(stats.getPassengers() == 0, "getPassengers() should return 0 when "
                                          "lessPassengers(5) is called 15 times");
