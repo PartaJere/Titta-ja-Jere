@@ -64,7 +64,7 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor)
     Interface::Location loc = actor->giveLocation();
     loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
 
-    if(loc.isClose(centreOfMap_, width_/1.5)){
+    if(loc.isClose(centreOfMap_, width_*1.5)){
         int locX = loc.giveX();
         int locY = loc.giveY();
         std::string type;
@@ -90,27 +90,29 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor)
     }
 }
 
-void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop, int locX, int locY)
+void MainWindow::addStop(std::shared_ptr<Interface::IStop> stop)
 {
-    locX = locX + X_COMPENSATION;
-    locY = Y_COMPENSATION - locY;
+    Interface::Location loc = stop->getLocation();
+    int locX = loc.giveX() + X_COMPENSATION;
+    int locY = Y_COMPENSATION - loc.giveY();
     Game::GraphicsObject* nActor = new Game::StopGraphics(locX, locY, "stop");
     stops_.insert(stop, nActor);
     map->addItem(nActor);
 }
 
-void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant, int locX, int locY)
+void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant)
 {
-    locX = locX + X_COMPENSATION;
-    locY = Y_COMPENSATION - locY;
+    Interface::Location loc = restaurant->giveLocation();
+    int locX = loc.giveX() + X_COMPENSATION;
+    int locY = Y_COMPENSATION - loc.giveY();
     Game::GraphicsObject* nRestaurant = new Game::RestaurantGraphics(locX, locY, "restaurant");
     restaurants_.insert(restaurant, nRestaurant);
     map->addItem(nRestaurant);
 
     QGraphicsTextItem* nLabel = new QGraphicsTextItem();
     nLabel->setPlainText(QString::number(restaurant->getFoodReady()));
-    nLabel->setX(locX);
-    nLabel->setY(locY-20);
+    nLabel->setX(locX + nRestaurant->offset().x() + 5);
+    nLabel->setY(locY + nRestaurant->offset().y() - 15);
     restaurantLabels_.insert(restaurant, nLabel);
     map->addItem(nLabel);
 }
@@ -186,17 +188,20 @@ void MainWindow::gameEnded(std::string message)
     Game::GameEndedWindow w(this, message);
     keysPressed_.clear();
     w.exec();
+    isGameStarted_ = false;
     on_startButton_clicked();
 }
 
 void MainWindow::on_startButton_clicked()
 {
-    qDebug() << "Start clicked";
+    if(!isGameStarted_){
+        qDebug() << "Start clicked";
 
-    startwindow_->exec();
+        startwindow_->exec();
 
-    emit gameStarted();
-    isGameStarted_ = true;
+        emit gameStarted();
+        isGameStarted_ = true;
+    }
 }
 
 void MainWindow::keyPressEvent( QKeyEvent* event )
