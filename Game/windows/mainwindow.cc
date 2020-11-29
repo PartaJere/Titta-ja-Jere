@@ -32,7 +32,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->gameView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->gameView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->gameView->scale(1.2,1.2);
-
     resize(minimumSizeHint());
     //ui->gameView->fitInView(0,0, MAPWIDTH, MAPHEIGHT, Qt::KeepAspectRatio);
 
@@ -207,7 +206,6 @@ void MainWindow::gameEnded(std::string message)
     keysPressed_.clear();
     w.exec();
     isGameStarted_ = false;
-    on_startButton_clicked();
 }
 
 void MainWindow::on_startButton_clicked()
