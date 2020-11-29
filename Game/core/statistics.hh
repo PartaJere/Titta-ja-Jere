@@ -96,11 +96,35 @@ public:
      */
     void reset();
 
+    /**
+     * @brief getBuses returns the amount of buses in statistics
+     * @return buses_
+     */
     int getBuses();
+
+    /**
+     * @brief getCustomers returns the amount of customers in statistics
+     * @return  customers_
+     */
     int getCustomers();
+
+    /**
+     * @brief getMaxPoints returns the amount of points needed to win the game
+     * @return maxpoints_
+     */
     int getMaxPoints();
+
+    /**
+     * @brief getPassengers returns the amount of passengers in statistics
+     * @return passengers_
+     */
     int getPassengers();
-    void lessPassenger(int num);
+
+    /**
+     * @brief lessPassengers removss given number of passengers from statistics
+     * @param num is the amount of passsengers to remove
+     */
+    void lessPassengers(int num);
 
 private:
     int buses_;
