@@ -1,6 +1,6 @@
 # Programming 3 Exercise: auktemoped
 
-This is a project done for the course Programming 3: tecnhiques. It is a 2d game, where you are
+This is a project done for the course Programming 3: techniques. It is a 2d game, where you are
 a food moped driver, whose job is to feed customers.
 
 Project is done using QT and c++ 14. There is also CourseLib, which is used to get buses, passengers
