@@ -15,13 +15,15 @@ MainWindow::MainWindow(QWidget *parent) :
     startwindow_(new StartWindow(this)),
     width_(1095),
     height_(592),
-    centreOfMap_(Interface::Location(0,0)),
+    centreOfMap_(Interface::Location()),
     isGameStarted_(false)
 {
+    centreOfMap_.setXY(width_/2, height_/2);
     ui->setupUi(this);
 
     ui->gameView->setFixedSize(width_, height_);
-    ui->centralwidget->setFixedSize(width_ + ui->startButton->width() + PADDING, height_ + PADDING);
+    ui->centralwidget->setFixedSize(width_ + ui->startButton->width()
+                                    + PADDING, height_ + PADDING);
 
     ui->startButton->move(width_ + PADDING , PADDING);
 
@@ -39,8 +41,10 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(timer, &QTimer::timeout, map, &QGraphicsScene::advance);
     timer->start(tick_);
 
-    connect(startwindow_, &StartWindow::setPlayerName, this, &MainWindow::setPlayer);
-    connect(startwindow_, &StartWindow::setDifficulty, this, &MainWindow::setGoal);
+    connect(startwindow_, &StartWindow::setPlayerName,
+            this, &MainWindow::setPlayer);
+    connect(startwindow_, &StartWindow::setDifficulty,
+            this, &MainWindow::setGoal);
 }
 
 MainWindow::~MainWindow()
@@ -64,20 +68,23 @@ void MainWindow::addActor(std::shared_ptr<Interface::IActor> actor)
     Interface::Location loc = actor->giveLocation();
     loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
 
-    if(loc.isClose(centreOfMap_, width_*1.5)){
+    if(loc.isClose(centreOfMap_, width_/1.5)){
         int locX = loc.giveX();
         int locY = loc.giveY();
         std::string type;
         Game::GraphicsObject* nActor;
-        if(std::shared_ptr<Interface::IVehicle> ptr = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
+        if(std::shared_ptr<Interface::IVehicle> ptr
+                = std::dynamic_pointer_cast<Interface::IVehicle>(actor)){
             type = "bus";
             nActor = new Game::BusGraphics(locX, locY, type);
         }
-        else if(std::shared_ptr<Interface::IPassenger> ptr = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
+        else if(std::shared_ptr<Interface::IPassenger> ptr
+                = std::dynamic_pointer_cast<Interface::IPassenger>(actor)){
             type = "passenger";
             nActor = new Game::PassengerGraphics(locX, locY, type);
         }
-        else if(std::shared_ptr<Game::Player> ptr = std::dynamic_pointer_cast<Game::Player>(actor)){
+        else if(std::shared_ptr<Game::Player> ptr
+                = std::dynamic_pointer_cast<Game::Player>(actor)){
             type = "player";
             nActor = new Game::PlayerGraphics(locX, locY, type);
         }
@@ -105,7 +112,8 @@ void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant)
     Interface::Location loc = restaurant->giveLocation();
     int locX = loc.giveX() + X_COMPENSATION;
     int locY = Y_COMPENSATION - loc.giveY();
-    Game::GraphicsObject* nRestaurant = new Game::RestaurantGraphics(locX, locY, "restaurant");
+    Game::GraphicsObject* nRestaurant
+            = new Game::RestaurantGraphics(locX, locY, "restaurant");
     restaurants_.insert(restaurant, nRestaurant);
     map->addItem(nRestaurant);
 
@@ -120,11 +128,20 @@ void MainWindow::addRestaurant(std::shared_ptr<Game::Restaurant> restaurant)
 
 void MainWindow::moveActor(std::shared_ptr<Interface::IActor> actor)
 {
-    if(actors_.contains(actor)){
-        actors_[actor]->setCoord(actor->giveLocation().giveX()+X_COMPENSATION, Y_COMPENSATION-actor->giveLocation().giveY());
+    Interface::Location loc = actor->giveLocation();
+    loc.setXY(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
+    if(loc.isClose(centreOfMap_, width_/1.5)){
+        if(actors_.contains(actor)){
+            actors_[actor]->setCoord(loc.giveX(), loc.giveY());
+        }
+        else{
+            addActor(actor);
+        }
     }
     else{
-        addActor(actor);
+        if(actors_.contains(actor)){
+            deleteActor(actor);
+        }
     }
 }
 
@@ -164,7 +181,8 @@ void MainWindow::updatePoints(std::shared_ptr<Game::Statistics> statistics)
 
 void MainWindow::moveView(Interface::Location loc)
 {
-    ui->gameView->centerOn(loc.giveX() + X_COMPENSATION, Y_COMPENSATION - loc.giveY());
+    ui->gameView->centerOn(loc.giveX() + X_COMPENSATION,
+                           Y_COMPENSATION - loc.giveY());
 }
 
 void MainWindow::deleteActor(std::shared_ptr<Interface::IActor> actor)
