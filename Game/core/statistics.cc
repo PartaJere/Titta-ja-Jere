@@ -130,6 +130,12 @@ int Statistics::getPassengers()
     return passengers_;
 }
 
+int Statistics::lessPassenger(int num)
+{
+    Q_ASSERT(num >= 0);
+    passengers_-= num;
+}
+
 
 
 
