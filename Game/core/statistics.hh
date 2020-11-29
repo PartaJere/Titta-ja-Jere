@@ -100,7 +100,7 @@ public:
     int getCustomers();
     int getMaxPoints();
     int getPassengers();
-    int lessPassenger(int num);
+    void lessPassenger(int num);
 
 private:
     int buses_;
