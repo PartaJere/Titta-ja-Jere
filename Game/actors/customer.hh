@@ -46,8 +46,17 @@ namespace Game {
          */
         bool isRemoved() const;
 
+        /**
+         * @brief decreaseHunger decreases hunger of the customer by one. If
+         * hunger runs 0 or under, calls remove()
+         * @param amount, int
+         */
         void decreaseHunger(int amount);
 
+        /**
+         * @brief getInitialLevelOfHunger
+         * @return int, initial level of hunger, used to calculate points
+         */
         int getInitialLevelOfHunger();
 
     private:
