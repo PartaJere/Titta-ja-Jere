@@ -68,14 +68,35 @@ namespace Game {
          */
         void decreaseHP(int toDec);
 
+        /**
+         * @brief getHP
+         * @return int, current HP of player
+         */
         int getHP();
 
+        /**
+         * @brief increaseFood adds food to player if food_ < maxfood_
+         * @param amount
+         */
         void increaseFood(int amount);
 
+        /**
+         * @brief decreaseFood decreases food from player, if there is enough.
+         * @param amount
+         * @return bool, if there were food, true, else false.
+         */
         bool decreaseFood(int amount);
 
+        /**
+         * @brief getFood
+         * @return int, amount of food
+         */
         int getFood();
 
+        /**
+         * @brief getmaxFood
+         * @return int, maximum amount of food
+         */
         int getmaxFood();
 
     private:
