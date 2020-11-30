@@ -39,7 +39,10 @@ class MainWindow;
 }
 
 namespace Game {
-
+/**
+ * @brief The MainWindow class defines game's main ui. It displays what is on
+ * game area, and reads users inputs and forwards them to engine.
+ */
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
@@ -236,4 +239,4 @@ private:
 };
 
 } //namespace
-#endif // SIMPLEMAINWINDOW_HH
+#endif // MAINWINDOW_HH

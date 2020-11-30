@@ -25,6 +25,10 @@
 
 namespace Game
 {
+/**
+ * @brief The City class defines a class for the environment of the game.
+ * It stores all the actors, stops and restaurants there are.
+ */
 class City : public Interface::ICity
 {
 public:
@@ -33,11 +37,16 @@ public:
 
     /**
      * @brief setBackground sets the bitmap picture of the game area.
-     * @param basicbackground  Normal sized picture used as the game area. Bottom left position of the picture in pixelcoordinates can be found out using the offset()-method.
-     * @param bigbackground  Background of the game that is bigger than normal. Used only if doing Scrolling map-expansion. Bottom left position of the picture in pixelcoordinates can be found out using the offset()-method.
+     * @param basicbackground  Normal sized picture used as the game area.
+     * Bottom left position of the picture in pixelcoordinates can be found
+     * out using the offset()-method.
+     * @param bigbackground  Background of the game that is bigger than normal.
+     * Used only if doing Scrolling map-expansion. Bottom left position of the
+     * picture in pixelcoordinates can be found out using the offset()-method.
      * @pre City is in init state.
      * @post Picture for the game area is set. Exception guarantee: basic.
-     * @exception InitError Setting the picture was unsuccesful or the picture was invalid.
+     * @exception InitError Setting the picture was unsuccesful or the picture
+     * was invalid.
      */
     void setBackground(QImage &basicbackground, QImage &bigbackground) override;
 
@@ -87,7 +96,8 @@ public:
     /**
      * @brief actorRemoved tells the city that actor is removed ingame.
      * @param actor Actor that is set removed ingame.
-     * @pre City is in gamestate. Given actor is found in the city. Actor has `actor.isRemoved() == true`.
+     * @pre City is in gamestate. Given actor is found in the city. Actor has
+     * `actor.isRemoved() == true`.
      * @post Exception guarantee: strong.
      */
     void actorRemoved(std::shared_ptr<Interface::IActor> actor) override;
@@ -102,7 +112,8 @@ public:
     bool findActor(std::shared_ptr<Interface::IActor> actor) const override;
 
     /**
-     * @brief actorMoved is an operation that is used to tell wether certain actor has moved.
+     * @brief actorMoved is an operation that is used to tell wether certain
+     * actor has moved.
      * @param actor Actor that has moved.
      * @pre City is in gamestate. Given actor is found in the city.
      * @post Exception guarantee: basic.
@@ -113,10 +124,12 @@ public:
      * @brief getNearbyActors returns actors that are close to given position.
      * @param loc Location for getting the actors close to it.
      * @pre City is in gamestate.
-     * @return Vector containing actors close to the location, that pass `giveLocation().isClose(loc) == true`.
+     * @return Vector containing actors close to the location, that pass
+     * `giveLocation().isClose(loc) == true`.
      * @post Exception guarantee: strong.
      */
-    std::vector<std::shared_ptr<Interface::IActor>> getNearbyActors(Interface::Location loc) const override;
+    std::vector<std::shared_ptr<Interface::IActor>>
+                getNearbyActors(Interface::Location loc) const override;
 
     /**
      * @brief isGameOver tells wether the game is overor not.
@@ -127,7 +140,8 @@ public:
     bool isGameOver() const override;
 
     /**
-     * @brief creates pointers to restaurants from restaurant data and adds them to restaurant vector
+     * @brief creates pointers to restaurants from restaurant data and adds them
+     *  to restaurant vector
      * @pre City is in initstate
      */
     void addRestaurants();

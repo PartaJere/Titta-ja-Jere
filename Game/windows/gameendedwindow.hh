@@ -8,6 +8,10 @@ class GameEndedWindow;
 }
 
 namespace Game {
+    /**
+     * @brief The GameEndedWindow class defines a dialog, that is shown when
+     * the game ends. It displays the reason of the game ending.
+     */
     class GameEndedWindow : public QDialog
     {
         Q_OBJECT

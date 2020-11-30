@@ -13,11 +13,14 @@
 #include "actors/customer.hh"
 
 /**
-  * @file
-  * @brief Defines a class that initializes and runs the game. When initialized,
-  * it puts the game to the initialization state.
-  */
+ * @brief All of the classes created by us are in the Game namespace
+ */
 namespace Game  {
+    /**
+      *
+      * @brief Defines a class that initializes and runs the game. When initialized,
+      * it puts the game to the initialization state.
+      */
     class Engine : public QObject
     {
         Q_OBJECT

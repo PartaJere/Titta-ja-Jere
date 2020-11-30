@@ -8,6 +8,9 @@
 
 
 namespace Game {
+    /**
+     * @brief The Customer class defines a single customer actor in game.
+     */
     class Customer : public Interface::IActor
     {
     public:
