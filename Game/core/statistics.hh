@@ -9,7 +9,11 @@
 
 namespace Game {
 
+/**
+ * @brief The Statistics class creates and keeps up the statistics in the game.
+ */
 class Statistics : Interface::IStatistics
+
 {
 public:
     /**

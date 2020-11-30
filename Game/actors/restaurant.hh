@@ -10,7 +10,10 @@
 
 
 namespace Game {
-
+/**
+ * @brief The Restaurant class creates a restaurant for the game and updates
+ * its values
+ */
 class Restaurant : public QObject, Interface::IActor
 {
     Q_OBJECT

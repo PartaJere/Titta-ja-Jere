@@ -7,6 +7,10 @@
 #include "core/location.hh"
 
 namespace Game {
+    /**
+     * @brief The Player class creates a player that the user moves to play
+     * the game
+     */
     class Player : public Interface::IActor
     {
     public:

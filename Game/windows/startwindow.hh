@@ -11,6 +11,10 @@ class StartWindow;
 }
 
 namespace Game{
+/**
+ * @brief The StartWindow class is dialog window that the user input their name and chosen difficutly
+ * into to start the game
+ */
 class StartWindow : public QDialog
 {
     Q_OBJECT
